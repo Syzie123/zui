@@ -27,7 +27,7 @@ export default function MagicCardDoc() {
           </div>
         }
         minHeight="14rem"
-        code={`import { MagicCard } from '@zui/react';
+        code={`import { MagicCard } from '@zui.react/zui';
 
 <MagicCard className="p-6">
   <p>Build</p>

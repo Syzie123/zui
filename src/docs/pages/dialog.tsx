@@ -41,7 +41,7 @@ export default function DialogDoc() {
             </Dialog.Content>
           </Dialog>
         }
-        code={`import { Dialog, Button, Input, Label } from '@zui/react';
+        code={`import { Dialog, Button, Input, Label } from '@zui.react/zui';
 
 <Dialog>
   <Dialog.Trigger asChild>

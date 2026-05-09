@@ -1,18 +1,15 @@
 import { ArrowRight, Sparkles, Trash2, Mail } from 'lucide-react';
 import { Button } from '../../components/Button';
 import { PreviewTabs } from '../PreviewTabs';
-import { H2, H3, P, PropsTable, InstallSnippet } from '../page-kit';
+import { H2, H3, P, PropsTable } from '../page-kit';
 
 export default function ButtonDoc() {
   return (
     <article>
-      <H2>Installation</H2>
-      <InstallSnippet pkg="@zui/react" />
-
       <H2>Default</H2>
       <PreviewTabs
         preview={<Button>Get Started</Button>}
-        code={`import { Button } from '@zui/react';
+        code={`import { Button } from '@zui.react/zui';
 
 export default function Demo() {
   return <Button>Get Started</Button>;

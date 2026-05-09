@@ -9,7 +9,8 @@ import { DocsHeader } from './DocsHeader';
 import { DocsSidebarBody } from './DocsSidebar';
 import { DocsTOC } from './DocsTOC';
 import { DocsSearch } from './DocsSearch';
-import { findPage, lazyPage, neighbors } from './registry';
+import { findPage, groupOf, lazyPage, neighbors } from './registry';
+import { InstallPill } from './InstallPill';
 import { Link } from '../hooks/useHashRoute';
 import { Sidebar, useSidebar } from '../components/Sidebar';
 import { cn } from '../utils/cn';
@@ -96,9 +97,12 @@ function DocsLayoutInner({ slug }: Props) {
               className="min-w-0 flex-1 py-8 sm:py-12 lg:px-6"
               key={slug}
             >
-              <Breadcrumb category="Components" pageTitle={page.title} />
+              <Breadcrumb
+                category={groupOf(slug) ?? 'Components'}
+                pageTitle={page.title}
+              />
 
-              <header className="mt-3 mb-8 flex items-start justify-between gap-6">
+              <header className="mt-3 mb-6 flex items-start justify-between gap-6">
                 <div className="min-w-0" data-animate-up>
                   <h1
                     id="top"
@@ -112,6 +116,13 @@ function DocsLayoutInner({ slug }: Props) {
                 </div>
                 <PageActions slug={slug} />
               </header>
+
+              {/* Install pill — auto-rendered on every page except Getting started */}
+              {groupOf(slug) !== 'Getting started' && (
+                <div data-animate-up data-animate-delay="1" className="mb-8">
+                  <InstallPill />
+                </div>
+              )}
 
               <Suspense
                 fallback={

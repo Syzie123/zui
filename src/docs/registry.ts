@@ -284,6 +284,14 @@ export function findPage(slug: string): DocPage | undefined {
   return undefined;
 }
 
+/** Returns the name of the group that owns this slug, or undefined. */
+export function groupOf(slug: string): string | undefined {
+  for (const group of DOCS) {
+    if (group.pages.some((p) => p.slug === slug)) return group.name;
+  }
+  return undefined;
+}
+
 export function flatPages(): DocPage[] {
   return DOCS.flatMap((g) => g.pages);
 }

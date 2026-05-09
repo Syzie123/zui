@@ -13,7 +13,7 @@ export default function ToastDoc() {
       </P>
       <PreviewTabs
         preview={<ToastDemo />}
-        code={`import { ToastProvider, useToast } from '@zui/react';
+        code={`import { ToastProvider, useToast } from '@zui.react/zui';
 
 function App() {
   return (

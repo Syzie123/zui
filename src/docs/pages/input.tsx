@@ -16,7 +16,7 @@ export default function InputDoc() {
             <Input id="email" type="email" placeholder="you@company.com" />
           </div>
         }
-        code={`import { Input, Label } from '@zui/react';
+        code={`import { Input, Label } from '@zui.react/zui';
 
 <div className="space-y-1.5">
   <Label htmlFor="email">Email</Label>

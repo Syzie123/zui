@@ -47,7 +47,7 @@ export default function DockDoc() {
           </Dock>
         }
         minHeight="12rem"
-        code={`import { Dock, DockItem } from '@zui/react';
+        code={`import { Dock, DockItem } from '@zui.react/zui';
 import { Mail, Calendar, Music } from 'lucide-react';
 
 <Dock>

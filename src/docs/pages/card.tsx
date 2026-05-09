@@ -34,7 +34,7 @@ export default function CardDoc() {
             </Card.Footer>
           </Card>
         }
-        code={`import { Card, Badge, Button } from '@zui/react';
+        code={`import { Card, Badge, Button } from '@zui.react/zui';
 
 <Card>
   <Card.Header>
