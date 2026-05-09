@@ -2,7 +2,10 @@
 <html lang="en" class="theme-clean">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Favicon — light/dark switch follows OS preference (browser tab UI) -->
+    <link rel="icon" type="image/svg+xml" href="/logo/light.svg" media="(prefers-color-scheme: light)" />
+    <link rel="icon" type="image/svg+xml" href="/logo/dark.svg"  media="(prefers-color-scheme: dark)" />
+    <link rel="apple-touch-icon" href="/logo/light.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />

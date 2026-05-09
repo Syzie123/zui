@@ -11,6 +11,7 @@ import { DocsTOC } from './DocsTOC';
 import { DocsSearch } from './DocsSearch';
 import { findPage, groupOf, lazyPage, neighbors } from './registry';
 import { InstallPill } from './InstallPill';
+import { Logo } from './Logo';
 import { Link } from '../hooks/useHashRoute';
 import { Sidebar, useSidebar } from '../components/Sidebar';
 import { cn } from '../utils/cn';
@@ -273,18 +274,3 @@ function NotFound() {
   );
 }
 
-function Logo() {
-  return (
-    <span
-      aria-hidden
-      className={cn(
-        'inline-flex size-7 items-center justify-center',
-        'rounded-[var(--radius-md)]',
-        'bg-[var(--color-fg-base)] text-[var(--color-bg-base)]',
-        'font-display text-sm font-bold'
-      )}
-    >
-      Z
-    </span>
-  );
-}

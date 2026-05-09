@@ -1,8 +1,23 @@
-# zuilib
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Syzie123/zui/main/public/logo/dark.svg">
+    <img src="https://raw.githubusercontent.com/Syzie123/zui/main/public/logo/light.svg" width="120" alt="ZUI" />
+  </picture>
+</p>
 
-A modern React component library focused on speed, polish, and motion.
+<h1 align="center">@zui.react/zui</h1>
 
-> **22 components · 6 motion effects · 5 production patterns** — sub-millisecond renders, accessible by default, three themes from one token system.
+<p align="center">
+  A modern React component library focused on speed, polish, and motion.<br/>
+  <strong>32 components · 7 motion effects · 5 production patterns · 4 visual variants</strong>
+</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/@zui.react/zui"><img src="https://img.shields.io/npm/v/@zui.react/zui?color=000&label=npm" alt="npm"></a>
+  <img src="https://img.shields.io/badge/license-MIT-000" alt="license">
+  <img src="https://img.shields.io/badge/bundle-23kb%20gzipped-000" alt="bundle size">
+  <img src="https://img.shields.io/badge/css-17kb%20gzipped-000" alt="css size">
+</p>
 
 ```bash
 npm install @zui.react/zui

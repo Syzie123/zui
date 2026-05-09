@@ -7,6 +7,7 @@ import { useTheme, type Theme } from '../hooks/useTheme';
 import { useAnimations } from '../hooks/useAnimations';
 import { Link } from '../hooks/useHashRoute';
 import { cn } from '../utils/cn';
+import { Logo } from './Logo';
 
 const THEME_ICON: Record<Theme, JSX.Element> = {
   clean:    <Sun className="size-4" />,
@@ -158,18 +159,3 @@ export function DocsHeader({
   );
 }
 
-function Logo() {
-  return (
-    <span
-      aria-hidden
-      className={cn(
-        'inline-flex size-7 items-center justify-center',
-        'rounded-[var(--radius-md)]',
-        'bg-[var(--color-fg-base)] text-[var(--color-bg-base)]',
-        'font-display text-sm font-bold'
-      )}
-    >
-      Z
-    </span>
-  );
-}
