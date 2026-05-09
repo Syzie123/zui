@@ -105,31 +105,33 @@ function Hero() {
           renders, accessible, theme-able by one class.
         </p>
 
-        {/* CTAs — primary accent + black solid (mirrors the primary's shape) */}
+        {/* CTAs — primary accent + black solid (mirrors Browse exactly) */}
         <div className="zui-hero-cta mt-9 flex flex-wrap items-center justify-center gap-2.5">
           <Link href="/components/introduction">
             <Button size="lg" rightIcon={<ArrowRight className="size-4" />}>
               Browse components
             </Button>
           </Link>
-          <Button
-            size="lg"
-            leftIcon={<Github className="size-4" />}
-            asChild
+          <a
+            href="https://github.com/Syzie123/zui"
+            target="_blank"
+            rel="noreferrer"
             className={cn(
-              '!bg-[var(--color-fg-base)] !text-[var(--color-bg-base)]',
-              'hover:!bg-[color-mix(in_oklch,var(--color-fg-base)_88%,var(--color-bg-base))]',
-              'shadow-[0_1px_2px_-1px_rgb(16_24_40/0.10),inset_0_1px_0_0_rgb(255_255_255/0.04)]'
+              'inline-flex items-center justify-center gap-2',
+              'h-12 px-6 text-base font-medium tracking-[-0.01em]',
+              'rounded-[var(--radius-lg)]',
+              'bg-[var(--color-fg-base)] text-[var(--color-bg-base)]',
+              'shadow-[0_1px_2px_-1px_rgb(16_24_40/0.10),inset_0_1px_0_0_rgb(255_255_255/0.08)]',
+              'transition-all duration-[var(--duration-fast)] ease-[var(--ease-out)]',
+              'hover:bg-[color-mix(in_oklch,var(--color-fg-base)_88%,var(--color-bg-base))]',
+              'hover:shadow-[0_4px_12px_-4px_var(--color-fg-base),inset_0_1px_0_0_rgb(255_255_255/0.12)]',
+              'active:scale-[0.98]',
+              'focus-visible:outline-none focus-visible:shadow-[var(--shadow-focus)]'
             )}
           >
-            <a
-              href="https://github.com/Syzie123/zui"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub
-            </a>
-          </Button>
+            <Github className="size-4" />
+            GitHub
+          </a>
         </div>
 
         {/* Install snippet */}
