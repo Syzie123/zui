@@ -126,6 +126,81 @@ export const DOCS: DocGroup[] = [
     ],
   },
   {
+    name: 'Ecommerce',
+    pages: [
+      {
+        slug: 'product-card',
+        title: 'Product Card',
+        description: 'Product tile with image, badge, tags, price, and add-to-cart.',
+        isNew: true,
+        loader: () => import('./pages/ecommerce/product-card'),
+      },
+      {
+        slug: 'cart-item',
+        title: 'Cart Item',
+        description: 'Single line in a shopping cart — image, qty stepper, price, remove.',
+        isNew: true,
+        loader: () => import('./pages/ecommerce/cart-item'),
+      },
+      {
+        slug: 'order-summary',
+        title: 'Order Summary',
+        description: 'Sub-totals, coupon, total, and checkout CTA. Includes a dark variant.',
+        isNew: true,
+        loader: () => import('./pages/ecommerce/order-summary'),
+      },
+      {
+        slug: 'payment-method-picker',
+        title: 'Payment Method Picker',
+        description: 'Radio-card list of payment methods (cards, wallets, BNPL).',
+        isNew: true,
+        loader: () => import('./pages/ecommerce/payment-method-picker'),
+      },
+      {
+        slug: 'credit-card-form',
+        title: 'Credit Card Form',
+        description: 'Name, number, expiry, CVC with auto-formatting.',
+        isNew: true,
+        loader: () => import('./pages/ecommerce/credit-card-form'),
+      },
+      {
+        slug: 'shipping-option',
+        title: 'Shipping Option',
+        description: 'Carrier-aware delivery picker with ETA and badges.',
+        isNew: true,
+        loader: () => import('./pages/ecommerce/shipping-option'),
+      },
+      {
+        slug: 'checkout-stepper',
+        title: 'Checkout Stepper',
+        description: 'Progress indicator across cart → payment → review.',
+        isNew: true,
+        loader: () => import('./pages/ecommerce/checkout-stepper'),
+      },
+      {
+        slug: 'promo-code',
+        title: 'Promo Code',
+        description: 'Inline coupon input with apply state.',
+        isNew: true,
+        loader: () => import('./pages/ecommerce/promo-code'),
+      },
+      {
+        slug: 'quantity-stepper',
+        title: 'Quantity Stepper',
+        description: 'Plus/minus quantity control. Used inside CartItem.',
+        isNew: true,
+        loader: () => import('./pages/ecommerce/quantity-stepper'),
+      },
+      {
+        slug: 'price-tag',
+        title: 'Price Tag',
+        description: 'Price text with optional strikethrough original.',
+        isNew: true,
+        loader: () => import('./pages/ecommerce/price-tag'),
+      },
+    ],
+  },
+  {
     name: 'Effects',
     pages: [
       {

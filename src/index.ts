@@ -42,6 +42,9 @@ export * from './components/Progress';
 export * from './components/Slider';
 export * from './components/Sidebar';
 
+/* ─────────── Ecommerce kit ─────────── */
+export * from './components/ecommerce';
+
 /* ─────────── Effects ─────────── */
 export * from './components/effects/Marquee';
 export * from './components/effects/BorderBeam';
