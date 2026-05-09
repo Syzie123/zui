@@ -1,0 +1,52 @@
+/* ────────────────────────────────────────────────────────────
+ * Code block theme — works in both light & dark via CSS vars
+ * ──────────────────────────────────────────────────────────── */
+:root,
+.theme-clean {
+  --code-bg:       oklch(98% 0.003 250);
+  --code-fg:       oklch(20% 0.02 260);
+  --tok-comment:   oklch(58% 0.012 250);
+  --tok-string:    oklch(48% 0.16 145);
+  --tok-keyword:   oklch(50% 0.22 290);
+  --tok-tag:       oklch(50% 0.18 240);
+  --tok-function:  oklch(48% 0.16 50);
+  --tok-number:    oklch(58% 0.18 30);
+  --tok-punct:     oklch(40% 0.02 260);
+}
+
+.theme-dark {
+  --code-bg:       oklch(6% 0 0);   /* slightly darker than --color-bg-elevated */
+  --code-fg:       oklch(96% 0 0);
+  --tok-comment:   oklch(48% 0 0);
+  --tok-string:    oklch(78% 0.16 145);
+  --tok-keyword:   oklch(72% 0.22 295);
+  --tok-tag:       oklch(72% 0.16 230);
+  --tok-function:  oklch(80% 0.14 80);
+  --tok-number:    oklch(76% 0.16 30);
+  --tok-punct:     oklch(70% 0 0);
+}
+
+.theme-luminous {
+  --code-bg:       oklch(8% 0.025 280);
+  --code-fg:       oklch(96% 0.005 280);
+  --tok-comment:   oklch(50% 0.022 280);
+  --tok-string:    oklch(78% 0.16 145);
+  --tok-keyword:   oklch(76% 0.24 295);
+  --tok-tag:       oklch(72% 0.16 230);
+  --tok-function:  oklch(80% 0.14 80);
+  --tok-number:    oklch(76% 0.16 30);
+  --tok-punct:     oklch(72% 0.022 280);
+}
+
+pre code {
+  color: var(--code-fg);
+  background: transparent;
+}
+
+.tok-comment  { color: var(--tok-comment);  font-style: italic; }
+.tok-string   { color: var(--tok-string);   }
+.tok-keyword  { color: var(--tok-keyword);  font-weight: 500; }
+.tok-tag      { color: var(--tok-tag);      }
+.tok-function { color: var(--tok-function); }
+.tok-number   { color: var(--tok-number);   }
+.tok-punct    { color: var(--tok-punct);    }

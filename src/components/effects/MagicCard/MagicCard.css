@@ -1,0 +1,32 @@
+.zui-magic-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-2xl);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-base);
+  isolation: isolate;
+  transition: border-color var(--duration-base) var(--ease-out);
+}
+
+.zui-magic-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(
+    var(--zui-mc-size, 280px) circle at var(--zui-mc-x, -200px) var(--zui-mc-y, -200px),
+    color-mix(in oklch, var(--zui-mc-color) calc(var(--zui-mc-opacity, 0.18) * 100%), transparent),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.zui-magic-card:hover {
+  border-color: var(--color-border-strong);
+}
+
+.zui-magic-card:hover::before {
+  opacity: 1;
+}

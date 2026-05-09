@@ -1,0 +1,109 @@
+/* ────────────────────────────────────────────────────────────
+ * Aurora — three soft color blobs that drift slowly.
+ * GPU-only properties (transform), no layout thrash.
+ * ──────────────────────────────────────────────────────────── */
+.zui-aurora {
+  position: absolute;
+  inset: -10% -10% auto -10%;
+  height: 56rem;
+  z-index: -10;
+  pointer-events: none;
+  filter: blur(60px) saturate(120%);
+  opacity: 0.55;
+}
+
+.zui-aurora::before,
+.zui-aurora::after,
+.zui-aurora > span {
+  content: '';
+  position: absolute;
+  border-radius: 9999px;
+  will-change: transform;
+}
+
+.zui-aurora::before {
+  width: 38rem;
+  height: 38rem;
+  top: -8rem;
+  left: -6rem;
+  background: radial-gradient(closest-side, oklch(72% 0.20 285) 0%, transparent 70%);
+  animation: zui-aurora-drift-a 22s ease-in-out infinite;
+}
+
+.zui-aurora::after {
+  width: 32rem;
+  height: 32rem;
+  top: -4rem;
+  right: -4rem;
+  background: radial-gradient(closest-side, oklch(78% 0.18 320) 0%, transparent 70%);
+  animation: zui-aurora-drift-b 26s ease-in-out infinite;
+}
+
+@keyframes zui-aurora-drift-a {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(40px, 30px, 0) scale(1.08); }
+}
+
+@keyframes zui-aurora-drift-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(-50px, 40px, 0) scale(0.95); }
+}
+
+/* Dark theme — punchier aurora */
+.theme-dark .zui-aurora,
+.theme-luminous .zui-aurora {
+  opacity: 0.35;
+  filter: blur(80px) saturate(140%);
+}
+
+/* ────────────────────────────────────────────────────────────
+ * Shimmer text — gradient sweep on the highlighted word
+ * ──────────────────────────────────────────────────────────── */
+.zui-shimmer-text {
+  background: linear-gradient(
+    100deg,
+    var(--color-accent-base) 0%,
+    oklch(60% 0.22 320) 30%,
+    oklch(72% 0.18 280) 50%,
+    oklch(60% 0.22 320) 70%,
+    var(--color-accent-base) 100%
+  );
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  animation: zui-shimmer-sweep 6s linear infinite;
+}
+
+@keyframes zui-shimmer-sweep {
+  0%   { background-position:   0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* ────────────────────────────────────────────────────────────
+ * Float — gentle bob, staggered phases for the 4 preview cards
+ * ──────────────────────────────────────────────────────────── */
+.zui-float-a, .zui-float-b, .zui-float-c, .zui-float-d {
+  animation: zui-float 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+.zui-float-a { animation-delay: 0s;     }
+.zui-float-b { animation-delay: -1.5s;  }
+.zui-float-c { animation-delay: -3s;    }
+.zui-float-d { animation-delay: -4.5s;  }
+
+@keyframes zui-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zui-aurora::before,
+  .zui-aurora::after,
+  .zui-shimmer-text,
+  .zui-float-a, .zui-float-b, .zui-float-c, .zui-float-d {
+    animation: none !important;
+  }
+}

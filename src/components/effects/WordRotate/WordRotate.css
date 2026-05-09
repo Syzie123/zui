@@ -1,0 +1,21 @@
+.zui-word-rotate {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  line-height: 1;
+}
+
+.zui-word-rotate__word {
+  display: inline-block;
+  animation: zui-word-rotate-in 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+@keyframes zui-word-rotate-in {
+  from { transform: translateY(60%); opacity: 0; }
+  to   { transform: translateY(0);   opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zui-word-rotate__word { animation: none; }
+}

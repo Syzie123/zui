@@ -1,0 +1,115 @@
+/* ────────────────────────────────────────────────────────────
+ * Luminous — aurora glow CTA. Layered: gradient fill, outer glow,
+ * inner highlight, dark ring. Cheap to render: only transform +
+ * box-shadow on hover, plus a one-shot shine sweep.
+ * ──────────────────────────────────────────────────────────── */
+.btn-luminous {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: white;
+  background:
+    radial-gradient(120% 80% at 30% 25%, oklch(75% 0.22 295) 0%, transparent 60%),
+    radial-gradient(120% 80% at 78% 78%, oklch(58% 0.26 268) 0%, transparent 62%),
+    linear-gradient(135deg, oklch(50% 0.25 285), oklch(45% 0.22 270));
+  border: 2px solid oklch(14% 0.02 270);
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 0.28),
+    inset 0 -10px 16px 0 rgb(0 0 0 / 0.18),
+    0 1px 2px 0 rgb(0 0 0 / 0.20),
+    0 0 32px -4px oklch(60% 0.25 285 / 0.55);
+  text-shadow: 0 1px 0 rgb(0 0 0 / 0.18);
+  font-weight: 600;
+}
+
+/* Shine sweep — a single absolutely-positioned strip animated on hover.
+ * Hardware-accelerated translate only, no layout thrash. */
+.btn-luminous::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(
+    100deg,
+    transparent 30%,
+    rgb(255 255 255 / 0.18) 45%,
+    rgb(255 255 255 / 0.32) 50%,
+    rgb(255 255 255 / 0.18) 55%,
+    transparent 70%
+  );
+  transform: translateX(-100%);
+  pointer-events: none;
+  transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-luminous:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 0.34),
+    inset 0 -10px 16px 0 rgb(0 0 0 / 0.18),
+    0 4px 8px 0 rgb(0 0 0 / 0.20),
+    0 0 56px -4px oklch(65% 0.27 285 / 0.70);
+}
+
+.btn-luminous:hover::before {
+  transform: translateX(100%);
+}
+
+.btn-luminous:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-luminous:focus-visible {
+  outline: none;
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 0.30),
+    inset 0 -10px 16px 0 rgb(0 0 0 / 0.18),
+    0 0 0 3px var(--color-accent-ring),
+    0 0 32px -4px oklch(60% 0.25 285 / 0.55);
+}
+
+/* ────────────────────────────────────────────────────────────
+ * Gradient — softer, brand-y. Two-tone with subtle shine.
+ * Reads well on light backgrounds (luminous needs dark).
+ * ──────────────────────────────────────────────────────────── */
+.btn-gradient {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: white;
+  background:
+    linear-gradient(135deg, oklch(60% 0.22 285), oklch(54% 0.22 270) 50%, oklch(58% 0.20 320));
+  background-size: 180% 180%;
+  background-position: 0% 50%;
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 0.20),
+    0 1px 2px 0 rgb(0 0 0 / 0.10),
+    0 8px 24px -8px oklch(54% 0.22 280 / 0.45);
+  font-weight: 600;
+  transition:
+    background-position 600ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out);
+}
+
+.btn-gradient:hover {
+  background-position: 100% 50%;
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 0.24),
+    0 4px 8px 0 rgb(0 0 0 / 0.10),
+    0 16px 32px -8px oklch(54% 0.22 280 / 0.55);
+}
+
+.btn-gradient:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-gradient:focus-visible {
+  outline: none;
+  box-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 0.24),
+    0 0 0 3px var(--color-accent-ring),
+    0 8px 24px -8px oklch(54% 0.22 280 / 0.45);
+}

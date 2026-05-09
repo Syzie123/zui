@@ -1,0 +1,87 @@
+/* ────────────────────────────────────────────────────────────
+ * Marquee — endless scroll. Track is duplicated; the whole
+ * group translates by 100% / count. GPU-only.
+ * ──────────────────────────────────────────────────────────── */
+.zui-marquee {
+  display: flex;
+  overflow: hidden;
+  --zui-marquee-gap: 1rem;
+  gap: var(--zui-marquee-gap);
+}
+
+.zui-marquee[data-direction='horizontal'] {
+  width: 100%;
+}
+
+.zui-marquee[data-direction='vertical'] {
+  height: 100%;
+  flex-direction: column;
+}
+
+.zui-marquee__track {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--zui-marquee-gap);
+  min-width: 100%;
+  min-height: 100%;
+  animation: zui-marquee-h var(--zui-marquee-duration, 30s) linear infinite;
+  will-change: transform;
+}
+
+.zui-marquee__track--reverse {
+  animation-direction: reverse;
+}
+
+.zui-marquee[data-direction='vertical'] .zui-marquee__track {
+  flex-direction: column;
+  animation-name: zui-marquee-v;
+}
+
+.zui-marquee--pause:hover .zui-marquee__track {
+  animation-play-state: paused;
+}
+
+@keyframes zui-marquee-h {
+  to { transform: translateX(calc(-100% - var(--zui-marquee-gap))); }
+}
+@keyframes zui-marquee-v {
+  to { transform: translateY(calc(-100% - var(--zui-marquee-gap))); }
+}
+
+/* Edge fade — soft mask on both ends */
+.zui-marquee[data-fade] {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 5%,
+    #000 95%,
+    transparent 100%
+  );
+          mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 5%,
+    #000 95%,
+    transparent 100%
+  );
+}
+.zui-marquee[data-fade][data-direction='vertical'] {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 5%,
+    #000 95%,
+    transparent 100%
+  );
+          mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 5%,
+    #000 95%,
+    transparent 100%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zui-marquee__track { animation: none; }
+}

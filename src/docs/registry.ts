@@ -1,0 +1,237 @@
+/**
+ * Single source of truth for the docs site:
+ *  - sidebar order & grouping
+ *  - search index
+ *  - prev/next navigation between pages
+ *
+ * Pages are referenced by `slug` and the actual content lives in
+ * src/docs/pages/<slug>.tsx — loaded lazily via the `loader`.
+ */
+import { lazy, type ComponentType, type LazyExoticComponent } from 'react';
+
+export interface DocPage {
+  slug: string;
+  title: string;
+  description: string;
+  isNew?: boolean;
+  /** Lazy loader for the page component. */
+  loader: () => Promise<{ default: ComponentType }>;
+}
+
+export interface DocGroup {
+  name: string;
+  pages: DocPage[];
+}
+
+export const DOCS: DocGroup[] = [
+  {
+    name: 'Getting started',
+    pages: [
+      {
+        slug: 'introduction',
+        title: 'Introduction',
+        description: 'A modern React component library focused on speed, polish, and motion.',
+        loader: () => import('./pages/introduction'),
+      },
+      {
+        slug: 'installation',
+        title: 'Installation',
+        description: 'How to add ZUI to your project.',
+        loader: () => import('./pages/installation'),
+      },
+      {
+        slug: 'theming',
+        title: 'Theming',
+        description: 'Three themes share one token system. Switch via class on <html>.',
+        loader: () => import('./pages/theming'),
+      },
+    ],
+  },
+  {
+    name: 'Components',
+    pages: [
+      {
+        slug: 'button',
+        title: 'Button',
+        description: 'Interactive button with 9 variants, 4 sizes, loading state, and asChild.',
+        loader: () => import('./pages/button'),
+      },
+      {
+        slug: 'input',
+        title: 'Input',
+        description: 'Text input with prefix, suffix, validation, and three sizes.',
+        loader: () => import('./pages/input'),
+      },
+      {
+        slug: 'card',
+        title: 'Card',
+        description: 'Content container with 9 variants — flat, elevated, glow, glass, featured.',
+        loader: () => import('./pages/card'),
+      },
+      {
+        slug: 'dialog',
+        title: 'Dialog',
+        description: 'Modal layer with focus trap, scroll lock, and animated overlay.',
+        loader: () => import('./pages/dialog'),
+      },
+      {
+        slug: 'toast',
+        title: 'Toast',
+        description: 'Notifications with queue management, swipe-to-dismiss, and auto-dismiss.',
+        loader: () => import('./pages/toast'),
+      },
+      {
+        slug: 'tabs',
+        title: 'Tabs',
+        description: 'Tabbed navigation with animated underline indicator.',
+        loader: () => import('./pages/tabs'),
+      },
+      {
+        slug: 'accordion',
+        title: 'Accordion',
+        description: 'Collapsible content sections with smooth height animation.',
+        loader: () => import('./pages/accordion'),
+      },
+      {
+        slug: 'select',
+        title: 'Select',
+        description: 'Dropdown selector with keyboard nav, type-ahead, and groups.',
+        loader: () => import('./pages/select'),
+      },
+      {
+        slug: 'switch',
+        title: 'Switch',
+        description: 'Animated toggle with 3 sizes and 4 color tones.',
+        loader: () => import('./pages/switch'),
+      },
+      {
+        slug: 'badge',
+        title: 'Badge',
+        description: 'Status pill with 8 semantic tones and 3 shapes.',
+        loader: () => import('./pages/badge'),
+      },
+      {
+        slug: 'avatar',
+        title: 'Avatar',
+        description: 'User avatar with image, fallback initials, and status indicator.',
+        loader: () => import('./pages/avatar'),
+      },
+      {
+        slug: 'segmented-control',
+        title: 'Segmented Control',
+        description: 'Pill-shaped segmented selector for view-mode / scope toggles.',
+        isNew: true,
+        loader: () => import('./pages/segmented-control'),
+      },
+    ],
+  },
+  {
+    name: 'Effects',
+    pages: [
+      {
+        slug: 'marquee',
+        title: 'Marquee',
+        description: 'Endless scrolling row of items. Pure CSS, GPU-only.',
+        isNew: true,
+        loader: () => import('./pages/effects/marquee'),
+      },
+      {
+        slug: 'border-beam',
+        title: 'Border Beam',
+        description: 'Animated light that travels along an element border.',
+        isNew: true,
+        loader: () => import('./pages/effects/border-beam'),
+      },
+      {
+        slug: 'shine-border',
+        title: 'Shine Border',
+        description: 'Conic-gradient border that rotates around the card.',
+        isNew: true,
+        loader: () => import('./pages/effects/shine-border'),
+      },
+      {
+        slug: 'number-ticker',
+        title: 'Number Ticker',
+        description: 'Smoothly counts up to a target value when in view.',
+        isNew: true,
+        loader: () => import('./pages/effects/number-ticker'),
+      },
+      {
+        slug: 'magic-card',
+        title: 'Magic Card',
+        description: 'Card with a soft spotlight that follows the cursor.',
+        isNew: true,
+        loader: () => import('./pages/effects/magic-card'),
+      },
+      {
+        slug: 'dock',
+        title: 'Dock',
+        description: 'macOS-style dock with cursor-aware magnification.',
+        isNew: true,
+        loader: () => import('./pages/effects/dock'),
+      },
+    ],
+  },
+  {
+    name: 'Patterns',
+    pages: [
+      {
+        slug: 'filter-panel',
+        title: 'Filter Panel',
+        description: 'Multi-step filter card with sub-panels, search, and chips.',
+        loader: () => import('./pages/patterns/filter-panel'),
+      },
+      {
+        slug: 'project-detail',
+        title: 'Project Detail',
+        description: 'Property list + activity feed sheet for project records.',
+        loader: () => import('./pages/patterns/project-detail'),
+      },
+      {
+        slug: 'share-panel',
+        title: 'Share Panel',
+        description: 'Recipient list with permission pickers and link sharing.',
+        loader: () => import('./pages/patterns/share-panel'),
+      },
+    ],
+  },
+];
+
+/* ────────────────────────────────────────────────────────────
+ * Lookup helpers
+ * ──────────────────────────────────────────────────────────── */
+
+export function findPage(slug: string): DocPage | undefined {
+  for (const group of DOCS) {
+    const page = group.pages.find((p) => p.slug === slug);
+    if (page) return page;
+  }
+  return undefined;
+}
+
+export function flatPages(): DocPage[] {
+  return DOCS.flatMap((g) => g.pages);
+}
+
+export function neighbors(slug: string): {
+  prev?: DocPage;
+  next?: DocPage;
+} {
+  const all = flatPages();
+  const idx = all.findIndex((p) => p.slug === slug);
+  if (idx === -1) return {};
+  return {
+    prev: idx > 0 ? all[idx - 1] : undefined,
+    next: idx < all.length - 1 ? all[idx + 1] : undefined,
+  };
+}
+
+const cache = new Map<string, LazyExoticComponent<ComponentType>>();
+export function lazyPage(page: DocPage) {
+  let el = cache.get(page.slug);
+  if (!el) {
+    el = lazy(page.loader);
+    cache.set(page.slug, el);
+  }
+  return el;
+}

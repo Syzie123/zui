@@ -1,0 +1,249 @@
+@import './tokens.css';
+@import 'tailwindcss';
+
+/* ============================================================
+ * Tailwind v4 theme — bridges utilities to CSS variables.
+ * ============================================================ */
+@theme {
+  /* Colors */
+  --color-bg-base:       var(--color-bg-base);
+  --color-bg-subtle:     var(--color-bg-subtle);
+  --color-bg-muted:      var(--color-bg-muted);
+  --color-bg-elevated:   var(--color-bg-elevated);
+  --color-bg-inverse:    var(--color-bg-inverse);
+
+  --color-fg-base:       var(--color-fg-base);
+  --color-fg-muted:      var(--color-fg-muted);
+  --color-fg-subtle:     var(--color-fg-subtle);
+  --color-fg-on-accent:  var(--color-fg-on-accent);
+  --color-fg-on-inverse: var(--color-fg-on-inverse);
+
+  --color-border-base:    var(--color-border-base);
+  --color-border-strong:  var(--color-border-strong);
+  --color-border-subtle:  var(--color-border-subtle);
+
+  --color-accent-base:    var(--color-accent-base);
+  --color-accent-hover:   var(--color-accent-hover);
+  --color-accent-active:  var(--color-accent-active);
+  --color-accent-soft:    var(--color-accent-soft);
+  --color-accent-fg:      var(--color-accent-fg);
+
+  --color-success: var(--color-success);
+  --color-success-soft: var(--color-success-soft);
+  --color-warning: var(--color-warning);
+  --color-warning-soft: var(--color-warning-soft);
+  --color-danger: var(--color-danger);
+  --color-danger-hover: var(--color-danger-hover);
+  --color-danger-soft: var(--color-danger-soft);
+  --color-info: var(--color-info);
+  --color-info-soft: var(--color-info-soft);
+
+  /* Fonts */
+  --font-display: var(--font-display);
+  --font-body:    var(--font-body);
+  --font-mono:    var(--font-mono);
+  --font-sans:    var(--font-body);
+
+  /* Radii */
+  --radius-xs:   var(--radius-xs);
+  --radius-sm:   var(--radius-sm);
+  --radius-md:   var(--radius-md);
+  --radius-lg:   var(--radius-lg);
+  --radius-xl:   var(--radius-xl);
+  --radius-2xl:  var(--radius-2xl);
+  --radius-3xl:  var(--radius-3xl);
+  --radius-full: var(--radius-full);
+
+  /* Shadows */
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-2xl);
+}
+
+/* ============================================================
+ * Base layer
+ * ============================================================ */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    border-color: var(--color-border-base);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'ss01', 'ss03';
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--color-bg-base);
+    color: var(--color-fg-base);
+    font-family: var(--font-body);
+    font-feature-settings: 'rlig' 1, 'calt' 1, 'ss01' 1;
+    line-height: var(--leading-normal);
+    transition: background-color var(--duration-base) var(--ease-out),
+                color var(--duration-base) var(--ease-out);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background-color: var(--color-accent-soft);
+    color: var(--color-accent-base);
+  }
+
+  /* Native focus removed — components define :focus-visible explicitly */
+  :focus { outline: none; }
+
+  /* Buttons reset */
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  /* Inputs reset */
+  input,
+  textarea,
+  select {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background: transparent;
+  }
+
+  /* Smooth scroll except on prefers-reduced-motion */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ============================================================
+ * Reusable keyframes — used by data-state animations
+ * ============================================================ */
+@layer utilities {
+  @keyframes zui-enter {
+    from { opacity: 0; transform: translateY(4px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0)   scale(1); }
+  }
+
+  @keyframes zui-exit {
+    from { opacity: 1; transform: translateY(0)   scale(1); }
+    to   { opacity: 0; transform: translateY(4px) scale(0.98); }
+  }
+
+  @keyframes zui-overlay-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes zui-overlay-out {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+  }
+
+  @keyframes zui-dialog-in {
+    from { opacity: 0; transform: translate(-50%, calc(-50% + 8px)) scale(0.97); }
+    to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  }
+
+  @keyframes zui-dialog-out {
+    from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    to   { opacity: 0; transform: translate(-50%, calc(-50% + 8px)) scale(0.97); }
+  }
+
+  @keyframes zui-slide-from-right {
+    from { transform: translateX(calc(100% + 24px)); }
+    to   { transform: translateX(0); }
+  }
+
+  @keyframes zui-slide-to-right {
+    from { transform: translateX(0); }
+    to   { transform: translateX(calc(100% + 24px)); }
+  }
+
+  @keyframes zui-pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.5; }
+  }
+
+  @keyframes zui-shimmer {
+    100% { transform: translateX(100%); }
+  }
+
+  @keyframes zui-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes zui-progress-indeterminate {
+    0%   { transform: translateX(-100%) scaleX(0.4); }
+    50%  { transform: translateX(0%)    scaleX(0.6); }
+    100% { transform: translateX(100%)  scaleX(0.4); }
+  }
+
+  @keyframes zui-accordion-down {
+    from { height: 0; }
+    to   { height: var(--radix-accordion-content-height); }
+  }
+
+  @keyframes zui-accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to   { height: 0; }
+  }
+
+  /* Scrollbar — discreet but visible on hover */
+  .zui-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border-strong) transparent;
+  }
+  .zui-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+  .zui-scroll::-webkit-scrollbar-track { background: transparent; }
+  .zui-scroll::-webkit-scrollbar-thumb {
+    background-color: var(--color-border-strong);
+    border-radius: var(--radius-full);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  .zui-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-fg-subtle);
+    background-clip: padding-box;
+  }
+
+  /* Background grid — subtle texture for hero / luminous sections */
+  .zui-grid {
+    background-image:
+      linear-gradient(to right,  rgb(255 255 255 / 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .zui-grid-light {
+    background-image:
+      linear-gradient(to right,  rgb(0 0 0 / 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(0 0 0 / 0.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+}
+
+/* ============================================================
+ * Performance — promote layers that animate to GPU
+ * Only once they are about to animate; never globally.
+ * ============================================================ */
+[data-state='open'],
+[data-state='closed'] {
+  will-change: transform, opacity;
+}

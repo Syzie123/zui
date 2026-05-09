@@ -1,0 +1,25 @@
+.zui-shine-border {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: var(--zui-sb-gradient);
+  background-size: 200% 200%;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  padding: var(--zui-sb-width, 1.5px);
+  animation: zui-shine-border-rotate var(--zui-sb-duration, 8s) linear infinite;
+}
+
+@keyframes zui-shine-border-rotate {
+  0%   { background-position:   0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position:   0% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zui-shine-border { animation: none; }
+}

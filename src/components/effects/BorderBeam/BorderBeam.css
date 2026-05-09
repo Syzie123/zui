@@ -1,0 +1,44 @@
+/* ────────────────────────────────────────────────────────────
+ * Border Beam — a fast-traveling light that hugs the border.
+ * Implementation: a wide ring with `border-image` won't give us a
+ * single moving point, so we use a rotating conic gradient masked
+ * to just a thin border ring.
+ * ──────────────────────────────────────────────────────────── */
+.zui-border-beam {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  /* The beam is created by a rotating conic gradient. */
+  background: conic-gradient(
+    from var(--zui-bb-angle, 0deg),
+    transparent 0%,
+    transparent calc(100% - var(--zui-bb-size, 200px) / 10 * 1%),
+    var(--zui-bb-from) calc(100% - var(--zui-bb-size, 200px) / 20 * 1%),
+    var(--zui-bb-to) 100%
+  );
+  /* Mask to a 1.5px border ring */
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  padding: 1.5px;
+  animation: zui-border-beam-rotate var(--zui-bb-duration, 6s) linear infinite;
+  animation-delay: var(--zui-bb-delay, 0s);
+}
+
+/* CSS @property lets us animate the conic angle smoothly */
+@property --zui-bb-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes zui-border-beam-rotate {
+  to { --zui-bb-angle: 360deg; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zui-border-beam { animation: none; }
+}
