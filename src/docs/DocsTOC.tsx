@@ -8,10 +8,20 @@ interface TOCItem {
 }
 
 /**
- * "On this page" navigator. Scrapes h2/h3 from the active page on mount,
+ * "On this page" navigator. Scrapes h2/h3 from the active page,
  * highlights the visible heading via IntersectionObserver.
+ *
+ * Re-scrapes whenever `slug` changes — Suspense lazy pages render
+ * after the parent effect first runs, so we also re-poll briefly
+ * to catch lazy-loaded headings.
  */
-export function DocsTOC({ contentRef }: { contentRef: React.RefObject<HTMLElement> }) {
+export function DocsTOC({
+  contentRef,
+  slug,
+}: {
+  contentRef: React.RefObject<HTMLElement>;
+  slug?: string;
+}) {
   const [items, setItems] = useState<TOCItem[]>([]);
   const [active, setActive] = useState<string | null>(null);
 
@@ -19,37 +29,71 @@ export function DocsTOC({ contentRef }: { contentRef: React.RefObject<HTMLElemen
     const root = contentRef.current;
     if (!root) return;
 
-    const headings = Array.from(root.querySelectorAll<HTMLHeadingElement>('h2, h3'));
-    const collected: TOCItem[] = headings.map((h) => {
-      if (!h.id) {
-        h.id = h.textContent
-          ?.toLowerCase()
-          .replace(/[^a-z0-9]+/g, '-')
-          .replace(/(^-|-$)/g, '') ?? '';
-      }
-      return {
-        id: h.id,
-        text: h.textContent ?? '',
-        level: h.tagName === 'H2' ? 2 : 3,
+    let io: IntersectionObserver | null = null;
+    let cancelled = false;
+
+    const scrape = (): boolean => {
+      if (cancelled) return false;
+      const headings = Array.from(
+        root.querySelectorAll<HTMLHeadingElement>('h2, h3')
+      );
+      if (headings.length === 0) return false;
+
+      const collected: TOCItem[] = headings.map((h) => {
+        if (!h.id) {
+          h.id =
+            h.textContent
+              ?.toLowerCase()
+              .replace(/[^a-z0-9]+/g, '-')
+              .replace(/(^-|-$)/g, '') ?? '';
+        }
+        return {
+          id: h.id,
+          text: h.textContent ?? '',
+          level: h.tagName === 'H2' ? 2 : 3,
+        };
+      });
+      setItems(collected);
+      setActive(collected[0]?.id ?? null);
+
+      io?.disconnect();
+      io = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((e) => e.isIntersecting)
+            .sort(
+              (a, b) => a.boundingClientRect.top - b.boundingClientRect.top
+            );
+          if (visible[0]) setActive(visible[0].target.id);
+        },
+        { rootMargin: '-80px 0px -65% 0px' }
+      );
+      headings.forEach((h) => io!.observe(h));
+      return true;
+    };
+
+    // Try immediately. If Suspense hasn't resolved yet, retry on next
+    // paint, and once more after 200ms to catch slow lazy chunks.
+    if (!scrape()) {
+      const raf = requestAnimationFrame(() => {
+        if (!scrape()) {
+          const t = setTimeout(scrape, 200);
+          return () => clearTimeout(t);
+        }
+        return undefined;
+      });
+      return () => {
+        cancelled = true;
+        cancelAnimationFrame(raf);
+        io?.disconnect();
       };
-    });
-    setItems(collected);
+    }
 
-    if (collected.length === 0) return;
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-        if (visible[0]) setActive(visible[0].target.id);
-      },
-      { rootMargin: '-80px 0px -65% 0px' }
-    );
-
-    headings.forEach((h) => io.observe(h));
-    return () => io.disconnect();
-  }, [contentRef]);
+    return () => {
+      cancelled = true;
+      io?.disconnect();
+    };
+  }, [contentRef, slug]);
 
   if (items.length === 0) return null;
 

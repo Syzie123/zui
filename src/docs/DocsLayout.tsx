@@ -125,7 +125,7 @@ function DocsLayoutInner({ slug }: Props) {
 
               <PrevNext slug={slug} />
             </main>
-            <DocsTOC contentRef={contentRef} />
+            <DocsTOC contentRef={contentRef} slug={slug} />
           </div>
         )}
       </Sidebar.Inset>

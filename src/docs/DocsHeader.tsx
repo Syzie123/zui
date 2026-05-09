@@ -15,9 +15,7 @@ const THEME_ICON: Record<Theme, JSX.Element> = {
 };
 
 const TOP_NAV = [
-  { href: '/components/button',  label: 'Components' },
-  { href: '/templates',          label: 'Templates' },
-  { href: '/showcase',           label: 'Showcase' },
+  { href: '/components/button', label: 'Components' },
 ];
 
 interface Props {
@@ -58,32 +56,36 @@ export function DocsHeader({
         {/* Sidebar trigger (in docs layout) — opens mobile sheet or toggles desktop sidebar */}
         {showSidebarTrigger && <Sidebar.Trigger />}
 
-        {/* Logo */}
-        <Link
-          href="/"
-          className="flex items-center gap-2 font-semibold tracking-[-0.02em]"
-        >
-          <Logo />
-          <span className="font-display text-base">ZUI</span>
-        </Link>
+        {/* Logo — hidden when sidebar is showing (sidebar header has its own logo) */}
+        {!showSidebarTrigger && (
+          <Link
+            href="/"
+            className="flex items-center gap-2 font-semibold tracking-[-0.02em]"
+          >
+            <Logo />
+            <span className="font-display text-base">ZUI</span>
+          </Link>
+        )}
 
-        {/* Top nav (desktop) */}
-        <nav className="hidden items-center gap-1 md:flex">
-          {TOP_NAV.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className={cn(
-                'rounded-[var(--radius-md)] px-3 py-1.5 text-sm font-medium',
-                'text-[var(--color-fg-muted)]',
-                'transition-colors duration-[var(--duration-fast)]',
-                'hover:bg-[var(--color-bg-subtle)] hover:text-[var(--color-fg-base)]'
-              )}
-            >
-              {l.label}
-            </Link>
-          ))}
-        </nav>
+        {/* Top nav — only on home */}
+        {!showSidebarTrigger && (
+          <nav className="hidden items-center gap-1 md:flex">
+            {TOP_NAV.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className={cn(
+                  'rounded-[var(--radius-md)] px-3 py-1.5 text-sm font-medium',
+                  'text-[var(--color-fg-muted)]',
+                  'transition-colors duration-[var(--duration-fast)]',
+                  'hover:bg-[var(--color-bg-subtle)] hover:text-[var(--color-fg-base)]'
+                )}
+              >
+                {l.label}
+              </Link>
+            ))}
+          </nav>
+        )}
 
         {/* Search */}
         <div className="ml-auto flex items-center gap-2">

@@ -7,19 +7,19 @@ export default function Installation() {
       <H2>Install dependencies</H2>
       <P>Run one of the following commands in your project root:</P>
       <div className="my-4 grid gap-2 sm:grid-cols-3">
-        <InstallSnippet pkg="@zui/react" manager="npm" />
-        <InstallSnippet pkg="@zui/react" manager="pnpm" />
-        <InstallSnippet pkg="@zui/react" manager="yarn" />
+        <InstallSnippet pkg="@zui.react/zui" manager="npm" />
+        <InstallSnippet pkg="@zui.react/zui" manager="pnpm" />
+        <InstallSnippet pkg="@zui.react/zui" manager="yarn" />
       </div>
 
       <H2>Import the styles</H2>
       <P>
         Import the global stylesheet once at the top of your app entry. It contains
-        the design tokens and Tailwind base layer.
+        the design tokens, Tailwind base layer, and all keyframes.
       </P>
       <CodeBlock
         filename="src/main.tsx"
-        code={`import '@zui/react/styles.css';
+        code={`import '@zui.react/zui/styles.css';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 
@@ -43,7 +43,7 @@ createRoot(document.getElementById('root')!).render(<App />);`}
       <P>That's it. Import any component and start building.</P>
       <CodeBlock
         filename="src/App.tsx"
-        code={`import { Button } from '@zui/react';
+        code={`import { Button } from '@zui.react/zui';
 
 export default function App() {
   return <Button>Get started</Button>;

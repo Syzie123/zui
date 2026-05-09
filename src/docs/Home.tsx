@@ -87,15 +87,17 @@ function Hero() {
           <ArrowRight className="size-3 transition-transform group-hover:translate-x-0.5" />
         </Link>
 
-        {/* Big title */}
-        <h1 className="zui-hero-title font-display font-semibold leading-[1.02] tracking-[-0.04em] text-5xl sm:text-6xl lg:text-7xl">
-          Components for{' '}
-          <WordRotate
-            words={['Design Engineers', 'Indie Hackers', 'Startup Teams', 'Builders']}
-            className="text-[var(--color-accent-base)]"
-            duration={2400}
-          />
-          .
+        {/* Big title — intentional 2-line split: subject on top, audience below */}
+        <h1 className="zui-hero-title font-display font-semibold leading-[1.02] tracking-[-0.04em] text-5xl sm:text-6xl lg:text-7xl text-balance">
+          <span className="block">Components for</span>
+          <span className="block">
+            <WordRotate
+              words={['Design Engineers', 'Indie Hackers', 'Startup Teams', 'Builders']}
+              className="text-[var(--color-accent-base)]"
+              duration={2400}
+            />
+            <span aria-hidden>.</span>
+          </span>
         </h1>
 
         <p className="zui-hero-body mx-auto mt-6 max-w-xl text-base leading-relaxed text-[var(--color-fg-muted)] sm:text-lg">
@@ -103,7 +105,7 @@ function Hero() {
           renders, accessible, theme-able by one class.
         </p>
 
-        {/* CTAs */}
+        {/* CTAs — primary accent + black solid (mirrors the primary's shape) */}
         <div className="zui-hero-cta mt-9 flex flex-wrap items-center justify-center gap-2.5">
           <Link href="/components/introduction">
             <Button size="lg" rightIcon={<ArrowRight className="size-4" />}>
@@ -112,9 +114,13 @@ function Hero() {
           </Link>
           <Button
             size="lg"
-            variant="secondary"
             leftIcon={<Github className="size-4" />}
             asChild
+            className={cn(
+              '!bg-[var(--color-fg-base)] !text-[var(--color-bg-base)]',
+              'hover:!bg-[color-mix(in_oklch,var(--color-fg-base)_88%,var(--color-bg-base))]',
+              'shadow-[0_1px_2px_-1px_rgb(16_24_40/0.10),inset_0_1px_0_0_rgb(255_255_255/0.04)]'
+            )}
           >
             <a
               href="https://github.com/Syzie123/zui"

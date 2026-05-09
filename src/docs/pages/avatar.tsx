@@ -1,6 +1,18 @@
 import { Avatar, AvatarGroup } from '../../components/Avatar';
+import { Dock, DockItem } from '../../components/effects/Dock/Dock';
 import { PreviewTabs } from '../PreviewTabs';
 import { H2, P, PropsTable } from '../page-kit';
+
+const TEAM = [
+  { src: 'https://i.pravatar.cc/96?img=12', fallback: 'AS', name: 'Anya' },
+  { src: 'https://i.pravatar.cc/96?img=14', fallback: 'BR', name: 'Bren' },
+  { src: 'https://i.pravatar.cc/96?img=20', fallback: 'CL', name: 'Cora' },
+  { src: 'https://i.pravatar.cc/96?img=33', fallback: 'DK', name: 'Dane' },
+  { src: 'https://i.pravatar.cc/96?img=49', fallback: 'EM', name: 'Emi'  },
+  { src: 'https://i.pravatar.cc/96?img=53', fallback: 'FR', name: 'Finn' },
+  { src: 'https://i.pravatar.cc/96?img=58', fallback: 'GU', name: 'Gia'  },
+  { src: 'https://i.pravatar.cc/96?img=8',  fallback: 'HX', name: 'Haz'  },
+];
 
 export default function AvatarDoc() {
   return (
@@ -15,6 +27,38 @@ export default function AvatarDoc() {
         }
         code={`<Avatar src="https://example.com/me.jpg" fallback="AS" />
 <Avatar fallback="MK" />`}
+      />
+
+      <H2>Dock-style team row</H2>
+      <P>
+        Eight avatars magnified by cursor proximity — same math as the{' '}
+        <code>Dock</code> component, ease-out sine curve, GPU-only{' '}
+        <code>transform: scale</code>.
+      </P>
+      <PreviewTabs
+        preview={
+          <Dock magnification={120} maxScale={1.6}>
+            {TEAM.map((m) => (
+              <DockItem
+                key={m.name}
+                aria-label={m.name}
+                className="!size-12 !rounded-full !bg-transparent"
+              >
+                <Avatar size="md" src={m.src} fallback={m.fallback} />
+              </DockItem>
+            ))}
+          </Dock>
+        }
+        minHeight="14rem"
+        code={`import { Dock, DockItem, Avatar } from '@zui.react/zui';
+
+<Dock magnification={120} maxScale={1.6}>
+  {team.map((m) => (
+    <DockItem key={m.name} className="!size-12 !rounded-full !bg-transparent">
+      <Avatar size="md" src={m.src} fallback={m.fallback} />
+    </DockItem>
+  ))}
+</Dock>`}
       />
 
       <H2>Sizes</H2>
