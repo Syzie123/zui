@@ -15,6 +15,7 @@ export const H2 = ({
   ...rest
 }: React.HTMLAttributes<HTMLHeadingElement>) => (
   <h2
+    data-animate-up
     className={cn(
       'mt-12 mb-4 font-display text-2xl font-bold tracking-[-0.02em]',
       className

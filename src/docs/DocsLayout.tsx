@@ -94,11 +94,12 @@ function DocsLayoutInner({ slug }: Props) {
             <main
               ref={contentRef}
               className="min-w-0 flex-1 py-8 sm:py-12 lg:px-6"
+              key={slug}
             >
               <Breadcrumb category="Components" pageTitle={page.title} />
 
               <header className="mt-3 mb-8 flex items-start justify-between gap-6">
-                <div className="min-w-0">
+                <div className="min-w-0" data-animate-up>
                   <h1
                     id="top"
                     className="font-display text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] tracking-[-0.03em]"

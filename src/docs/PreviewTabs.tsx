@@ -32,7 +32,7 @@ export function PreviewTabs({
   const [resetKey, setResetKey] = useState(0);
 
   return (
-    <div className={cn('w-full', className)}>
+    <div data-animate-up className={cn('w-full', className)}>
       {/* Tab strip */}
       <div className="mb-3 flex items-center justify-between border-b border-[var(--color-border-base)]">
         <div className="flex items-center">

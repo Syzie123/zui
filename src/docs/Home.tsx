@@ -26,6 +26,7 @@ import { Link } from '../hooks/useHashRoute';
 import { cn } from '../utils/cn';
 import { DocsHeader } from './DocsHeader';
 import { DocsSearch } from './DocsSearch';
+import './Home.css';
 
 export function Home() {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -54,7 +55,8 @@ export function Home() {
 }
 
 /* ─────────────────────────────────────────────────────────────
- * Hero — compact. Small title, install snippet, two CTAs.
+ * Hero — bigger title, hero entrance always plays (independent of
+ * the global animation toggle since it's a one-shot landing impression).
  * ───────────────────────────────────────────────────────────── */
 function Hero() {
   return (
@@ -68,53 +70,48 @@ function Hero() {
             'radial-gradient(color-mix(in oklch, var(--color-fg-base) 8%, transparent) 1px, transparent 1px)',
           backgroundSize: '20px 20px',
           maskImage:
-            'radial-gradient(ellipse 60% 50% at 50% 30%, black 30%, transparent 80%)',
+            'radial-gradient(ellipse 70% 60% at 50% 30%, black 30%, transparent 80%)',
           WebkitMaskImage:
-            'radial-gradient(ellipse 60% 50% at 50% 30%, black 30%, transparent 80%)',
+            'radial-gradient(ellipse 70% 60% at 50% 30%, black 30%, transparent 80%)',
         }}
       />
 
-      <div className="mx-auto max-w-3xl px-6 pt-16 pb-12 text-center sm:pt-20 sm:pb-16">
+      <div className="mx-auto max-w-4xl px-6 pt-20 pb-16 text-center sm:pt-28 sm:pb-24 lg:pt-36">
         {/* Tag */}
         <Link
           href="/components/introduction"
-          className={cn(
-            'group mb-7 inline-flex items-center gap-1.5 rounded-full',
-            'border border-[var(--color-border-base)] bg-[var(--color-bg-elevated)]',
-            'px-3 py-1 text-xs font-medium text-[var(--color-fg-muted)]',
-            'transition-colors hover:border-[var(--color-border-strong)] hover:text-[var(--color-fg-base)]'
-          )}
+          className="zui-hero-tag group mb-8 inline-flex items-center gap-1.5 rounded-full border border-[var(--color-border-base)] bg-[var(--color-bg-elevated)] px-3 py-1 text-xs font-medium text-[var(--color-fg-muted)] transition-colors hover:border-[var(--color-border-strong)] hover:text-[var(--color-fg-base)]"
         >
           <span className="inline-block size-1.5 rounded-full bg-[var(--color-success)]" />
           Now in preview · v0.1
           <ArrowRight className="size-3 transition-transform group-hover:translate-x-0.5" />
         </Link>
 
-        {/* Title — deliberately not gigantic */}
-        <h1 className="font-display text-3xl font-semibold leading-[1.1] tracking-[-0.025em] sm:text-4xl">
+        {/* Big title */}
+        <h1 className="zui-hero-title font-display font-semibold leading-[1.02] tracking-[-0.04em] text-5xl sm:text-6xl lg:text-7xl">
           Components for{' '}
           <WordRotate
-            words={['Design Engineers', 'Indie Hackers', 'Startup Teams', 'Product Folks']}
+            words={['Design Engineers', 'Indie Hackers', 'Startup Teams', 'Builders']}
             className="text-[var(--color-accent-base)]"
             duration={2400}
           />
           .
         </h1>
 
-        <p className="mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-[var(--color-fg-muted)]">
-          22 components, 7 motion effects, 5 patterns. Sub-millisecond, accessible,
-          theme-able by one class.
+        <p className="zui-hero-body mx-auto mt-6 max-w-xl text-base leading-relaxed text-[var(--color-fg-muted)] sm:text-lg">
+          22 components, 7 motion effects, 5 production patterns. Sub-millisecond
+          renders, accessible, theme-able by one class.
         </p>
 
         {/* CTAs */}
-        <div className="mt-7 flex flex-wrap items-center justify-center gap-2">
+        <div className="zui-hero-cta mt-9 flex flex-wrap items-center justify-center gap-2.5">
           <Link href="/components/introduction">
-            <Button size="md" rightIcon={<ArrowRight className="size-4" />}>
+            <Button size="lg" rightIcon={<ArrowRight className="size-4" />}>
               Browse components
             </Button>
           </Link>
           <Button
-            size="md"
+            size="lg"
             variant="secondary"
             leftIcon={<Github className="size-4" />}
             asChild
@@ -130,10 +127,12 @@ function Hero() {
         </div>
 
         {/* Install snippet */}
-        <InstallSnippet />
+        <div className="zui-hero-install">
+          <InstallSnippet />
+        </div>
 
         {/* Stats */}
-        <dl className="mt-12 grid grid-cols-3 gap-3 text-left sm:gap-6">
+        <dl className="zui-hero-stats mx-auto mt-16 grid max-w-2xl grid-cols-3 gap-3 text-left sm:gap-8">
           {[
             { v: 22, l: 'components', suffix: '+' },
             { v: 7,  l: 'effects' },
@@ -143,7 +142,7 @@ function Hero() {
               <dt className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-fg-subtle)]">
                 {s.l}
               </dt>
-              <dd className="mt-0.5 font-display text-xl font-semibold tracking-[-0.02em] sm:text-2xl">
+              <dd className="mt-1 font-display text-3xl font-semibold tracking-[-0.025em] sm:text-4xl">
                 <NumberTicker value={s.v} suffix={s.suffix} />
               </dd>
             </div>
@@ -161,12 +160,13 @@ function InstallSnippet() {
   return (
     <div
       className={cn(
-        'mx-auto mt-6 inline-flex items-center gap-3',
+        'mx-auto mt-7 inline-flex items-center gap-3',
         'rounded-[var(--radius-lg)]',
         'border border-[var(--color-border-base)]',
         'bg-[var(--color-bg-elevated)]',
-        'px-3.5 py-2',
-        'font-mono text-[13px]'
+        'px-4 py-2',
+        'font-mono text-[13px]',
+        'transition-colors hover:border-[var(--color-border-strong)]'
       )}
     >
       <span className="text-[var(--color-fg-subtle)]">$</span>
@@ -196,7 +196,7 @@ function InstallSnippet() {
 }
 
 /* ─────────────────────────────────────────────────────────────
- * Featured grid — 6 cells, each linking to its docs.
+ * Featured grid
  * ───────────────────────────────────────────────────────────── */
 function FeatureGrid() {
   return (
@@ -205,7 +205,7 @@ function FeatureGrid() {
         <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-accent-base)]">
           Featured
         </p>
-        <h2 className="mt-2 font-display text-2xl font-semibold tracking-[-0.025em] sm:text-3xl">
+        <h2 className="mt-2 font-display text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">
           The motion primitives, in a row.
         </h2>
       </header>
@@ -334,6 +334,7 @@ function FeatureCell({
   return (
     <Link
       href={`/components/${slug}`}
+      data-animate-up
       className={cn(
         'group relative flex flex-col overflow-hidden rounded-[var(--radius-2xl)]',
         'border border-[var(--color-border-base)] bg-[var(--color-bg-elevated)]',

@@ -68,4 +68,5 @@ export { FeatureListCard } from './patterns/FeatureList/FeatureList';
 export { useTheme, type Theme } from './hooks/useTheme';
 export { useControllableState } from './hooks/useControllableState';
 export { useIsMobile } from './hooks/useIsMobile';
+export { useAnimations } from './hooks/useAnimations';
 export { cn } from './utils/cn';

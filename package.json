@@ -1,6 +1,6 @@
 {
   "name": "@zui.react/zui",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A modern React component library focused on speed, polish, and motion. 22 components, 6 motion effects, and 5 production patterns. Sub-millisecond renders, accessible by default.",
   "type": "module",
   "license": "MIT",

@@ -6,6 +6,7 @@
  * ============================================================ */
 
 @import './tokens.css';
+@import './animations.css';
 @import 'tailwindcss';
 
 /* Tell Tailwind v4 which files to scan for utility class names. */

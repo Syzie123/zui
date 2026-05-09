@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Github, Moon, Search, Sparkles, Sun } from 'lucide-react';
+import { Github, Moon, Search, Sparkles, Sun, Zap, ZapOff } from 'lucide-react';
 import { Button } from '../components/Button';
 import { Sidebar } from '../components/Sidebar';
+import { Tooltip } from '../components/Tooltip';
 import { useTheme, type Theme } from '../hooks/useTheme';
+import { useAnimations } from '../hooks/useAnimations';
 import { Link } from '../hooks/useHashRoute';
 import { cn } from '../utils/cn';
 
@@ -32,6 +34,7 @@ export function DocsHeader({
   showSidebarTrigger,
 }: Props) {
   const { theme, cycleTheme } = useTheme();
+  const { enabled: animEnabled, toggle: toggleAnim } = useAnimations();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -108,15 +111,35 @@ export function DocsHeader({
           </button>
 
           <a
-            href="https://github.com/"
+            href="https://github.com/Syzie123/zui"
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub"
             className="hidden items-center gap-1.5 rounded-[var(--radius-md)] px-2.5 py-1.5 text-sm font-medium text-[var(--color-fg-muted)] transition-colors hover:bg-[var(--color-bg-subtle)] hover:text-[var(--color-fg-base)] sm:inline-flex"
           >
             <Github className="size-4" />
-            <span className="tabular-nums">2.1k</span>
           </a>
+
+          <Tooltip.Simple content={animEnabled ? 'Animations: on' : 'Animations: off'}>
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              onClick={toggleAnim}
+              aria-label={animEnabled ? 'Disable animations' : 'Enable animations'}
+              aria-pressed={animEnabled}
+              className={cn(
+                'transition-colors',
+                animEnabled &&
+                  'text-[var(--color-accent-base)] bg-[var(--color-accent-soft)] hover:bg-[var(--color-accent-soft)]'
+              )}
+            >
+              {animEnabled ? (
+                <Zap className="size-4 fill-current" />
+              ) : (
+                <ZapOff className="size-4" />
+              )}
+            </Button>
+          </Tooltip.Simple>
 
           <Button
             variant="ghost"
