@@ -157,14 +157,19 @@
     to   { opacity: 0; }
   }
 
+  /*  IMPORTANT: only scale + opacity here. Position is handled by
+   *  the Tailwind v4 modern `translate:` CSS property on Dialog.Content
+   *  (-translate-x-1/2 -translate-y-1/2). If we ALSO put `translate` inside
+   *  `transform: translate(...)`, the two would compose and the dialog
+   *  would pop in from the top-left quadrant. */
   @keyframes zui-dialog-in {
-    from { opacity: 0; transform: translate(-50%, calc(-50% + 8px)) scale(0.97); }
-    to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    from { opacity: 0; transform: scale(0.94); }
+    to   { opacity: 1; transform: scale(1); }
   }
 
   @keyframes zui-dialog-out {
-    from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-    to   { opacity: 0; transform: translate(-50%, calc(-50% + 8px)) scale(0.97); }
+    from { opacity: 1; transform: scale(1); }
+    to   { opacity: 0; transform: scale(0.94); }
   }
 
   @keyframes zui-slide-from-right {
