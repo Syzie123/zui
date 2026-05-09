@@ -26,11 +26,14 @@ interface Props {
   /** Used by Home (no sidebar) — toggle a custom drawer. */
   onToggleSidebar?: () => void;
   sidebarOpen?: boolean;
+  /** Landing-page mode: dark-only, no animation toggle, no theme toggle. */
+  landing?: boolean;
 }
 
 export function DocsHeader({
   onOpenSearch,
   showSidebarTrigger,
+  landing,
 }: Props) {
   const { theme, cycleTheme } = useTheme();
   const { enabled: animEnabled, toggle: toggleAnim } = useAnimations();
@@ -123,36 +126,42 @@ export function DocsHeader({
             <Github className="size-4" />
           </a>
 
-          <Tooltip.Simple content={animEnabled ? 'Animations: on' : 'Animations: off'}>
-            <Button
-              variant="ghost"
-              size="icon-sm"
-              onClick={toggleAnim}
-              aria-label={animEnabled ? 'Disable animations' : 'Enable animations'}
-              aria-pressed={animEnabled}
-              className={cn(
-                'transition-colors',
-                animEnabled &&
-                  'text-[var(--color-accent-base)] bg-[var(--color-accent-soft)] hover:bg-[var(--color-accent-soft)]'
-              )}
-            >
-              {animEnabled ? (
-                <Zap className="size-4 fill-current" />
-              ) : (
-                <ZapOff className="size-4" />
-              )}
-            </Button>
-          </Tooltip.Simple>
+          {/* Animation toggle + theme switcher — hidden on landing
+              (the landing is dark-only, no preferences) */}
+          {!landing && (
+            <>
+              <Tooltip.Simple content={animEnabled ? 'Animations: on' : 'Animations: off'}>
+                <Button
+                  variant="ghost"
+                  size="icon-sm"
+                  onClick={toggleAnim}
+                  aria-label={animEnabled ? 'Disable animations' : 'Enable animations'}
+                  aria-pressed={animEnabled}
+                  className={cn(
+                    'transition-colors',
+                    animEnabled &&
+                      'text-[var(--color-accent-base)] bg-[var(--color-accent-soft)] hover:bg-[var(--color-accent-soft)]'
+                  )}
+                >
+                  {animEnabled ? (
+                    <Zap className="size-4 fill-current" />
+                  ) : (
+                    <ZapOff className="size-4" />
+                  )}
+                </Button>
+              </Tooltip.Simple>
 
-          <Button
-            variant="ghost"
-            size="icon-sm"
-            onClick={cycleTheme}
-            aria-label="Toggle theme"
-            title={`Theme: ${theme}`}
-          >
-            {THEME_ICON[theme]}
-          </Button>
+              <Button
+                variant="ghost"
+                size="icon-sm"
+                onClick={cycleTheme}
+                aria-label="Toggle theme"
+                title={`Theme: ${theme}`}
+              >
+                {THEME_ICON[theme]}
+              </Button>
+            </>
+          )}
         </div>
       </div>
     </header>

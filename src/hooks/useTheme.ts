@@ -11,10 +11,10 @@ const THEME_CLASSES: Record<Theme, string> = {
 const STORAGE_KEY = 'zui-theme';
 
 function readStoredTheme(): Theme {
-  if (typeof window === 'undefined') return 'clean';
+  if (typeof window === 'undefined') return 'dark';
   const stored = localStorage.getItem(STORAGE_KEY) as Theme | null;
   if (stored && stored in THEME_CLASSES) return stored;
-  return 'clean';
+  return 'dark';
 }
 
 function applyThemeToHtml(theme: Theme) {

@@ -45,15 +45,17 @@ export function Home() {
   }, []);
 
   return (
-    <>
-      <DocsHeader onOpenSearch={() => setSearchOpen(true)} />
+    // Force dark for the landing — scoped via `theme-dark` class so it
+    // doesn't change the user's saved preference for the docs section.
+    <div className="theme-dark min-h-screen bg-[var(--color-bg-base)] text-[var(--color-fg-base)]">
+      <DocsHeader onOpenSearch={() => setSearchOpen(true)} landing />
       <DocsSearch open={searchOpen} onOpenChange={setSearchOpen} />
 
       <Hero />
       <StatsBand />
       <FeatureGrid />
       <Footer />
-    </>
+    </div>
   );
 }
 
