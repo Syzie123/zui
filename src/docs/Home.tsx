@@ -76,37 +76,68 @@ function Hero() {
         }}
       />
 
-      <div className="mx-auto max-w-4xl px-6 pt-20 pb-16 text-center sm:pt-28 sm:pb-24 lg:pt-36">
-        {/* Tag */}
+      <div className="mx-auto max-w-5xl px-6 pt-20 pb-16 text-center sm:pt-28 sm:pb-24 lg:pt-36">
+        {/* Inline pill — "New" mini-badge + version line.
+            Same shape as the reference glass-pill, but neutral / clean. */}
         <Link
           href="/components/introduction"
-          className="zui-hero-tag group mb-8 inline-flex items-center gap-1.5 rounded-full border border-[var(--color-border-base)] bg-[var(--color-bg-elevated)] px-3 py-1 text-xs font-medium text-[var(--color-fg-muted)] transition-colors hover:border-[var(--color-border-strong)] hover:text-[var(--color-fg-base)]"
+          className={cn(
+            'zui-hero-tag group mb-9 inline-flex items-center gap-2 h-9 pl-1 pr-3.5',
+            'rounded-full border border-[var(--color-border-base)]',
+            'bg-[var(--color-bg-elevated)]',
+            'shadow-[0_1px_2px_rgb(0_0_0/0.04),inset_0_1px_0_rgb(255_255_255/0.5)]',
+            'transition-all duration-[var(--duration-base)] ease-[var(--ease-out)]',
+            'hover:border-[var(--color-border-strong)] hover:shadow-[0_2px_8px_rgb(0_0_0/0.06)]'
+          )}
         >
-          <span className="inline-block size-1.5 rounded-full bg-[var(--color-success)]" />
-          Now in preview · v0.1
-          <ArrowRight className="size-3 transition-transform group-hover:translate-x-0.5" />
+          <span
+            className={cn(
+              'inline-flex h-7 items-center rounded-full px-2.5',
+              'bg-[var(--color-fg-base)] text-[var(--color-bg-base)]',
+              'text-[11px] font-semibold uppercase tracking-[0.06em]'
+            )}
+          >
+            New
+          </span>
+          <span className="text-[13px] font-medium text-[var(--color-fg-muted)]">
+            Say hello to <span className="text-[var(--color-fg-base)]">@zui.react/zui v0.2</span>
+          </span>
+          <ArrowRight className="size-3.5 text-[var(--color-fg-subtle)] transition-transform group-hover:translate-x-0.5" />
         </Link>
 
-        {/* Big title — intentional 2-line split: subject on top, audience below */}
-        <h1 className="zui-hero-title font-display font-semibold leading-[1.02] tracking-[-0.04em] text-5xl sm:text-6xl lg:text-7xl text-balance">
-          <span className="block">Components for</span>
-          <span className="block">
-            <WordRotate
-              words={['Design Engineers', 'Indie Hackers', 'Startup Teams', 'Builders']}
-              className="text-[var(--color-accent-base)]"
-              duration={2400}
-            />
-            <span aria-hidden>.</span>
+        {/* Headline — bigger, with a serif italic flourish.
+            Reference uses Instrument Serif for "and" — we do the same on "for". */}
+        <h1
+          className={cn(
+            'zui-hero-title text-balance',
+            'font-display font-semibold leading-[0.98] tracking-[-0.045em]',
+            'text-[clamp(2.75rem,8vw,6rem)]'
+          )}
+        >
+          Components for{' '}
+          <span
+            style={{ fontFamily: "'Instrument Serif', serif" }}
+            className="font-normal italic tracking-[-0.02em] text-[var(--color-accent-base)]"
+          >
+            modern
           </span>
+          <br className="hidden sm:inline" />
+          <span className="block sm:inline"> React apps</span>
+          <span aria-hidden>.</span>
         </h1>
 
-        <p className="zui-hero-body mx-auto mt-6 max-w-xl text-base leading-relaxed text-[var(--color-fg-muted)] sm:text-lg">
-          22 components, 7 motion effects, 5 production patterns. Sub-millisecond
-          renders, accessible, theme-able by one class.
+        <p
+          className={cn(
+            'zui-hero-body mx-auto mt-7 max-w-xl text-balance',
+            'text-base leading-[1.55] text-[var(--color-fg-muted)] sm:text-lg'
+          )}
+        >
+          22 components, 7 motion effects, 5 production patterns, 4 visual variants.
+          Sub-millisecond renders, accessible, theme-able by one class.
         </p>
 
-        {/* CTAs — primary accent + black solid (mirrors Browse exactly) */}
-        <div className="zui-hero-cta mt-9 flex flex-wrap items-center justify-center gap-2.5">
+        {/* CTAs — primary accent + black solid */}
+        <div className="zui-hero-cta mt-10 flex flex-wrap items-center justify-center gap-2.5">
           <Link href="/components/introduction">
             <Button size="lg" rightIcon={<ArrowRight className="size-4" />}>
               Browse components
@@ -142,7 +173,7 @@ function Hero() {
         {/* Stats */}
         <dl className="zui-hero-stats mx-auto mt-16 grid max-w-2xl grid-cols-3 gap-3 text-left sm:gap-8">
           {[
-            { v: 22, l: 'components', suffix: '+' },
+            { v: 32, l: 'components', suffix: '+' },
             { v: 7,  l: 'effects' },
             { v: 17, l: 'kb gzipped CSS' },
           ].map((s) => (
