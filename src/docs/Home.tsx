@@ -12,6 +12,8 @@ import {
   Image as ImageIcon,
   Check,
   Copy,
+  Maximize2,
+  Minimize2,
 } from 'lucide-react';
 import { Button } from '../components/Button';
 import { Avatar } from '../components/Avatar';
@@ -48,33 +50,68 @@ export function Home() {
       <DocsSearch open={searchOpen} onOpenChange={setSearchOpen} />
 
       <Hero />
+      <StatsBand />
       <FeatureGrid />
       <Footer />
     </>
   );
 }
 
+const HERO_VIDEO =
+  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260210_031346_d87182fb-b0af-4273-84d1-c6fd17d6bf0f.mp4';
+
 /* ─────────────────────────────────────────────────────────────
- * Hero — bigger title, hero entrance always plays (independent of
- * the global animation toggle since it's a one-shot landing impression).
+ * Hero — full-bleed video bg + glass overlay, light-on-dark.
+ * Toggleable between full-screen and fit-to-content (top-right).
  * ───────────────────────────────────────────────────────────── */
 function Hero() {
+  const [fullBleed, setFullBleed] = useState(true);
+
   return (
-    <section className="relative isolate overflow-hidden border-b border-[var(--color-border-subtle)]">
-      {/* Subtle dotted backdrop */}
+    <section
+      className={cn(
+        'relative isolate w-full overflow-hidden',
+        'transition-[min-height,padding] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]',
+        fullBleed ? 'min-h-screen' : 'py-24 lg:py-32'
+      )}
+    >
+      {/* Video background */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        className="absolute inset-0 -z-10 h-full w-full object-cover"
+      >
+        <source src={HERO_VIDEO} type="video/mp4" />
+      </video>
+
+      {/* Vignette overlay — darkens edges so centered text reads against any frame */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.5]"
+        className="pointer-events-none absolute inset-0 -z-[5]"
         style={{
-          backgroundImage:
-            'radial-gradient(color-mix(in oklch, var(--color-fg-base) 8%, transparent) 1px, transparent 1px)',
-          backgroundSize: '20px 20px',
-          maskImage:
-            'radial-gradient(ellipse 70% 60% at 50% 30%, black 30%, transparent 80%)',
-          WebkitMaskImage:
-            'radial-gradient(ellipse 70% 60% at 50% 30%, black 30%, transparent 80%)',
+          background:
+            'radial-gradient(ellipse 80% 60% at 50% 40%, transparent 0%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0.55) 100%)',
         }}
       />
+
+      {/* Fullbleed toggle — top right */}
+      <button
+        type="button"
+        onClick={() => setFullBleed((v) => !v)}
+        aria-label={fullBleed ? 'Fit to content' : 'Full-bleed'}
+        className={cn(
+          'absolute right-4 top-4 z-20 inline-flex size-9 items-center justify-center',
+          'rounded-[10px] backdrop-blur-xl',
+          'border border-white/20 bg-white/10 text-white',
+          'transition-all hover:bg-white/20',
+          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60'
+        )}
+      >
+        {fullBleed ? <Minimize2 className="size-4" /> : <Maximize2 className="size-4" />}
+      </button>
 
       <div className="mx-auto max-w-5xl px-6 pt-20 pb-16 text-center sm:pt-28 sm:pb-24 lg:pt-36">
         {/* Inline pill — "New" mini-badge + version line.
@@ -82,42 +119,43 @@ function Hero() {
         <Link
           href="/components/introduction"
           className={cn(
-            'zui-hero-tag group mb-9 inline-flex items-center gap-2 h-9 pl-1 pr-3.5',
-            'rounded-full border border-[var(--color-border-base)]',
-            'bg-[var(--color-bg-elevated)]',
-            'shadow-[0_1px_2px_rgb(0_0_0/0.04),inset_0_1px_0_rgb(255_255_255/0.5)]',
+            'zui-hero-tag group mb-8 inline-flex items-center gap-2 h-10 pl-1 pr-4',
+            'rounded-full backdrop-blur-xl',
+            'border border-white/20 bg-white/10',
+            'shadow-[0_2px_12px_rgb(0_0_0/0.20),inset_0_1px_0_rgb(255_255_255/0.20)]',
             'transition-all duration-[var(--duration-base)] ease-[var(--ease-out)]',
-            'hover:border-[var(--color-border-strong)] hover:shadow-[0_2px_8px_rgb(0_0_0/0.06)]'
+            'hover:bg-white/15 hover:border-white/30'
           )}
         >
           <span
             className={cn(
-              'inline-flex h-7 items-center rounded-full px-2.5',
-              'bg-[var(--color-fg-base)] text-[var(--color-bg-base)]',
-              'text-[11px] font-semibold uppercase tracking-[0.06em]'
+              'inline-flex h-8 items-center rounded-full px-3',
+              'bg-white text-[oklch(15%_0.02_270)]',
+              'text-[11px] font-semibold uppercase tracking-[0.08em]',
+              'shadow-[0_1px_2px_rgb(0_0_0/0.20)]'
             )}
           >
             New
           </span>
-          <span className="text-[13px] font-medium text-[var(--color-fg-muted)]">
-            Say hello to <span className="text-[var(--color-fg-base)]">@zui.react/zui v0.2</span>
+          <span className="text-[13px] font-medium text-white/95">
+            Say hello to <span className="font-semibold">@zui.react/zui v0.2</span>
           </span>
-          <ArrowRight className="size-3.5 text-[var(--color-fg-subtle)] transition-transform group-hover:translate-x-0.5" />
+          <ArrowRight className="size-3.5 text-white/70 transition-transform group-hover:translate-x-0.5" />
         </Link>
 
-        {/* Headline — bigger, with a serif italic flourish.
-            Reference uses Instrument Serif for "and" — we do the same on "for". */}
+        {/* Headline — Instrument Serif italic flourish on "modern" */}
         <h1
           className={cn(
-            'zui-hero-title text-balance',
+            'zui-hero-title text-balance text-white',
             'font-display font-semibold leading-[0.98] tracking-[-0.045em]',
-            'text-[clamp(2.75rem,8vw,6rem)]'
+            'text-[clamp(2.75rem,8vw,6rem)]',
+            'drop-shadow-[0_2px_24px_rgb(0_0_0/0.40)]'
           )}
         >
           Components for{' '}
           <span
             style={{ fontFamily: "'Instrument Serif', serif" }}
-            className="font-normal italic tracking-[-0.02em] text-[var(--color-accent-base)]"
+            className="font-normal italic tracking-[-0.02em] text-[oklch(80%_0.16_280)]"
           >
             modern
           </span>
@@ -129,35 +167,47 @@ function Hero() {
         <p
           className={cn(
             'zui-hero-body mx-auto mt-7 max-w-xl text-balance',
-            'text-base leading-[1.55] text-[var(--color-fg-muted)] sm:text-lg'
+            'text-base leading-[1.55] text-white/85 sm:text-lg',
+            'drop-shadow-[0_1px_8px_rgb(0_0_0/0.30)]'
           )}
         >
           22 components, 7 motion effects, 5 production patterns, 4 visual variants.
           Sub-millisecond renders, accessible, theme-able by one class.
         </p>
 
-        {/* CTAs — primary accent + black solid */}
-        <div className="zui-hero-cta mt-10 flex flex-wrap items-center justify-center gap-2.5">
+        {/* CTAs — accent primary + glass white secondary */}
+        <div className="zui-hero-cta mt-10 flex flex-wrap items-center justify-center gap-3">
           <Link href="/components/introduction">
-            <Button size="lg" rightIcon={<ArrowRight className="size-4" />}>
+            <button
+              className={cn(
+                'inline-flex h-12 items-center justify-center gap-2 px-7',
+                'rounded-[var(--radius-lg)] text-base font-semibold tracking-[-0.01em]',
+                'bg-[oklch(64%_0.22_285)] text-white',
+                'shadow-[0_8px_24px_-8px_oklch(64%_0.22_285),inset_0_1px_0_rgb(255_255_255/0.20)]',
+                'transition-all duration-[var(--duration-fast)] ease-[var(--ease-out)]',
+                'hover:brightness-110 hover:shadow-[0_12px_32px_-8px_oklch(64%_0.22_285),inset_0_1px_0_rgb(255_255_255/0.30)]',
+                'active:scale-[0.98]',
+                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60'
+              )}
+            >
               Browse components
-            </Button>
+              <ArrowRight className="size-4" />
+            </button>
           </Link>
           <a
             href="https://github.com/Syzie123/zui"
             target="_blank"
             rel="noreferrer"
             className={cn(
-              'inline-flex items-center justify-center gap-2',
-              'h-12 px-6 text-base font-medium tracking-[-0.01em]',
-              'rounded-[var(--radius-lg)]',
-              'bg-[var(--color-fg-base)] text-[var(--color-bg-base)]',
-              'shadow-[0_1px_2px_-1px_rgb(16_24_40/0.10),inset_0_1px_0_0_rgb(255_255_255/0.08)]',
+              'inline-flex h-12 items-center justify-center gap-2 px-7',
+              'rounded-[var(--radius-lg)] text-base font-semibold tracking-[-0.01em]',
+              'backdrop-blur-xl',
+              'border border-white/20 bg-white/10 text-white',
+              'shadow-[inset_0_1px_0_rgb(255_255_255/0.20)]',
               'transition-all duration-[var(--duration-fast)] ease-[var(--ease-out)]',
-              'hover:bg-[color-mix(in_oklch,var(--color-fg-base)_88%,var(--color-bg-base))]',
-              'hover:shadow-[0_4px_12px_-4px_var(--color-fg-base),inset_0_1px_0_0_rgb(255_255_255/0.12)]',
+              'hover:bg-white/15 hover:border-white/30',
               'active:scale-[0.98]',
-              'focus-visible:outline-none focus-visible:shadow-[var(--shadow-focus)]'
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60'
             )}
           >
             <Github className="size-4" />
@@ -165,51 +215,31 @@ function Hero() {
           </a>
         </div>
 
-        {/* Install snippet */}
-        <div className="zui-hero-install">
-          <InstallSnippet />
+        {/* Install snippet — glass version */}
+        <div className="zui-hero-install mt-7">
+          <GlassInstallSnippet />
         </div>
-
-        {/* Stats */}
-        <dl className="zui-hero-stats mx-auto mt-16 grid max-w-2xl grid-cols-3 gap-3 text-left sm:gap-8">
-          {[
-            { v: 32, l: 'components', suffix: '+' },
-            { v: 7,  l: 'effects' },
-            { v: 17, l: 'kb gzipped CSS' },
-          ].map((s) => (
-            <div key={s.l} className="text-center">
-              <dt className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-fg-subtle)]">
-                {s.l}
-              </dt>
-              <dd className="mt-1 font-display text-3xl font-semibold tracking-[-0.025em] sm:text-4xl">
-                <NumberTicker value={s.v} suffix={s.suffix} />
-              </dd>
-            </div>
-          ))}
-        </dl>
       </div>
     </section>
   );
 }
 
-function InstallSnippet() {
+function GlassInstallSnippet() {
   const [copied, setCopied] = useState(false);
   const cmd = 'npm install @zui.react/zui';
-
   return (
     <div
       className={cn(
-        'mx-auto mt-7 inline-flex items-center gap-3',
-        'rounded-[var(--radius-lg)]',
-        'border border-[var(--color-border-base)]',
-        'bg-[var(--color-bg-elevated)]',
-        'px-4 py-2',
-        'font-mono text-[13px]',
-        'transition-colors hover:border-[var(--color-border-strong)]'
+        'mx-auto inline-flex items-center gap-3',
+        'h-11 px-4',
+        'rounded-[var(--radius-lg)] backdrop-blur-xl',
+        'border border-white/20 bg-white/10',
+        'shadow-[inset_0_1px_0_rgb(255_255_255/0.15)]',
+        'font-mono text-[13px] text-white'
       )}
     >
-      <span className="text-[var(--color-fg-subtle)]">$</span>
-      <code className="text-[var(--color-fg-base)]">{cmd}</code>
+      <span className="text-white/60">$</span>
+      <code className="select-all">{cmd}</code>
       <button
         type="button"
         aria-label="Copy install command"
@@ -219,18 +249,42 @@ function InstallSnippet() {
           setTimeout(() => setCopied(false), 1500);
         }}
         className={cn(
-          'inline-flex size-6 items-center justify-center rounded-[var(--radius-sm)]',
-          'text-[var(--color-fg-subtle)] transition-colors',
-          'hover:bg-[var(--color-bg-subtle)] hover:text-[var(--color-fg-base)]'
+          'inline-flex size-7 items-center justify-center rounded-[var(--radius-sm)]',
+          'text-white/70 transition-colors',
+          'hover:bg-white/10 hover:text-white'
         )}
       >
         {copied ? (
-          <Check className="size-3.5 text-[var(--color-success)]" />
+          <Check className="size-3.5 text-[oklch(80%_0.18_140)]" />
         ) : (
           <Copy className="size-3.5" />
         )}
       </button>
     </div>
+  );
+}
+
+/* Stats live below the hero now — kept clean / on the page bg */
+function StatsBand() {
+  return (
+    <section className="border-y border-[var(--color-border-subtle)] bg-[var(--color-bg-base)]">
+      <dl className="mx-auto grid max-w-3xl grid-cols-3 gap-3 px-6 py-10 sm:gap-8">
+        {[
+          { v: 32, l: 'components', suffix: '+' },
+          { v: 7,  l: 'effects' },
+          { v: 17, l: 'kb gzipped CSS' },
+        ].map((s) => (
+          <div key={s.l} className="text-center">
+            <dt className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-fg-subtle)]">
+              {s.l}
+            </dt>
+            <dd className="mt-1 font-display text-3xl font-semibold tracking-[-0.025em] sm:text-4xl">
+              <NumberTicker value={s.v} suffix={s.suffix} />
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </section>
   );
 }
 
