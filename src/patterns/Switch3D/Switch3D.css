@@ -111,7 +111,7 @@
 }
 
 /* ── Dark theme ─────────────────────────────────────────────────────────── */
-:where(html.zui-dark, html.zui-luminous) .zui-switch3d {
+:where(html.theme-dark, html.theme-luminous) .zui-switch3d {
   --zui-sw-track-bg-from: oklch(20% 0.005 250);
   --zui-sw-track-bg-to:   oklch(14% 0.005 250);
   --zui-sw-track-shadow:

@@ -196,7 +196,7 @@
 }
 
 /* ── Dark theme ─────────────────────────────────────────────────────────── */
-:where(html.zui-dark, html.zui-luminous) .zui-talent__card {
+:where(html.theme-dark, html.theme-luminous) .zui-talent__card {
   background: oklch(20% 0.005 250);
   color: oklch(98% 0 0);
   border-color: oklch(100% 0 0 / 0.08);
@@ -205,31 +205,31 @@
     0 16px 30px -14px oklch(0% 0 0 / 0.55),
     0 4px 8px -4px oklch(0% 0 0 / 0.40);
 }
-:where(html.zui-dark, html.zui-luminous) .zui-talent__avatar {
+:where(html.theme-dark, html.theme-luminous) .zui-talent__avatar {
   border-color: oklch(20% 0.005 250);
 }
-:where(html.zui-dark, html.zui-luminous) .zui-talent__rate { color: oklch(80% 0.01 250); }
-:where(html.zui-dark, html.zui-luminous) .zui-talent__location { color: oklch(75% 0.01 250); border-bottom-color: oklch(75% 0.01 250 / 0.30); }
-:where(html.zui-dark, html.zui-luminous) .zui-talent__view {
+:where(html.theme-dark, html.theme-luminous) .zui-talent__rate { color: oklch(80% 0.01 250); }
+:where(html.theme-dark, html.theme-luminous) .zui-talent__location { color: oklch(75% 0.01 250); border-bottom-color: oklch(75% 0.01 250 / 0.30); }
+:where(html.theme-dark, html.theme-luminous) .zui-talent__view {
   background: oklch(28% 0.005 250);
   color: oklch(98% 0 0);
   border-color: oklch(100% 0 0 / 0.08);
 }
-:where(html.zui-dark, html.zui-luminous) .zui-talent__view:hover { background: oklch(32% 0.005 250); }
-:where(html.zui-dark, html.zui-luminous) .zui-talent__invite { background: oklch(99% 0 0); color: oklch(15% 0.02 250); }
-:where(html.zui-dark, html.zui-luminous) .zui-talent__skill {
+:where(html.theme-dark, html.theme-luminous) .zui-talent__view:hover { background: oklch(32% 0.005 250); }
+:where(html.theme-dark, html.theme-luminous) .zui-talent__invite { background: oklch(99% 0 0); color: oklch(15% 0.02 250); }
+:where(html.theme-dark, html.theme-luminous) .zui-talent__skill {
   background: oklch(28% 0.005 250);
   color: oklch(95% 0 0);
 }
-:where(html.zui-dark, html.zui-luminous) .zui-talent__role-pill {
+:where(html.theme-dark, html.theme-luminous) .zui-talent__role-pill {
   background: oklch(28% 0.10 285);
   color: oklch(90% 0.04 285);
 }
-:where(html.zui-dark, html.zui-luminous) .zui-talent__role--mint   .zui-talent__role-pill { background: oklch(28% 0.10 165); color: oklch(90% 0.04 165); }
-:where(html.zui-dark, html.zui-luminous) .zui-talent__role--sky    .zui-talent__role-pill { background: oklch(28% 0.10 230); color: oklch(90% 0.04 230); }
-:where(html.zui-dark, html.zui-luminous) .zui-talent__role--peach  .zui-talent__role-pill { background: oklch(28% 0.10 30);  color: oklch(90% 0.04 30); }
-:where(html.zui-dark, html.zui-luminous) .zui-talent__role--cream  .zui-talent__role-pill { background: oklch(28% 0.08 60);  color: oklch(90% 0.04 60); }
-:where(html.zui-dark, html.zui-luminous) .zui-talent__role--rose   .zui-talent__role-pill { background: oklch(28% 0.10 350); color: oklch(90% 0.04 350); }
+:where(html.theme-dark, html.theme-luminous) .zui-talent__role--mint   .zui-talent__role-pill { background: oklch(28% 0.10 165); color: oklch(90% 0.04 165); }
+:where(html.theme-dark, html.theme-luminous) .zui-talent__role--sky    .zui-talent__role-pill { background: oklch(28% 0.10 230); color: oklch(90% 0.04 230); }
+:where(html.theme-dark, html.theme-luminous) .zui-talent__role--peach  .zui-talent__role-pill { background: oklch(28% 0.10 30);  color: oklch(90% 0.04 30); }
+:where(html.theme-dark, html.theme-luminous) .zui-talent__role--cream  .zui-talent__role-pill { background: oklch(28% 0.08 60);  color: oklch(90% 0.04 60); }
+:where(html.theme-dark, html.theme-luminous) .zui-talent__role--rose   .zui-talent__role-pill { background: oklch(28% 0.10 350); color: oklch(90% 0.04 350); }
 
 @media (prefers-reduced-motion: reduce) {
   .zui-talent__card { transition: none; }

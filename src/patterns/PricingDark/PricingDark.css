@@ -286,7 +286,7 @@
 }
 
 /* ── Light theme override (rare for this component, but covered) ────────── */
-:where(html.zui-clean) .zui-pdark {
+:where(html.theme-clean) .zui-pdark {
   --zui-pd-bg: oklch(22% 0.005 250);
   --zui-pd-fg: oklch(98% 0 0);
   --zui-pd-fg-muted: oklch(72% 0.01 250);

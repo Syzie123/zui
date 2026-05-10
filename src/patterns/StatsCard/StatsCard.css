@@ -199,6 +199,6 @@
 }
 
 /* ── Light theme override ───────────────────────────────────────────────── */
-:where(html.zui-clean) .zui-stats {
+:where(html.theme-clean) .zui-stats {
   --zui-st-bg: oklch(15% 0.005 250);
 }

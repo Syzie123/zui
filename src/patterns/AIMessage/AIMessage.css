@@ -160,7 +160,7 @@
 }
 
 /* ── Dark theme ─────────────────────────────────────────────────────────── */
-:where(html.zui-dark, html.zui-luminous) .zui-aimsg:not([data-appearance='light']),
+:where(html.theme-dark, html.theme-luminous) .zui-aimsg:not([data-appearance='light']),
 .zui-aimsg[data-appearance='dark'] {
   --zui-am-user-bg: oklch(28% 0.04 250);
   --zui-am-user-fg: oklch(98% 0 0);
@@ -172,17 +172,17 @@
   --zui-am-fg-muted: oklch(70% 0.01 250);
 }
 
-:where(html.zui-dark, html.zui-luminous) .zui-aimsg__name {
+:where(html.theme-dark, html.theme-luminous) .zui-aimsg__name {
   color: oklch(95% 0 0);
 }
 
-:where(html.zui-dark, html.zui-luminous) .zui-aimsg--panel .zui-aimsg__bubble {
+:where(html.theme-dark, html.theme-luminous) .zui-aimsg--panel .zui-aimsg__bubble {
   background-color: oklch(20% 0.005 250);
   background-image: radial-gradient(oklch(100% 0 0 / 0.06) 1px, transparent 1.4px);
   color: oklch(98% 0 0);
 }
 
-:where(html.zui-dark, html.zui-luminous) .zui-aimsg__react:hover {
+:where(html.theme-dark, html.theme-luminous) .zui-aimsg__react:hover {
   background: oklch(100% 0 0 / 0.07);
   color: oklch(98% 0 0);
 }

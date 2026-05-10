@@ -157,7 +157,7 @@
 
 /* ── Dark-theme tuning ──────────────────────────────────────────────────── */
 :where(.zui-theme-dark, .zui-theme-luminous) .zui-action3d--secondary,
-:where(html.zui-dark, html.zui-luminous) .zui-action3d--secondary {
+:where(html.theme-dark, html.theme-luminous) .zui-action3d--secondary {
   --zui-a3-bg-from: oklch(28% 0.005 250);
   --zui-a3-bg-to:   oklch(20% 0.005 250);
   --zui-a3-fg:      oklch(96% 0 0);

@@ -211,7 +211,7 @@
 }
 
 /* ── Dark theme ─────────────────────────────────────────────────────────── */
-:where(html.zui-dark, html.zui-luminous) .zui-aidrop:not([data-appearance='light']),
+:where(html.theme-dark, html.theme-luminous) .zui-aidrop:not([data-appearance='light']),
 .zui-aidrop[data-appearance='dark'] {
   --zui-ad-bg-from: oklch(22% 0.02 270);
   --zui-ad-bg-to:   oklch(16% 0.02 270);
@@ -221,12 +221,12 @@
   --zui-ad-preview-bg: oklch(99% 0 0);
 }
 
-:where(html.zui-dark, html.zui-luminous) .zui-aidrop:not([data-appearance='light']) .zui-aidrop__zone,
+:where(html.theme-dark, html.theme-luminous) .zui-aidrop:not([data-appearance='light']) .zui-aidrop__zone,
 .zui-aidrop[data-appearance='dark'] .zui-aidrop__zone {
   border-color: oklch(70% 0.10 275 / 0.55);
 }
 
-:where(html.zui-dark, html.zui-luminous) .zui-aidrop:not([data-appearance='light']) .zui-aidrop__action,
+:where(html.theme-dark, html.theme-luminous) .zui-aidrop:not([data-appearance='light']) .zui-aidrop__action,
 .zui-aidrop[data-appearance='dark'] .zui-aidrop__action {
   background: oklch(100% 0 0 / 0.10);
   color: oklch(99% 0 0);

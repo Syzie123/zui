@@ -172,7 +172,7 @@
 }
 
 /* ── Dark theme ─────────────────────────────────────────────────────────── */
-:where(html.zui-dark, html.zui-luminous) .zui-install {
+:where(html.theme-dark, html.theme-luminous) .zui-install {
   --zui-in-bg: oklch(15% 0.005 250);
   --zui-in-card-bg: oklch(20% 0.005 250);
   --zui-in-fg: oklch(98% 0 0);
@@ -182,18 +182,18 @@
   --zui-in-cta-fg: oklch(98% 0 0);
 }
 
-:where(html.zui-dark, html.zui-luminous) .zui-install__badge {
+:where(html.theme-dark, html.theme-luminous) .zui-install__badge {
   background: oklch(100% 0 0 / 0.06);
   color: oklch(80% 0.01 250);
 }
 
-:where(html.zui-dark, html.zui-luminous) .zui-install__svg path[fill='oklch(99% 0 0)'] {
+:where(html.theme-dark, html.theme-luminous) .zui-install__svg path[fill='oklch(99% 0 0)'] {
   fill: oklch(28% 0.005 250);
 }
-:where(html.zui-dark, html.zui-luminous) .zui-install__svg path[fill='oklch(96% 0 0)'] {
+:where(html.theme-dark, html.theme-luminous) .zui-install__svg path[fill='oklch(96% 0 0)'] {
   fill: oklch(22% 0.005 250);
 }
-:where(html.zui-dark, html.zui-luminous) .zui-install__svg g[stroke='oklch(85% 0 0)'],
-:where(html.zui-dark, html.zui-luminous) .zui-install__svg g[stroke='oklch(60% 0 0)'] {
+:where(html.theme-dark, html.theme-luminous) .zui-install__svg g[stroke='oklch(85% 0 0)'],
+:where(html.theme-dark, html.theme-luminous) .zui-install__svg g[stroke='oklch(60% 0 0)'] {
   stroke: oklch(100% 0 0 / 0.20);
 }

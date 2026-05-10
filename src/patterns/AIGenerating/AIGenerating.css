@@ -333,7 +333,7 @@
 }
 
 /* ── Dark theme ─────────────────────────────────────────────────────────── */
-:where(html.zui-dark, html.zui-luminous) .zui-aigen {
+:where(html.theme-dark, html.theme-luminous) .zui-aigen {
   --zui-aig-body-bg: oklch(20% 0.005 250);
   --zui-aig-body-fg: oklch(98% 0 0);
   --zui-aig-body-border: oklch(100% 0 0 / 0.07);

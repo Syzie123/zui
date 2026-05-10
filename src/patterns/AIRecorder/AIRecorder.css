@@ -162,7 +162,7 @@
 }
 
 /* ── Dark theme ─────────────────────────────────────────────────────────── */
-:where(html.zui-dark, html.zui-luminous) .zui-airec:not([data-appearance='light']),
+:where(html.theme-dark, html.theme-luminous) .zui-airec:not([data-appearance='light']),
 .zui-airec[data-appearance='dark'] {
   --zui-ar-bg-from: oklch(24% 0.005 250);
   --zui-ar-bg-to:   oklch(18% 0.005 250);
@@ -178,9 +178,9 @@
   --zui-ar-confirm-fg:      oklch(15% 0.02 250);
 }
 
-:where(html.zui-dark, html.zui-luminous) .zui-airec:not([data-appearance='light']) .zui-airec__cancel:hover,
+:where(html.theme-dark, html.theme-luminous) .zui-airec:not([data-appearance='light']) .zui-airec__cancel:hover,
 .zui-airec[data-appearance='dark'] .zui-airec__cancel:hover,
-:where(html.zui-dark, html.zui-luminous) .zui-airec:not([data-appearance='light']) .zui-airec__pause:hover,
+:where(html.theme-dark, html.theme-luminous) .zui-airec:not([data-appearance='light']) .zui-airec__pause:hover,
 .zui-airec[data-appearance='dark'] .zui-airec__pause:hover {
   background: oklch(100% 0 0 / 0.07);
 }

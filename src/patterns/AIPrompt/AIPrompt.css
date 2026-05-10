@@ -410,7 +410,7 @@
 }
 
 /* ── Dark theme ─────────────────────────────────────────────────────────── */
-:where(html.zui-dark, html.zui-luminous) .zui-aiprompt:not([data-appearance='light']),
+:where(html.theme-dark, html.theme-luminous) .zui-aiprompt:not([data-appearance='light']),
 .zui-aiprompt[data-appearance='dark'] {
   --zui-ap-bg-from: oklch(24% 0.005 250);
   --zui-ap-bg-to:   oklch(18% 0.005 250);
@@ -435,7 +435,7 @@
     0 2px 6px -2px oklch(0% 0 0 / 0.40);
 }
 
-:where(html.zui-dark, html.zui-luminous) .zui-aiprompt[data-state='streaming'] .zui-aiprompt__send,
+:where(html.theme-dark, html.theme-luminous) .zui-aiprompt[data-state='streaming'] .zui-aiprompt__send,
 .zui-aiprompt[data-appearance='dark'][data-state='streaming'] .zui-aiprompt__send {
   background: oklch(99% 0 0);
   color: oklch(12% 0 0);

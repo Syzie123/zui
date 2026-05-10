@@ -275,3 +275,148 @@ export function GeminiIcon({ className, size }: BrandIconProps) {
     </svg>
   );
 }
+
+/* ─────────────── AI IDEs / AI tools ─────────────── */
+
+/** Claude — Anthropic's "spark" mark, four-rayed soft star. */
+export function ClaudeIcon({ className, size }: BrandIconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      <path
+        d="M12 1.5c.32 3.34 1.86 5.55 4.78 6.45-2.92.9-4.46 3.11-4.78 6.45-.32-3.34-1.86-5.55-4.78-6.45 2.92-.9 4.46-3.11 4.78-6.45zM18.5 13c.18 1.86 1.04 3.09 2.66 3.59-1.62.5-2.48 1.73-2.66 3.59-.18-1.86-1.04-3.09-2.66-3.59 1.62-.5 2.48-1.73 2.66-3.59zM6 15.5c.13 1.39.78 2.31 1.99 2.69C6.78 18.57 6.13 19.49 6 20.88c-.13-1.39-.78-2.31-1.99-2.69 1.21-.38 1.86-1.3 1.99-2.69z"
+        fill="#D97757"
+      />
+    </svg>
+  );
+}
+
+/** Windsurf — Codeium's editor mark, green W. */
+export function WindsurfIcon({ className, size }: BrandIconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      <defs>
+        <linearGradient id="wsf-grad" x1="2" y1="20" x2="22" y2="4" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#0EE5A6" />
+          <stop offset="1" stopColor="#0EAA72" />
+        </linearGradient>
+      </defs>
+      <rect width="24" height="24" rx="6" fill="#0B1F18" />
+      <path
+        d="M3.5 9 L7 18 L9.5 11 L12 18 L14.5 11 L17 18 L20.5 9"
+        stroke="url(#wsf-grad)"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+    </svg>
+  );
+}
+
+/** GitHub Copilot — its rounded chrome-headphone silhouette. */
+export function CopilotIcon({ className, size }: BrandIconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      <path
+        d="M5.5 11.5c0-3.31 2.69-6 6-6h1c3.31 0 6 2.69 6 6v.8c.93.27 1.6 1.13 1.6 2.15v1.6c0 1.01-.67 1.87-1.6 2.14V19c0 .55-.45 1-1 1H5.5c-.55 0-1-.45-1-1v-.81c-.93-.27-1.6-1.13-1.6-2.14v-1.6c0-1.02.67-1.88 1.6-2.15v-.8z"
+        fill="#1F1F1F"
+      />
+      <circle cx="9" cy="14.5" r="1.4" fill="#fff" />
+      <circle cx="15" cy="14.5" r="1.4" fill="#fff" />
+      <path
+        d="M11.5 4.5h1c.5 0 .9.4.9.9V7h-2.8V5.4c0-.5.4-.9.9-.9z"
+        fill="#1F1F1F"
+      />
+    </svg>
+  );
+}
+
+/** Google Antigravity — the spiral / orbit mark. */
+export function AntigravityIcon({ className, size }: BrandIconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      <defs>
+        <linearGradient id="agv-grad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#4285F4" />
+          <stop offset="0.5" stopColor="#9B72CB" />
+          <stop offset="1" stopColor="#EA4335" />
+        </linearGradient>
+      </defs>
+      <path
+        d="M12 3c4.97 0 9 4.03 9 9 0 2-1 3.5-2.5 3.5-1.4 0-2.5-1.1-2.5-2.5 0-3.31-2.69-6-6-6S4 9.69 4 13s2.69 6 6 6c1.4 0 2.5 1.1 2.5 2.5S11.4 24 10 24c-4.97 0-9-4.03-9-9s4.03-12 11-12z"
+        fill="url(#agv-grad)"
+        transform="translate(0,-1)"
+      />
+      <circle cx="12" cy="12" r="2.6" fill="url(#agv-grad)" />
+    </svg>
+  );
+}
+
+/** Replit — orange angular bracket. */
+export function ReplitIcon({ className, size }: BrandIconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      <path d="M12.5 2h6c1.66 0 3 1.34 3 3v6h-9V2z" fill="#F26207" />
+      <path d="M3 11h9v9H6c-1.66 0-3-1.34-3-3v-6z" fill="#F26207" />
+      <path d="M12 11h9.5v6c0 1.66-1.34 3-3 3H12v-9z" fill="#F26207" fillOpacity="0.7" />
+    </svg>
+  );
+}
+
+/** Vercel v0 — black square with offset white "v0". */
+export function V0Icon({ className, size }: BrandIconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      <rect width="24" height="24" rx="5" fill="#000" />
+      <path
+        d="M5 8.4l3.4 7.2h1.5L13.4 8.4h-1.7l-2.4 5.6L6.7 8.4H5z"
+        fill="#fff"
+      />
+      <circle cx="16.4" cy="14" r="3.2" fill="none" stroke="#fff" strokeWidth="1.4" />
+    </svg>
+  );
+}
+
+/** Bolt (StackBlitz) — bright lightning. */
+export function BoltIcon({ className, size }: BrandIconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      <defs>
+        <linearGradient id="bolt-grad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#FFC107" />
+          <stop offset="1" stopColor="#FF6F00" />
+        </linearGradient>
+      </defs>
+      <rect width="24" height="24" rx="6" fill="#0F1115" />
+      <path
+        d="M14 2L4 14h6l-2 8 10-12h-6l2-8z"
+        fill="url(#bolt-grad)"
+      />
+    </svg>
+  );
+}
+
+/** Perplexity — concentric blue dots / rings. */
+export function PerplexityIcon({ className, size }: BrandIconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      <rect width="24" height="24" rx="6" fill="#1F1F1F" />
+      <circle cx="12" cy="12" r="6.5" fill="none" stroke="#22B8CF" strokeWidth="1.4" />
+      <path d="M12 2v8M12 14v8M2 12h8M14 12h8" stroke="#22B8CF" strokeWidth="1.4" strokeLinecap="round" />
+      <circle cx="12" cy="12" r="2.4" fill="#22B8CF" />
+    </svg>
+  );
+}
+
+/** Grok (xAI) — slanted X mark. */
+export function GrokIcon({ className, size }: BrandIconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      <rect width="24" height="24" rx="6" fill="#000" />
+      <path
+        d="M5 5l8 9.6 6 4.4-3.4-7L19 5h-3.4l-3.6 6L8.4 5H5z"
+        fill="#fff"
+      />
+    </svg>
+  );
+}

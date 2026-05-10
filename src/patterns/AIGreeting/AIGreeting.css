@@ -237,12 +237,12 @@
 .zui-aigreet__pill-icon--gray   { background: oklch(94% 0 0);      color: oklch(35% 0 0); }
 
 /* ── Dark theme ─────────────────────────────────────────────────────────── */
-:where(html.zui-dark, html.zui-luminous) .zui-aigreet {
+:where(html.theme-dark, html.theme-luminous) .zui-aigreet {
   --zui-ag-fg:       oklch(98% 0 0);
   --zui-ag-fg-muted: oklch(70% 0.01 250);
 }
 
-:where(html.zui-dark, html.zui-luminous) .zui-aigreet__card:not(.zui-aigreet__card--dark) {
+:where(html.theme-dark, html.theme-luminous) .zui-aigreet__card:not(.zui-aigreet__card--dark) {
   --zui-agc-bg-from: oklch(22% 0.005 250);
   --zui-agc-bg-to:   oklch(15% 0.005 250);
   --zui-agc-fg:      oklch(98% 0 0);
@@ -250,22 +250,22 @@
   --zui-agc-border:  oklch(100% 0 0 / 0.07);
 }
 
-:where(html.zui-dark, html.zui-luminous) .zui-aigreet__card--prompt {
+:where(html.theme-dark, html.theme-luminous) .zui-aigreet__card--prompt {
   background-image: radial-gradient(oklch(100% 0 0 / 0.07) 1px, transparent 1.4px);
   background-color: oklch(20% 0.005 250);
 }
 
-:where(html.zui-dark, html.zui-luminous) .zui-aigreet__pill {
+:where(html.theme-dark, html.theme-luminous) .zui-aigreet__pill {
   background: oklch(22% 0.005 250);
   color: oklch(98% 0 0);
   border-color: oklch(100% 0 0 / 0.08);
   box-shadow: 0 1px 0 oklch(100% 0 0 / 0.06) inset;
 }
-:where(html.zui-dark, html.zui-luminous) .zui-aigreet__pill:hover {
+:where(html.theme-dark, html.theme-luminous) .zui-aigreet__pill:hover {
   background: oklch(26% 0.005 250);
 }
 
-:where(html.zui-dark, html.zui-luminous) .zui-aigreet__pill-icon--gray {
+:where(html.theme-dark, html.theme-luminous) .zui-aigreet__pill-icon--gray {
   background: oklch(28% 0 0);
   color: oklch(95% 0 0);
 }

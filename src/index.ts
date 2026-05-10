@@ -180,6 +180,15 @@ export {
   FigmaIcon,
   CursorIcon,
   GeminiIcon,
+  ClaudeIcon,
+  WindsurfIcon,
+  CopilotIcon,
+  AntigravityIcon,
+  ReplitIcon,
+  V0Icon,
+  BoltIcon,
+  PerplexityIcon,
+  GrokIcon,
 } from './components/icons/brand';
 
 /* ─────────── Hooks & utils ─────────── */

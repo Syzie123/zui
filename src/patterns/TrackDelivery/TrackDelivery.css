@@ -137,7 +137,7 @@
 }
 
 /* ── Dark theme ─────────────────────────────────────────────────────────── */
-:where(html.zui-dark, html.zui-luminous) .zui-trackdel {
+:where(html.theme-dark, html.theme-luminous) .zui-trackdel {
   --zui-td-bg: oklch(15% 0.005 250);
   --zui-td-card-bg: oklch(20% 0.005 250);
   --zui-td-fg: oklch(98% 0 0);
@@ -151,19 +151,19 @@
   --zui-td-chip-fg: oklch(15% 0.02 250);
 }
 
-:where(html.zui-dark, html.zui-luminous) .zui-trackdel .zui-trackdel__svg path[fill='oklch(99% 0 0)'] {
+:where(html.theme-dark, html.theme-luminous) .zui-trackdel .zui-trackdel__svg path[fill='oklch(99% 0 0)'] {
   fill: oklch(28% 0.005 250);
 }
-:where(html.zui-dark, html.zui-luminous) .zui-trackdel .zui-trackdel__svg path[fill='oklch(96% 0 0)'] {
+:where(html.theme-dark, html.theme-luminous) .zui-trackdel .zui-trackdel__svg path[fill='oklch(96% 0 0)'] {
   fill: oklch(22% 0.005 250);
 }
-:where(html.zui-dark, html.zui-luminous) .zui-trackdel .zui-trackdel__svg path[fill='oklch(92% 0 0)'] {
+:where(html.theme-dark, html.theme-luminous) .zui-trackdel .zui-trackdel__svg path[fill='oklch(92% 0 0)'] {
   fill: oklch(18% 0.005 250);
 }
-:where(html.zui-dark, html.zui-luminous) .zui-trackdel .zui-trackdel__svg path[stroke='oklch(60% 0 0)'],
-:where(html.zui-dark, html.zui-luminous) .zui-trackdel .zui-trackdel__svg path[stroke='oklch(70% 0 0)'],
-:where(html.zui-dark, html.zui-luminous) .zui-trackdel .zui-trackdel__svg path[stroke='oklch(75% 0 0)'],
-:where(html.zui-dark, html.zui-luminous) .zui-trackdel .zui-trackdel__svg line[stroke='oklch(70% 0 0)'],
-:where(html.zui-dark, html.zui-luminous) .zui-trackdel .zui-trackdel__svg line[stroke='oklch(85% 0 0)'] {
+:where(html.theme-dark, html.theme-luminous) .zui-trackdel .zui-trackdel__svg path[stroke='oklch(60% 0 0)'],
+:where(html.theme-dark, html.theme-luminous) .zui-trackdel .zui-trackdel__svg path[stroke='oklch(70% 0 0)'],
+:where(html.theme-dark, html.theme-luminous) .zui-trackdel .zui-trackdel__svg path[stroke='oklch(75% 0 0)'],
+:where(html.theme-dark, html.theme-luminous) .zui-trackdel .zui-trackdel__svg line[stroke='oklch(70% 0 0)'],
+:where(html.theme-dark, html.theme-luminous) .zui-trackdel .zui-trackdel__svg line[stroke='oklch(85% 0 0)'] {
   stroke: oklch(100% 0 0 / 0.20);
 }

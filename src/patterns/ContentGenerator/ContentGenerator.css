@@ -490,7 +490,7 @@
 .zui-cgen__output-action[data-active] { background: var(--zui-cg-accent-soft); color: var(--zui-cg-accent); }
 
 /* ── Dark theme ─────────────────────────────────────────────────────────── */
-:where(html.zui-dark, html.zui-luminous) .zui-cgen {
+:where(html.theme-dark, html.theme-luminous) .zui-cgen {
   --zui-cg-bg: oklch(13% 0.005 250);
   --zui-cg-fg: oklch(98% 0 0);
   --zui-cg-fg-muted: oklch(70% 0.01 250);
@@ -503,22 +503,22 @@
   --zui-cg-accent-soft: oklch(35% 0.10 270);
 }
 
-:where(html.zui-dark, html.zui-luminous) .zui-cgen__output {
+:where(html.theme-dark, html.theme-luminous) .zui-cgen__output {
   background: oklch(18% 0.005 250);
 }
-:where(html.zui-dark, html.zui-luminous) .zui-cgen__output[data-highlight] {
+:where(html.theme-dark, html.theme-luminous) .zui-cgen__output[data-highlight] {
   background: oklch(28% 0.10 150);
   border-color: oklch(50% 0.14 150);
 }
-:where(html.zui-dark, html.zui-luminous) .zui-cgen__menu-item:hover {
+:where(html.theme-dark, html.theme-luminous) .zui-cgen__menu-item:hover {
   background: oklch(100% 0 0 / 0.05);
 }
-:where(html.zui-dark, html.zui-luminous) .zui-cgen__user { background: oklch(100% 0 0 / 0.04); }
-:where(html.zui-dark, html.zui-luminous) .zui-cgen__output-action:hover { background: oklch(100% 0 0 / 0.07); }
-:where(html.zui-dark, html.zui-luminous) .zui-cgen__search-kbd { background: oklch(22% 0.005 250); }
-:where(html.zui-dark, html.zui-luminous) .zui-cgen__menu-badge { background: oklch(35% 0.10 25); color: oklch(85% 0.04 25); }
-:where(html.zui-dark, html.zui-luminous) .zui-cgen__section-badge { background: oklch(35% 0.10 25); color: oklch(85% 0.04 25); }
-:where(html.zui-dark, html.zui-luminous) .zui-cgen__header-icon { background: oklch(30% 0.10 25); color: oklch(85% 0.04 25); }
+:where(html.theme-dark, html.theme-luminous) .zui-cgen__user { background: oklch(100% 0 0 / 0.04); }
+:where(html.theme-dark, html.theme-luminous) .zui-cgen__output-action:hover { background: oklch(100% 0 0 / 0.07); }
+:where(html.theme-dark, html.theme-luminous) .zui-cgen__search-kbd { background: oklch(22% 0.005 250); }
+:where(html.theme-dark, html.theme-luminous) .zui-cgen__menu-badge { background: oklch(35% 0.10 25); color: oklch(85% 0.04 25); }
+:where(html.theme-dark, html.theme-luminous) .zui-cgen__section-badge { background: oklch(35% 0.10 25); color: oklch(85% 0.04 25); }
+:where(html.theme-dark, html.theme-luminous) .zui-cgen__header-icon { background: oklch(30% 0.10 25); color: oklch(85% 0.04 25); }
 
 @media (prefers-reduced-motion: reduce) {
   .zui-cgen__primary, .zui-cgen__generate, .zui-cgen__output-action, .zui-cgen__menu-item, .zui-cgen__tab, .zui-cgen__textarea, .zui-cgen__input {

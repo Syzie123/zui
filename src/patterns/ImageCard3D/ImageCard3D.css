@@ -162,7 +162,7 @@
 }
 
 /* ── Dark theme ─────────────────────────────────────────────────────────── */
-:where(html.zui-dark, html.zui-luminous) .zui-imgcard3d__tag {
+:where(html.theme-dark, html.theme-luminous) .zui-imgcard3d__tag {
   background: oklch(20% 0.005 250 / 0.78);
   box-shadow:
     0 1px 0 oklch(100% 0 0 / 0.10) inset,
@@ -171,7 +171,7 @@
     0 2px 4px oklch(0% 0 0 / 0.40);
 }
 
-:where(html.zui-dark, html.zui-luminous) .zui-imgcard3d__well {
+:where(html.theme-dark, html.theme-luminous) .zui-imgcard3d__well {
   background: oklch(28% 0.005 250);
   color: oklch(96% 0 0);
   box-shadow:
@@ -179,10 +179,10 @@
     inset 0 -1px 0 oklch(100% 0 0 / 0.06);
 }
 
-:where(html.zui-dark, html.zui-luminous) .zui-imgcard3d__title {
+:where(html.theme-dark, html.theme-luminous) .zui-imgcard3d__title {
   color: oklch(98% 0 0);
 }
-:where(html.zui-dark, html.zui-luminous) .zui-imgcard3d__subtitle {
+:where(html.theme-dark, html.theme-luminous) .zui-imgcard3d__subtitle {
   color: oklch(75% 0.01 250);
 }
 

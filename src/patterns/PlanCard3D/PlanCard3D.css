@@ -269,7 +269,7 @@
 }
 
 /* Dark theme adjustments for the "light" tone so it doesn't look pasted-on. */
-:where(html.zui-dark, html.zui-luminous) .zui-plancard3d--light {
+:where(html.theme-dark, html.theme-luminous) .zui-plancard3d--light {
   --zui-pc-bg-from: oklch(20% 0.005 250);
   --zui-pc-bg-to:   oklch(13% 0.005 250);
   --zui-pc-fg:      oklch(98% 0 0);

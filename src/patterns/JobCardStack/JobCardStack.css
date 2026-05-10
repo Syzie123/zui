@@ -160,7 +160,7 @@
 }
 
 /* ── Dark theme ─────────────────────────────────────────────────────────── */
-:where(html.zui-dark, html.zui-luminous) .zui-jobstack__card {
+:where(html.theme-dark, html.theme-luminous) .zui-jobstack__card {
   --zui-js-fg:      oklch(98% 0 0);
   --zui-js-fg-muted: oklch(75% 0.01 250);
   --zui-js-tag-bg:  oklch(0% 0 0 / 0.40);
@@ -169,31 +169,31 @@
     0 14px 28px -10px oklch(0% 0 0 / 0.65),
     0 4px 8px -4px oklch(0% 0 0 / 0.40);
 }
-:where(html.zui-dark, html.zui-luminous) .zui-jobstack__card--lavender {
+:where(html.theme-dark, html.theme-luminous) .zui-jobstack__card--lavender {
   --zui-js-bg-from: oklch(38% 0.10 285);
   --zui-js-bg-to:   oklch(28% 0.10 285);
 }
-:where(html.zui-dark, html.zui-luminous) .zui-jobstack__card--cream {
+:where(html.theme-dark, html.theme-luminous) .zui-jobstack__card--cream {
   --zui-js-bg-from: oklch(38% 0.06 80);
   --zui-js-bg-to:   oklch(28% 0.06 75);
 }
-:where(html.zui-dark, html.zui-luminous) .zui-jobstack__card--peach {
+:where(html.theme-dark, html.theme-luminous) .zui-jobstack__card--peach {
   --zui-js-bg-from: oklch(38% 0.10 30);
   --zui-js-bg-to:   oklch(28% 0.10 25);
 }
-:where(html.zui-dark, html.zui-luminous) .zui-jobstack__card--mint {
+:where(html.theme-dark, html.theme-luminous) .zui-jobstack__card--mint {
   --zui-js-bg-from: oklch(38% 0.08 165);
   --zui-js-bg-to:   oklch(28% 0.08 160);
 }
-:where(html.zui-dark, html.zui-luminous) .zui-jobstack__card--sky {
+:where(html.theme-dark, html.theme-luminous) .zui-jobstack__card--sky {
   --zui-js-bg-from: oklch(38% 0.10 230);
   --zui-js-bg-to:   oklch(28% 0.10 225);
 }
-:where(html.zui-dark, html.zui-luminous) .zui-jobstack__card--sand {
+:where(html.theme-dark, html.theme-luminous) .zui-jobstack__card--sand {
   --zui-js-bg-from: oklch(38% 0.06 100);
   --zui-js-bg-to:   oklch(28% 0.06 95);
 }
-:where(html.zui-dark, html.zui-luminous) .zui-jobstack__card--white {
+:where(html.theme-dark, html.theme-luminous) .zui-jobstack__card--white {
   --zui-js-bg-from: oklch(28% 0.005 250);
   --zui-js-bg-to:   oklch(20% 0.005 250);
 }
