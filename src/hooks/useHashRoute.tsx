@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { forwardRef, useEffect, useState, useCallback } from 'react';
 
 /**
  * Clean-URL router built on the History API. Returns the current path
@@ -60,47 +60,49 @@ function currentPath(): string {
  * <Link> — routed anchor that intercepts clicks and uses pushState.
  * Drops in for `<a>` and preserves modifier-click semantics (cmd-click,
  * middle-click etc. still open in a new tab via the native href).
+ *
+ * Wrapped in forwardRef so it can be used as the child of Radix `Slot`
+ * components (e.g. `<Sidebar.MenuButton asChild><Link …/></Sidebar.MenuButton>`).
+ * Without forwardRef, Slot's ref-clone breaks the whole subtree silently.
  */
-export function Link({
-  href,
-  className,
-  children,
-  onClick,
-  target,
-  rel,
-  ...rest
-}: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
-  const target_ = href ?? '/';
-  return (
-    <a
-      href={target_}
-      target={target}
-      rel={rel}
-      onClick={(e) => {
-        onClick?.(e);
-        if (e.defaultPrevented) return;
-        // Respect cmd/ctrl/shift/middle-click + explicit target=_blank.
-        if (
-          e.button !== 0 ||
-          e.metaKey ||
-          e.ctrlKey ||
-          e.shiftKey ||
-          e.altKey ||
-          target === '_blank'
-        ) {
-          return;
-        }
-        e.preventDefault();
-        if (window.location.pathname !== target_) {
-          window.history.pushState({}, '', target_);
-          window.dispatchEvent(new Event('zui:navigate'));
-        }
-        window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
-      }}
-      className={className}
-      {...rest}
-    >
-      {children}
-    </a>
-  );
-}
+export const Link = forwardRef<HTMLAnchorElement, React.AnchorHTMLAttributes<HTMLAnchorElement>>(
+  function Link(
+    { href, className, children, onClick, target, rel, ...rest },
+    ref
+  ) {
+    const target_ = href ?? '/';
+    return (
+      <a
+        ref={ref}
+        href={target_}
+        target={target}
+        rel={rel}
+        onClick={(e) => {
+          onClick?.(e);
+          if (e.defaultPrevented) return;
+          // Respect cmd/ctrl/shift/middle-click + explicit target=_blank.
+          if (
+            e.button !== 0 ||
+            e.metaKey ||
+            e.ctrlKey ||
+            e.shiftKey ||
+            e.altKey ||
+            target === '_blank'
+          ) {
+            return;
+          }
+          e.preventDefault();
+          if (window.location.pathname !== target_) {
+            window.history.pushState({}, '', target_);
+            window.dispatchEvent(new Event('zui:navigate'));
+          }
+          window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+        }}
+        className={className}
+        {...rest}
+      >
+        {children}
+      </a>
+    );
+  }
+);

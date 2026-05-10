@@ -482,8 +482,40 @@ const cache = new Map<string, LazyExoticComponent<ComponentType>>();
 export function lazyPage(page: DocPage) {
   let el = cache.get(page.slug);
   if (!el) {
-    el = lazy(page.loader);
+    el = lazy(() => withChunkRetry(page.loader));
     cache.set(page.slug, el);
   }
   return el;
+}
+
+/**
+ * Wraps a dynamic `import()` so that a stale-chunk 404 (typical after a
+ * fresh production deploy lands while a tab is still open) triggers a
+ * one-shot reload instead of crashing the route. Browsers throw a
+ * `TypeError: Failed to fetch dynamically imported module` in that case;
+ * we use a sessionStorage flag so we never loop on a real network failure.
+ */
+async function withChunkRetry<T>(loader: () => Promise<T>): Promise<T> {
+  try {
+    return await loader();
+  } catch (err) {
+    const isFetchError =
+      err instanceof TypeError &&
+      /dynamically imported module|Failed to fetch/i.test(err.message);
+    const alreadyTried = sessionStorage.getItem('zui:chunk-retry') === '1';
+    if (isFetchError && !alreadyTried) {
+      sessionStorage.setItem('zui:chunk-retry', '1');
+      window.location.reload();
+      // Block this promise — the page is reloading.
+      return new Promise<T>(() => {});
+    }
+    throw err;
+  }
+}
+
+// Once the page renders successfully, the retry flag is no longer needed.
+// Clearing it after a short delay lets a future deploy retrigger the auto-
+// reload without forcing the user into a bad-state cycle.
+if (typeof window !== 'undefined') {
+  window.setTimeout(() => sessionStorage.removeItem('zui:chunk-retry'), 5000);
 }
