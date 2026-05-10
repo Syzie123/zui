@@ -5,24 +5,15 @@ import {
   MousePointer2,
   Search,
   Sparkles,
-  Video,
   Wand2,
 } from 'lucide-react';
 import { AIPrompt } from '../../../patterns/AIPrompt/AIPrompt';
+import {
+  CursorIcon,
+  ZoomIcon,
+} from '../../../components/icons/brand';
 import { PreviewTabs } from '../../PreviewTabs';
 import { H2, P, PropsTable } from '../../page-kit';
-
-const OpenAIBlock = () => (
-  <span className="inline-flex size-4 items-center justify-center rounded-md bg-[oklch(15%_0_0)] text-[0.55rem] font-extrabold text-white">
-    GPT
-  </span>
-);
-
-const ZoomBlock = () => (
-  <span className="inline-flex size-4 items-center justify-center rounded-[3px] bg-[oklch(55%_0.20_240)]">
-    <Video className="size-2.5 text-white" />
-  </span>
-);
 
 export default function AIPromptDoc() {
   const [streaming, setStreaming] = useState(false);
@@ -37,14 +28,14 @@ export default function AIPromptDoc() {
             <AIPrompt
               tags={[
                 {
-                  icon: <ZoomBlock />,
+                  icon: <ZoomIcon size={16} />,
                   label: 'Onboarding call wit…',
                   suffix: 'Today',
                   onRemove: () => {},
                 },
               ]}
               defaultValue="create a summary web page"
-              model={{ icon: <OpenAIBlock />, label: 'Cursor: GPT-5.2' }}
+              model={{ icon: <CursorIcon size={16} />, label: 'Cursor: GPT-5.2' }}
               tools={[
                 { icon: <Sparkles className="size-4" />, label: 'Refine' },
                 { icon: <Search className="size-4" />, label: 'Search' },
@@ -59,7 +50,7 @@ export default function AIPromptDoc() {
         code={`<AIPrompt
   tags={[{ icon: <ZoomIcon />, label: 'Onboarding call', suffix: 'Today' }]}
   defaultValue="create a summary web page"
-  model={{ icon: <OpenAI />, label: 'Cursor: GPT-5.2' }}
+  model={{ icon: <CursorIcon />, label: 'Cursor: GPT-5.2' }}
   tools={[
     { icon: <Sparkles />, label: 'Refine' },
     { icon: <Search />,   label: 'Search' },
@@ -116,7 +107,7 @@ export default function AIPromptDoc() {
           <div className="w-full max-w-2xl mx-auto py-6">
             <AIPrompt
               defaultValue="Hello"
-              model={{ icon: <OpenAIBlock />, label: 'GPT-5.2' }}
+              model={{ icon: <CursorIcon size={16} />, label: 'GPT-5.2' }}
               state={streaming ? 'streaming' : 'idle'}
               onSubmit={() => setStreaming(true)}
               onStop={() => setStreaming(false)}
@@ -145,14 +136,14 @@ export default function AIPromptDoc() {
               appearance="dark"
               tags={[
                 {
-                  icon: <ZoomBlock />,
+                  icon: <ZoomIcon size={16} />,
                   label: 'Onboarding call wit…',
                   suffix: 'Today',
                   onRemove: () => {},
                 },
               ]}
               defaultValue="create a summary web page"
-              model={{ icon: <OpenAIBlock />, label: 'Cursor: GPT-5.2' }}
+              model={{ icon: <CursorIcon size={16} />, label: 'Cursor: GPT-5.2' }}
               tools={[
                 { icon: <Sparkles className="size-4" />, label: 'Refine' },
                 { icon: <MousePointer2 className="size-4" />, label: 'Select' },

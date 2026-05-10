@@ -105,7 +105,7 @@ export {
   type AIGeneratingPreset,
 } from './patterns/AIGenerating/AIGenerating';
 
-/* ─────────── 3D / Neumorphic patterns ─────────── */
+/* ─────────── 3D / Neumorphic + scene patterns ─────────── */
 export { Action3D, type Action3DProps } from './patterns/Action3D/Action3D';
 export { Switch3D, type Switch3DProps } from './patterns/Switch3D/Switch3D';
 export { ImageCard3D, type ImageCard3DProps } from './patterns/ImageCard3D/ImageCard3D';
@@ -120,6 +120,46 @@ export {
   type MenuList3DItemProps,
   type MenuList3DProgressProps,
 } from './patterns/MenuList3D/MenuList3D';
+export {
+  JobCardStack,
+  type JobCardStackProps,
+  type JobCardItem,
+  type JobCardTone,
+} from './patterns/JobCardStack/JobCardStack';
+export {
+  TrackDelivery,
+  type TrackDeliveryProps,
+} from './patterns/TrackDelivery/TrackDelivery';
+export {
+  TravelCard,
+  type TravelCardProps,
+} from './patterns/TravelCard/TravelCard';
+export {
+  InstallCard,
+  type InstallCardProps,
+} from './patterns/InstallCard/InstallCard';
+export {
+  PricingDark,
+  type PricingDarkProps,
+  type PricingDarkTone,
+  type PricingDarkFeature,
+  type PricingDarkSpec,
+} from './patterns/PricingDark/PricingDark';
+export {
+  StatsCard,
+  type StatsCardProps,
+  type StatsCardRow,
+} from './patterns/StatsCard/StatsCard';
+export {
+  TalentGrid,
+  type TalentGridProps,
+  type TalentItem,
+  type TalentRoleTone,
+} from './patterns/TalentGrid/TalentGrid';
+export {
+  ContentGenerator,
+  type ContentGeneratorProps,
+} from './patterns/ContentGenerator/ContentGenerator';
 
 /* ─────────── Brand icons ─────────── */
 export {
@@ -129,6 +169,17 @@ export {
   FacebookIcon,
   XIcon,
   GithubBrandIcon,
+  OpenAIIcon,
+  AnthropicIcon,
+  ZoomIcon,
+  SlackIcon,
+  FramerIcon,
+  LoomIcon,
+  HopinIcon,
+  NotionIcon,
+  FigmaIcon,
+  CursorIcon,
+  GeminiIcon,
 } from './components/icons/brand';
 
 /* ─────────── Hooks & utils ─────────── */

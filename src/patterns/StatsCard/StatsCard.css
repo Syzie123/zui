@@ -1,0 +1,204 @@
+/* ============================================================================
+   StatsCard — dark sales card with corner glow + breakdown + sparkline
+   ============================================================================ */
+
+.zui-stats {
+  --zui-st-glow-a: 290;
+  --zui-st-glow-b: 260;
+
+  --zui-st-bg: oklch(8% 0 0);
+  --zui-st-fg: oklch(98% 0 0);
+  --zui-st-fg-muted: oklch(65% 0.01 250);
+  --zui-st-border: oklch(100% 0 0 / 0.07);
+  --zui-st-row-divider: oklch(100% 0 0 / 0.05);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 28rem;
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  background:
+    radial-gradient(150% 100% at 100% 0%,
+      oklch(60% 0.20 var(--zui-st-glow-a) / 0.45) 0%,
+      transparent 55%),
+    radial-gradient(120% 90% at 100% 60%,
+      oklch(55% 0.18 var(--zui-st-glow-b) / 0.30) 0%,
+      transparent 50%),
+    var(--zui-st-bg);
+  color: var(--zui-st-fg);
+  border: 1px solid var(--zui-st-border);
+  box-shadow:
+    0 1px 0 oklch(100% 0 0 / 0.05) inset,
+    0 24px 48px -16px oklch(0% 0 0 / 0.6);
+  font-family: inherit;
+  overflow: hidden;
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+.zui-stats__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.625rem;
+}
+
+.zui-stats__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-width: 0;
+}
+
+.zui-stats__brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.625rem;
+  background: oklch(99% 0 0);
+  color: oklch(15% 0.02 250);
+  flex-shrink: 0;
+  font-weight: 800;
+  font-size: 1rem;
+  box-shadow: 0 1px 2px oklch(0% 0 0 / 0.4);
+}
+
+.zui-stats__brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  min-width: 0;
+}
+
+.zui-stats__brand-name {
+  font-size: 0.78rem;
+  color: var(--zui-st-fg-muted);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+.zui-stats__brand-title {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.zui-stats__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  flex-shrink: 0;
+}
+
+.zui-stats__range {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.375rem 0.625rem;
+  border-radius: 0.5rem;
+  background: oklch(0% 0 0 / 0.45);
+  border: 1px solid var(--zui-st-border);
+  color: var(--zui-st-fg);
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.zui-stats__range--static { cursor: default; }
+
+.zui-stats__menu {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--zui-st-border);
+  border-radius: 0.5rem;
+  background: oklch(0% 0 0 / 0.45);
+  color: var(--zui-st-fg);
+  cursor: pointer;
+}
+
+/* ── Big metric ─────────────────────────────────────────────────────────── */
+.zui-stats__value {
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  /* Allow currency symbols rendered as part of the value to look balanced. */
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Rows ───────────────────────────────────────────────────────────────── */
+.zui-stats__rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.zui-stats__row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.625rem 0;
+  border-bottom: 1px solid var(--zui-st-row-divider);
+  font-size: 0.95rem;
+}
+.zui-stats__row:last-child { border-bottom: 0; }
+
+.zui-stats__row-label {
+  font-weight: 500;
+}
+
+.zui-stats__row-value {
+  color: var(--zui-st-fg-muted);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+.zui-stats__row-delta {
+  display: inline-flex;
+  justify-content: flex-end;
+  font-variant-numeric: tabular-nums;
+}
+
+.zui-stats__delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.18rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+.zui-stats__delta--up { color: oklch(78% 0.18 150); }
+.zui-stats__delta--dn { color: oklch(72% 0.20 25); }
+
+/* ── Sparkline + axis ───────────────────────────────────────────────────── */
+.zui-stats__spark {
+  width: 100%;
+  height: 2rem;
+  display: block;
+}
+
+.zui-stats__axis {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--zui-st-fg-muted);
+}
+
+/* ── Light theme override ───────────────────────────────────────────────── */
+:where(html.zui-clean) .zui-stats {
+  --zui-st-bg: oklch(15% 0.005 250);
+}

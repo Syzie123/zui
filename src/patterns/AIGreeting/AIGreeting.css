@@ -7,6 +7,9 @@
    ============================================================================ */
 
 .zui-aigreet {
+  --zui-ag-fg:        oklch(15% 0.02 250);
+  --zui-ag-fg-muted:  oklch(50% 0.01 250);
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,6 +19,7 @@
   margin: 0 auto;
   text-align: center;
   font-family: inherit;
+  color: var(--zui-ag-fg);
 }
 
 /* ── Orb ────────────────────────────────────────────────────────────────── */
@@ -57,7 +61,7 @@
 .zui-aigreet__subtitle {
   margin: 0;
   font-size: 0.95rem;
-  color: var(--color-fg-muted, oklch(50% 0.01 250));
+  color: var(--zui-ag-fg-muted);
   max-width: 36rem;
   line-height: 1.5;
 }
@@ -233,6 +237,11 @@
 .zui-aigreet__pill-icon--gray   { background: oklch(94% 0 0);      color: oklch(35% 0 0); }
 
 /* ── Dark theme ─────────────────────────────────────────────────────────── */
+:where(html.zui-dark, html.zui-luminous) .zui-aigreet {
+  --zui-ag-fg:       oklch(98% 0 0);
+  --zui-ag-fg-muted: oklch(70% 0.01 250);
+}
+
 :where(html.zui-dark, html.zui-luminous) .zui-aigreet__card:not(.zui-aigreet__card--dark) {
   --zui-agc-bg-from: oklch(22% 0.005 250);
   --zui-agc-bg-to:   oklch(15% 0.005 250);

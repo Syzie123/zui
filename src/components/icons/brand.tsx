@@ -106,3 +106,172 @@ export function GithubBrandIcon({ className, size }: BrandIconProps) {
     </svg>
   );
 }
+
+/* ─────────────── AI / dev / product brands ─────────────── */
+
+export function OpenAIIcon({ className, size }: BrandIconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      <path
+        d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.677l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+export function AnthropicIcon({ className, size }: BrandIconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      <path
+        d="M13.827 3.52h3.603L24 20.481h-3.603l-6.57-16.961zM6.484 3.52L0 20.481h3.685l1.327-3.474h6.788l1.326 3.474h3.685L10.327 3.52H6.484zm-.272 10.4l2.193-5.798 2.193 5.798H6.213z"
+        fill="#D97757"
+      />
+    </svg>
+  );
+}
+
+export function ZoomIcon({ className, size }: BrandIconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      <rect width="24" height="24" rx="6" fill="#2D8CFF" />
+      <path
+        d="M5.5 9.2c0-.66.54-1.2 1.2-1.2h6.6c.66 0 1.2.54 1.2 1.2v5.6c0 .66-.54 1.2-1.2 1.2H6.7c-.66 0-1.2-.54-1.2-1.2V9.2zm10 1.4l3-1.85c.4-.24.9.05.9.5v5.5c0 .45-.5.74-.9.5l-3-1.85v-2.8z"
+        fill="#fff"
+      />
+    </svg>
+  );
+}
+
+export function SlackIcon({ className, size }: BrandIconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      <path
+        d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"
+        fill="#E01E5A"
+      />
+      <path
+        d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"
+        fill="#36C5F0"
+      />
+      <path
+        d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"
+        fill="#2EB67D"
+      />
+      <path
+        d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"
+        fill="#ECB22E"
+      />
+    </svg>
+  );
+}
+
+export function FramerIcon({ className, size }: BrandIconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      <path d="M4 0h16v8h-8L4 0z" fill="#0055FF" />
+      <path d="M4 8h8l8 8H4V8z" fill="#00AAFF" />
+      <path d="M4 16h8v8l-8-8z" fill="#88DDFF" />
+    </svg>
+  );
+}
+
+export function LoomIcon({ className, size }: BrandIconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      <circle cx="12" cy="12" r="10" fill="#625DF5" />
+      <path
+        d="M11.997 6.86l3.97 2.292-3.97 2.293V6.86zM10.21 6.66l3.473 4.41-5.485 1.47 2.012-5.88zM7.54 9.36l5.483 1.47-4.026 4.024-1.456-5.494zM6.86 12.95l5.494 1.456-4.025 4.025-1.469-5.481zM10.234 16.973l1.47-5.484 4.026 4.025-5.496 1.459zM13.95 17.652l-2.293-3.97 5.879 2.011-3.586 1.96zM17.114 14.62l-1.456-5.495 5.484 1.47-4.028 4.024z"
+        fill="#fff"
+      />
+    </svg>
+  );
+}
+
+export function HopinIcon({ className, size }: BrandIconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      <defs>
+        <linearGradient id="hopin-grad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#3D33D2" />
+          <stop offset="1" stopColor="#FF4FB6" />
+        </linearGradient>
+      </defs>
+      <rect width="24" height="24" rx="6" fill="url(#hopin-grad)" />
+      <circle cx="12" cy="12" r="3.6" fill="#fff" />
+      <path
+        d="M5 6h2v12H5V6zm12 0h2v12h-2V6z"
+        fill="#fff"
+        fillOpacity="0.9"
+      />
+    </svg>
+  );
+}
+
+export function NotionIcon({ className, size }: BrandIconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      <rect width="24" height="24" rx="4" fill="#fff" stroke="#000" strokeOpacity="0.08" />
+      <path
+        d="M6.45 5.5l9.85-.7c1.21-.1 1.52.6 1.52 1.39v11.6c0 .8-.3 1.27-1.31 1.34l-9.42.55c-.81.05-1.21-.07-1.66-.62L4.4 17.78c-.5-.66-.7-1.13-.7-1.7V7.04c0-.7.3-1.27 1.05-1.34l1.7-.2z"
+        fill="#000"
+        fillOpacity="0.04"
+      />
+      <path
+        d="M16.3 4.8l-9.85.7-1.7.2C4 5.77 3.7 6.34 3.7 7.04v9.04c0 .57.2 1.04.7 1.7l1.03 1.28c.45.55.85.67 1.66.62l9.42-.55c1.01-.07 1.31-.54 1.31-1.34V6.19c0-.79-.31-1.49-1.52-1.39zm-9.07 1.97l9.4-.69c.16-.01.25.07.25.21v.96c0 .15-.09.24-.27.25l-1.4.08v9.45c-.01.15-.1.23-.27.25l-1.84.1c-.18.01-.27-.07-.27-.22V8.7l-1.62.1v8.43c0 .15-.09.23-.27.25l-1.84.11c-.18.01-.27-.08-.27-.22V8.94l-1.6.1v7.49c0 .15-.09.23-.27.24l-1.81.11c-.18.01-.27-.07-.27-.22V7.49c0-.31.06-.4.36-.42l1.99-.13z"
+        fill="#000"
+      />
+    </svg>
+  );
+}
+
+export function FigmaIcon({ className, size }: BrandIconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      <path d="M8 24a4 4 0 0 0 4-4v-4H8a4 4 0 0 0 0 8z" fill="#0ACF83" />
+      <path d="M4 12a4 4 0 0 1 4-4h4v8H8a4 4 0 0 1-4-4z" fill="#A259FF" />
+      <path d="M4 4a4 4 0 0 1 4-4h4v8H8a4 4 0 0 1-4-4z" fill="#F24E1E" />
+      <path d="M12 0h4a4 4 0 0 1 0 8h-4V0z" fill="#FF7262" />
+      <path d="M20 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0z" fill="#1ABCFE" />
+    </svg>
+  );
+}
+
+export function CursorIcon({ className, size }: BrandIconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      <defs>
+        <linearGradient id="cur-grad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#181818" />
+          <stop offset="1" stopColor="#2A2A2A" />
+        </linearGradient>
+      </defs>
+      <path
+        d="M12 1.5L21.5 7v10L12 22.5 2.5 17V7L12 1.5z"
+        fill="url(#cur-grad)"
+        stroke="oklch(100% 0 0 / 0.1)"
+      />
+      <path d="M12 12L2.5 7v10L12 22.5V12z" fill="#fff" fillOpacity="0.16" />
+      <path d="M12 12l9.5-5v10L12 22.5V12z" fill="#fff" fillOpacity="0.06" />
+      <path d="M12 12L2.5 7 12 1.5 21.5 7 12 12z" fill="#fff" fillOpacity="0.32" />
+    </svg>
+  );
+}
+
+export function GeminiIcon({ className, size }: BrandIconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      <defs>
+        <linearGradient id="gem-grad" x1="0" y1="24" x2="24" y2="0" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#1C7ED6" />
+          <stop offset="0.5" stopColor="#9775FA" />
+          <stop offset="1" stopColor="#F783AC" />
+        </linearGradient>
+      </defs>
+      <path
+        d="M12 2c.6 4.5 2.6 7.5 8 8-5.4.5-7.4 3.5-8 8-.6-4.5-2.6-7.5-8-8 5.4-.5 7.4-3.5 8-8z"
+        fill="url(#gem-grad)"
+      />
+    </svg>
+  );
+}

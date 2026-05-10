@@ -1,0 +1,199 @@
+/* ============================================================================
+   InstallCard — product card with isometric shapes illustration
+   ============================================================================ */
+
+.zui-install {
+  --zui-in-bg: oklch(96% 0.005 250);
+  --zui-in-card-bg: oklch(99% 0 0);
+  --zui-in-fg: oklch(15% 0.02 250);
+  --zui-in-fg-muted: oklch(45% 0.01 250);
+  --zui-in-border: oklch(0% 0 0 / 0.06);
+  --zui-in-cta-bg: oklch(99% 0 0);
+  --zui-in-cta-fg: oklch(15% 0.02 250);
+  --zui-in-hl-bg: oklch(86% 0.20 130);
+  --zui-in-hl-fg: oklch(20% 0.10 130);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 32rem;
+  border-radius: 1.5rem;
+  background: var(--zui-in-bg);
+  padding: 1rem;
+  font-family: inherit;
+  color: var(--zui-in-fg);
+  box-shadow:
+    0 1px 0 oklch(100% 0 0 / 0.7) inset,
+    0 12px 24px -12px oklch(0% 0 0 / 0.18);
+}
+
+.zui-install__menu {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 2;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--zui-in-border);
+  background: var(--zui-in-card-bg);
+  color: var(--zui-in-fg);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Hero illustration block ────────────────────────────────────────────── */
+.zui-install__hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 9rem;
+  margin-bottom: 0.75rem;
+}
+
+.zui-install__svg {
+  width: 100%;
+  height: 100%;
+  max-width: 16rem;
+}
+
+/* ── Body card ──────────────────────────────────────────────────────────── */
+.zui-install__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding: 1rem 1.125rem 1rem;
+  border-radius: 1.125rem;
+  background: var(--zui-in-card-bg);
+  border: 1px solid var(--zui-in-border);
+}
+
+.zui-install__title {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.zui-install__hl {
+  background: var(--zui-in-hl-bg);
+  color: var(--zui-in-hl-fg);
+  padding: 0 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.zui-install__brand-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.zui-install__brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.625rem;
+  height: 1.625rem;
+  border-radius: 0.5rem;
+  color: oklch(15% 0.02 250);
+  flex-shrink: 0;
+  box-shadow: 0 1px 2px oklch(0% 0 0 / 0.18);
+}
+
+.zui-install__brand {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.zui-install__badge {
+  margin-left: 0.25rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem 0.5rem;
+  border-radius: 0.375rem;
+  background: oklch(0% 0 0 / 0.05);
+  color: var(--zui-in-fg-muted);
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.zui-install__desc {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--zui-in-fg-muted);
+}
+
+.zui-install__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.625rem;
+  margin-top: 0.5rem;
+  padding-top: 0.875rem;
+  border-top: 1px solid var(--zui-in-border);
+  flex-wrap: wrap;
+}
+
+.zui-install__cta {
+  flex-shrink: 0;
+  padding: 0.625rem 1rem;
+  border-radius: 0.625rem;
+  border: 1px solid var(--zui-in-border);
+  background: var(--zui-in-cta-bg);
+  color: var(--zui-in-cta-fg);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 140ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.zui-install__cta:hover {
+  background: oklch(0% 0 0 / 0.04);
+}
+.zui-install__cta:focus-visible {
+  outline: 2px solid var(--color-accent-base, oklch(60% 0.18 250));
+  outline-offset: 2px;
+}
+
+.zui-install__installs {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--zui-in-fg);
+}
+
+/* ── Dark theme ─────────────────────────────────────────────────────────── */
+:where(html.zui-dark, html.zui-luminous) .zui-install {
+  --zui-in-bg: oklch(15% 0.005 250);
+  --zui-in-card-bg: oklch(20% 0.005 250);
+  --zui-in-fg: oklch(98% 0 0);
+  --zui-in-fg-muted: oklch(72% 0.01 250);
+  --zui-in-border: oklch(100% 0 0 / 0.08);
+  --zui-in-cta-bg: oklch(24% 0.005 250);
+  --zui-in-cta-fg: oklch(98% 0 0);
+}
+
+:where(html.zui-dark, html.zui-luminous) .zui-install__badge {
+  background: oklch(100% 0 0 / 0.06);
+  color: oklch(80% 0.01 250);
+}
+
+:where(html.zui-dark, html.zui-luminous) .zui-install__svg path[fill='oklch(99% 0 0)'] {
+  fill: oklch(28% 0.005 250);
+}
+:where(html.zui-dark, html.zui-luminous) .zui-install__svg path[fill='oklch(96% 0 0)'] {
+  fill: oklch(22% 0.005 250);
+}
+:where(html.zui-dark, html.zui-luminous) .zui-install__svg g[stroke='oklch(85% 0 0)'],
+:where(html.zui-dark, html.zui-luminous) .zui-install__svg g[stroke='oklch(60% 0 0)'] {
+  stroke: oklch(100% 0 0 / 0.20);
+}

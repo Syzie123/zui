@@ -1,20 +1,22 @@
 /* ============================================================================
    AIGenerating — gradient header + streaming text + action chips
    ----------------------------------------------------------------------------
-   The card is a single container with two visual zones:
-     • header — gradient strip, status + optional stop button
-     • body   — flat white panel, streaming text + chips
-   The blinking caret is a pseudo-element so the streamed text can be plain.
+   The header background is built from FOUR stacked layers to feel like a
+   shader rather than a flat ramp:
+     1. base diagonal — sets the overall hue temperature
+     2. radial-bloom 1 — warm highlight in the upper-right
+     3. radial-bloom 2 — cool counter-light in the lower-left
+     4. soft conic spin — rainbow tail that hides behind the blooms
+   The blooms sit at high lightness with strong chroma, and we let CSS mix
+   them — that's where the iridescence comes from. There's also a 1px inset
+   highlight on the very top edge so the header reads as glass, not paint.
+
+   The streaming caret is a plain block bar that fades on/off with `step-end`
+   timing — it reads as a normal text cursor, not a glow.
    ============================================================================ */
 
 .zui-aigen {
-  --zui-aig-gradient: linear-gradient(
-    100deg,
-    oklch(58% 0.20 250) 0%,
-    oklch(70% 0.18 290) 35%,
-    oklch(76% 0.14 320) 65%,
-    oklch(78% 0.16 25) 100%
-  );
+  --zui-aig-header-bg: oklch(50% 0.20 280);
 
   --zui-aig-body-bg: oklch(99% 0 0);
   --zui-aig-body-fg: oklch(15% 0.02 250);
@@ -23,6 +25,39 @@
   --zui-aig-chip-border: oklch(0% 0 0 / 0.06);
   --zui-aig-chip-fg: oklch(20% 0.02 250);
   --zui-aig-chip-icon: oklch(50% 0.20 280);
+
+  /* Layered "shader" gradient — overridden by [data-preset] below. */
+  --zui-aig-layer-base:
+    linear-gradient(
+      120deg,
+      oklch(58% 0.22 270) 0%,
+      oklch(62% 0.22 290) 35%,
+      oklch(70% 0.22 320) 65%,
+      oklch(70% 0.22 18)  100%
+    );
+  --zui-aig-layer-bloom-1:
+    radial-gradient(
+      80% 120% at 90% 0%,
+      oklch(85% 0.20 35 / 0.85) 0%,
+      oklch(72% 0.22 25 / 0.50) 30%,
+      transparent 60%
+    );
+  --zui-aig-layer-bloom-2:
+    radial-gradient(
+      80% 120% at 0% 110%,
+      oklch(80% 0.18 230 / 0.65) 0%,
+      oklch(60% 0.22 260 / 0.30) 35%,
+      transparent 60%
+    );
+  --zui-aig-layer-spin:
+    conic-gradient(
+      from 200deg at 50% 50%,
+      oklch(70% 0.22 280 / 0.0) 0%,
+      oklch(78% 0.20 320 / 0.45) 25%,
+      oklch(72% 0.22 25 / 0.30) 50%,
+      oklch(70% 0.22 280 / 0.0) 75%,
+      oklch(70% 0.22 280 / 0.0) 100%
+    );
 
   position: relative;
   display: flex;
@@ -36,42 +71,148 @@
     0 18px 36px -16px oklch(0% 0 0 / 0.16),
     0 6px 12px -8px oklch(0% 0 0 / 0.10);
   font-family: inherit;
+  isolation: isolate;
 }
 
-/* Presets */
+/* ── Presets — each replaces the four shader layers ─────────────────────── */
+
 .zui-aigen[data-preset='aurora'] {
-  --zui-aig-gradient: linear-gradient(
-    100deg,
-    oklch(70% 0.18 155) 0%,
-    oklch(70% 0.18 220) 50%,
-    oklch(60% 0.20 295) 100%
-  );
+  --zui-aig-layer-base:
+    linear-gradient(
+      120deg,
+      oklch(60% 0.22 175) 0%,
+      oklch(62% 0.22 220) 50%,
+      oklch(58% 0.22 290) 100%
+    );
+  --zui-aig-layer-bloom-1:
+    radial-gradient(
+      90% 100% at 80% 0%,
+      oklch(86% 0.20 165 / 0.75) 0%,
+      transparent 60%
+    );
+  --zui-aig-layer-bloom-2:
+    radial-gradient(
+      80% 110% at 10% 110%,
+      oklch(72% 0.22 290 / 0.65) 0%,
+      transparent 60%
+    );
+  --zui-aig-layer-spin:
+    conic-gradient(
+      from 60deg at 50% 50%,
+      oklch(70% 0.22 195 / 0.0) 0%,
+      oklch(80% 0.22 220 / 0.40) 30%,
+      oklch(80% 0.22 290 / 0.30) 60%,
+      oklch(70% 0.22 195 / 0.0) 100%
+    );
+  --zui-aig-chip-icon: oklch(50% 0.22 230);
 }
+
 .zui-aigen[data-preset='sunrise'] {
-  --zui-aig-gradient: linear-gradient(
-    100deg,
-    oklch(80% 0.14 60) 0%,
-    oklch(75% 0.18 25) 50%,
-    oklch(65% 0.20 5) 100%
-  );
+  --zui-aig-layer-base:
+    linear-gradient(
+      120deg,
+      oklch(82% 0.16 70) 0%,
+      oklch(70% 0.22 30) 50%,
+      oklch(58% 0.22 5) 100%
+    );
+  --zui-aig-layer-bloom-1:
+    radial-gradient(
+      90% 110% at 90% -10%,
+      oklch(92% 0.18 60 / 0.85) 0%,
+      transparent 55%
+    );
+  --zui-aig-layer-bloom-2:
+    radial-gradient(
+      80% 110% at 0% 110%,
+      oklch(72% 0.22 350 / 0.55) 0%,
+      transparent 60%
+    );
+  --zui-aig-layer-spin:
+    conic-gradient(
+      from 130deg at 60% 60%,
+      oklch(80% 0.22 35 / 0.0) 0%,
+      oklch(85% 0.20 60 / 0.40) 30%,
+      oklch(80% 0.22 5 / 0.30) 65%,
+      oklch(80% 0.22 35 / 0.0) 100%
+    );
+  --zui-aig-chip-icon: oklch(55% 0.22 25);
 }
+
 .zui-aigen[data-preset='mono'] {
-  --zui-aig-gradient: linear-gradient(
-    100deg,
-    oklch(28% 0 0) 0%,
-    oklch(8% 0 0) 100%
-  );
+  --zui-aig-layer-base:
+    linear-gradient(
+      120deg,
+      oklch(28% 0 0) 0%,
+      oklch(8% 0 0) 100%
+    );
+  --zui-aig-layer-bloom-1:
+    radial-gradient(
+      80% 120% at 80% 0%,
+      oklch(40% 0.005 250 / 0.80) 0%,
+      transparent 55%
+    );
+  --zui-aig-layer-bloom-2:
+    radial-gradient(
+      80% 110% at 10% 110%,
+      oklch(20% 0.04 280 / 0.55) 0%,
+      transparent 55%
+    );
+  --zui-aig-layer-spin:
+    conic-gradient(
+      from 90deg at 50% 50%,
+      oklch(35% 0 0 / 0.0) 0%,
+      oklch(50% 0.02 250 / 0.20) 30%,
+      oklch(50% 0.02 250 / 0.0) 60%,
+      oklch(35% 0 0 / 0.0) 100%
+    );
+  --zui-aig-chip-icon: oklch(80% 0 0);
 }
 
 /* ── Header ─────────────────────────────────────────────────────────────── */
 .zui-aigen__head {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
   padding: 0.875rem 1rem;
-  background: var(--zui-aig-gradient);
   color: oklch(99% 0 0);
+  isolation: isolate;
+  /* Composite of the four layers. The order matters — base sits at the
+     bottom, blooms come next, conic spin sits on top muting things. */
+  background:
+    var(--zui-aig-layer-spin),
+    var(--zui-aig-layer-bloom-1),
+    var(--zui-aig-layer-bloom-2),
+    var(--zui-aig-layer-base);
+  background-blend-mode: screen, overlay, overlay, normal;
+}
+
+/* Top edge highlight — subtle 1px gloss line. */
+.zui-aigen__head::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    oklch(100% 0 0 / 0) 0%,
+    oklch(100% 0 0 / 0.55) 30%,
+    oklch(100% 0 0 / 0.55) 70%,
+    oklch(100% 0 0 / 0) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Soft inner shadow at the bottom — separates the header from the body. */
+.zui-aigen__head::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 1px;
+  background: oklch(0% 0 0 / 0.18);
+  pointer-events: none;
 }
 
 .zui-aigen__status {
@@ -82,6 +223,8 @@
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  text-shadow: 0 1px 0 oklch(0% 0 0 / 0.18);
+  z-index: 2;
 }
 
 .zui-aigen__stop {
@@ -96,8 +239,11 @@
   color: oklch(99% 0 0);
   cursor: pointer;
   flex-shrink: 0;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   transition: background-color 140ms cubic-bezier(0.2, 0.8, 0.2, 1);
   -webkit-tap-highlight-color: transparent;
+  z-index: 2;
 }
 .zui-aigen__stop:hover {
   background: oklch(100% 0 0 / 0.28);
@@ -125,27 +271,22 @@
   overflow-wrap: anywhere;
 }
 
-/* The caret follows the streamed text — a thin vertical bar that blinks. */
+/* Plain text-cursor caret — solid bar that blinks on/off, no fade. */
 .zui-aigen__caret {
   display: inline-block;
-  width: 0.5em;
-  height: 1.05em;
+  width: 0.55ch;
+  height: 1em;
   margin-left: 0.05em;
-  vertical-align: text-bottom;
-  background: linear-gradient(
-    180deg,
-    oklch(99% 0 0 / 0.0) 0%,
-    oklch(50% 0.20 270 / 0.18) 30%,
-    oklch(50% 0.20 270 / 0.45) 80%,
-    oklch(50% 0.20 270 / 0.0) 100%
-  );
-  border-radius: 0.125rem;
-  animation: zui-aigen-caret 1.1s steps(2, end) infinite;
+  vertical-align: -0.1em;
+  background: currentColor;
+  opacity: 0.85;
+  border-radius: 1px;
+  animation: zui-aigen-caret 1s step-end infinite;
 }
 
 @keyframes zui-aigen-caret {
-  0%, 100% { opacity: 1; }
-  50%      { opacity: 0.0; }
+  0%, 50%   { opacity: 0.85; }
+  50.01%, 100% { opacity: 0; }
 }
 
 /* ── Chips ──────────────────────────────────────────────────────────────── */
@@ -202,6 +343,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .zui-aigen__caret { animation: none; }
-  .zui-aigen__chip { transition: none; }
+  .zui-aigen__caret { animation: none; opacity: 1; }
+  .zui-aigen__chip  { transition: none; }
 }

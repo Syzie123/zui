@@ -1,0 +1,169 @@
+/* ============================================================================
+   TrackDelivery — info card with isometric box illustration
+   ============================================================================ */
+
+.zui-trackdel {
+  --zui-td-bg: oklch(96% 0.005 250);
+  --zui-td-card-bg: oklch(99% 0 0);
+  --zui-td-fg: oklch(15% 0.02 250);
+  --zui-td-fg-muted: oklch(45% 0.01 250);
+  --zui-td-border: oklch(0% 0 0 / 0.06);
+  --zui-td-cta-bg: oklch(99% 0 0);
+  --zui-td-cta-fg: oklch(15% 0.02 250);
+  --zui-td-status-bg: oklch(98% 0 0);
+  --zui-td-status-fg: oklch(15% 0.02 250);
+  --zui-td-chip-bg: oklch(15% 0.02 250);
+  --zui-td-chip-fg: oklch(99% 0 0);
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 26rem;
+  border-radius: 1.5rem;
+  background: var(--zui-td-bg);
+  padding: 1rem;
+  font-family: inherit;
+  color: var(--zui-td-fg);
+  box-shadow:
+    0 1px 0 oklch(100% 0 0 / 0.7) inset,
+    0 12px 24px -12px oklch(0% 0 0 / 0.18);
+}
+
+.zui-trackdel__hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 9rem;
+  margin-bottom: 0.75rem;
+}
+
+.zui-trackdel__svg {
+  width: 100%;
+  height: 100%;
+  max-width: 14rem;
+}
+
+.zui-trackdel__chip {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  background: var(--zui-td-chip-bg);
+  color: var(--zui-td-chip-fg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 14px -4px oklch(0% 0 0 / 0.30);
+}
+
+.zui-trackdel__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding: 0.875rem 1rem 1rem;
+  border-radius: 1.125rem;
+  background: var(--zui-td-card-bg);
+  border: 1px solid var(--zui-td-border);
+}
+
+.zui-trackdel__title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.zui-trackdel__desc {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--zui-td-fg-muted);
+}
+
+.zui-trackdel__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.625rem;
+  margin-top: 0.25rem;
+  padding-top: 0.875rem;
+  border-top: 1px solid var(--zui-td-border);
+  flex-wrap: wrap;
+}
+
+.zui-trackdel__cta {
+  flex-shrink: 0;
+  padding: 0.625rem 1rem;
+  border-radius: 0.625rem;
+  border: 1px solid var(--zui-td-border);
+  background: var(--zui-td-cta-bg);
+  color: var(--zui-td-cta-fg);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 140ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.zui-trackdel__cta:hover {
+  background: oklch(0% 0 0 / 0.04);
+}
+.zui-trackdel__cta:focus-visible {
+  outline: 2px solid var(--color-accent-base, oklch(60% 0.18 250));
+  outline-offset: 2px;
+}
+
+.zui-trackdel__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--zui-td-status-fg);
+}
+
+.zui-trackdel__status-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 0.375rem;
+  background: var(--zui-td-status-bg);
+  color: var(--zui-td-status-fg);
+  border: 1px solid var(--zui-td-border);
+}
+
+/* ── Dark theme ─────────────────────────────────────────────────────────── */
+:where(html.zui-dark, html.zui-luminous) .zui-trackdel {
+  --zui-td-bg: oklch(15% 0.005 250);
+  --zui-td-card-bg: oklch(20% 0.005 250);
+  --zui-td-fg: oklch(98% 0 0);
+  --zui-td-fg-muted: oklch(72% 0.01 250);
+  --zui-td-border: oklch(100% 0 0 / 0.08);
+  --zui-td-cta-bg: oklch(24% 0.005 250);
+  --zui-td-cta-fg: oklch(98% 0 0);
+  --zui-td-status-bg: oklch(24% 0.005 250);
+  --zui-td-status-fg: oklch(98% 0 0);
+  --zui-td-chip-bg: oklch(99% 0 0);
+  --zui-td-chip-fg: oklch(15% 0.02 250);
+}
+
+:where(html.zui-dark, html.zui-luminous) .zui-trackdel .zui-trackdel__svg path[fill='oklch(99% 0 0)'] {
+  fill: oklch(28% 0.005 250);
+}
+:where(html.zui-dark, html.zui-luminous) .zui-trackdel .zui-trackdel__svg path[fill='oklch(96% 0 0)'] {
+  fill: oklch(22% 0.005 250);
+}
+:where(html.zui-dark, html.zui-luminous) .zui-trackdel .zui-trackdel__svg path[fill='oklch(92% 0 0)'] {
+  fill: oklch(18% 0.005 250);
+}
+:where(html.zui-dark, html.zui-luminous) .zui-trackdel .zui-trackdel__svg path[stroke='oklch(60% 0 0)'],
+:where(html.zui-dark, html.zui-luminous) .zui-trackdel .zui-trackdel__svg path[stroke='oklch(70% 0 0)'],
+:where(html.zui-dark, html.zui-luminous) .zui-trackdel .zui-trackdel__svg path[stroke='oklch(75% 0 0)'],
+:where(html.zui-dark, html.zui-luminous) .zui-trackdel .zui-trackdel__svg line[stroke='oklch(70% 0 0)'],
+:where(html.zui-dark, html.zui-luminous) .zui-trackdel .zui-trackdel__svg line[stroke='oklch(85% 0 0)'] {
+  stroke: oklch(100% 0 0 / 0.20);
+}

@@ -1,0 +1,203 @@
+/* ============================================================================
+   JobCardStack — tilted pile of pastel job cards
+   ============================================================================ */
+
+.zui-jobstack {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  width: 100%;
+  max-width: 32rem;
+  padding: 2.5rem 1.5rem;
+  font-family: inherit;
+  perspective: 1200px;
+}
+
+.zui-jobstack__card {
+  --zui-js-bg-from: oklch(95% 0.05 280);
+  --zui-js-bg-to:   oklch(92% 0.06 285);
+  --zui-js-fg:      oklch(15% 0.02 250);
+  --zui-js-fg-muted: oklch(45% 0.02 250);
+  --zui-js-tag-bg:  oklch(99% 0 0 / 0.65);
+  --zui-js-tag-fg:  oklch(35% 0.18 270);
+  --zui-js-rotate:  0deg;
+  --zui-js-tx:      0px;
+  --zui-js-ty:      0px;
+  --zui-js-z:       1;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.875rem 0.875rem 1rem;
+  border-radius: 1.125rem;
+  background: linear-gradient(180deg, var(--zui-js-bg-from), var(--zui-js-bg-to));
+  color: var(--zui-js-fg);
+  box-shadow:
+    0 1px 0 oklch(100% 0 0 / 0.7) inset,
+    0 14px 28px -10px oklch(0% 0 0 / 0.20),
+    0 4px 8px -4px oklch(0% 0 0 / 0.10);
+  transform: translate(var(--zui-js-tx), var(--zui-js-ty)) rotate(var(--zui-js-rotate));
+  z-index: var(--zui-js-z);
+  transition:
+    transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+
+.zui-jobstack__card:hover {
+  transform: translate(var(--zui-js-tx), calc(var(--zui-js-ty) - 6px)) rotate(0deg);
+  z-index: 99;
+  box-shadow:
+    0 1px 0 oklch(100% 0 0 / 0.85) inset,
+    0 24px 40px -12px oklch(0% 0 0 / 0.28),
+    0 8px 14px -6px oklch(0% 0 0 / 0.16);
+}
+
+/* ── Brand block ────────────────────────────────────────────────────────── */
+.zui-jobstack__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--zui-js-fg);
+}
+.zui-jobstack__brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+.zui-jobstack__brand-name {
+  text-transform: lowercase;
+  letter-spacing: -0.005em;
+}
+
+/* ── Body ───────────────────────────────────────────────────────────────── */
+.zui-jobstack__role {
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+
+.zui-jobstack__salary {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--zui-js-fg-muted);
+}
+
+.zui-jobstack__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-top: 0.125rem;
+}
+
+.zui-jobstack__tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem 0.5rem;
+  border-radius: 9999px;
+  background: var(--zui-js-tag-bg);
+  color: var(--zui-js-tag-fg);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.zui-jobstack__meta {
+  margin-top: 0.25rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--zui-js-fg-muted);
+  text-align: center;
+}
+
+/* ── Tones ──────────────────────────────────────────────────────────────── */
+.zui-jobstack__card--lavender {
+  --zui-js-bg-from: oklch(94% 0.05 285);
+  --zui-js-bg-to:   oklch(89% 0.07 285);
+  --zui-js-tag-fg:  oklch(40% 0.20 285);
+}
+.zui-jobstack__card--cream {
+  --zui-js-bg-from: oklch(96% 0.05 80);
+  --zui-js-bg-to:   oklch(92% 0.07 75);
+  --zui-js-tag-fg:  oklch(40% 0.18 60);
+}
+.zui-jobstack__card--peach {
+  --zui-js-bg-from: oklch(94% 0.05 30);
+  --zui-js-bg-to:   oklch(90% 0.08 25);
+  --zui-js-tag-fg:  oklch(45% 0.20 25);
+}
+.zui-jobstack__card--mint {
+  --zui-js-bg-from: oklch(94% 0.05 165);
+  --zui-js-bg-to:   oklch(90% 0.08 160);
+  --zui-js-tag-fg:  oklch(40% 0.18 160);
+}
+.zui-jobstack__card--sky {
+  --zui-js-bg-from: oklch(94% 0.05 230);
+  --zui-js-bg-to:   oklch(90% 0.08 225);
+  --zui-js-tag-fg:  oklch(40% 0.20 240);
+}
+.zui-jobstack__card--sand {
+  --zui-js-bg-from: oklch(94% 0.04 100);
+  --zui-js-bg-to:   oklch(90% 0.06 95);
+  --zui-js-tag-fg:  oklch(40% 0.16 90);
+}
+.zui-jobstack__card--white {
+  --zui-js-bg-from: oklch(100% 0 0);
+  --zui-js-bg-to:   oklch(96% 0.005 250);
+  --zui-js-tag-fg:  oklch(35% 0.18 270);
+}
+
+/* ── Dark theme ─────────────────────────────────────────────────────────── */
+:where(html.zui-dark, html.zui-luminous) .zui-jobstack__card {
+  --zui-js-fg:      oklch(98% 0 0);
+  --zui-js-fg-muted: oklch(75% 0.01 250);
+  --zui-js-tag-bg:  oklch(0% 0 0 / 0.40);
+  box-shadow:
+    0 1px 0 oklch(100% 0 0 / 0.10) inset,
+    0 14px 28px -10px oklch(0% 0 0 / 0.65),
+    0 4px 8px -4px oklch(0% 0 0 / 0.40);
+}
+:where(html.zui-dark, html.zui-luminous) .zui-jobstack__card--lavender {
+  --zui-js-bg-from: oklch(38% 0.10 285);
+  --zui-js-bg-to:   oklch(28% 0.10 285);
+}
+:where(html.zui-dark, html.zui-luminous) .zui-jobstack__card--cream {
+  --zui-js-bg-from: oklch(38% 0.06 80);
+  --zui-js-bg-to:   oklch(28% 0.06 75);
+}
+:where(html.zui-dark, html.zui-luminous) .zui-jobstack__card--peach {
+  --zui-js-bg-from: oklch(38% 0.10 30);
+  --zui-js-bg-to:   oklch(28% 0.10 25);
+}
+:where(html.zui-dark, html.zui-luminous) .zui-jobstack__card--mint {
+  --zui-js-bg-from: oklch(38% 0.08 165);
+  --zui-js-bg-to:   oklch(28% 0.08 160);
+}
+:where(html.zui-dark, html.zui-luminous) .zui-jobstack__card--sky {
+  --zui-js-bg-from: oklch(38% 0.10 230);
+  --zui-js-bg-to:   oklch(28% 0.10 225);
+}
+:where(html.zui-dark, html.zui-luminous) .zui-jobstack__card--sand {
+  --zui-js-bg-from: oklch(38% 0.06 100);
+  --zui-js-bg-to:   oklch(28% 0.06 95);
+}
+:where(html.zui-dark, html.zui-luminous) .zui-jobstack__card--white {
+  --zui-js-bg-from: oklch(28% 0.005 250);
+  --zui-js-bg-to:   oklch(20% 0.005 250);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zui-jobstack__card { transition: none; }
+}
