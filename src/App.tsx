@@ -18,16 +18,31 @@ export default function App() {
   // ─────────────────────────────────────────────────────────────
   // Locomotive Scroll v5 (Lenis-based) — global smooth scroll.
   //
-  // v5 hooks into the wheel/touch events and animates window scroll
-  // directly, so it does NOT wrap <body> in a transformed container.
-  // Result: sticky elements, IntersectionObserver, scrollIntoView,
-  // and our hash routing all keep working.
+  // Tuned for PC wheel + high-Hz monitors. Defaults can read as a
+  // bit steppy on 120 Hz displays — lower lerp and a softer wheel
+  // multiplier give a settled, glassy glide.
   //
-  // Init once on mount, destroy on unmount. Lenis auto-detects content
-  // resizes via ResizeObserver, so route changes don't need a re-init.
+  //   lerp 0.085           slower interpolation, smoother glide
+  //                        (default 0.1 felt steppy on high-Hz)
+  //   wheelMultiplier 0.85 softer wheel response, less overshoot
+  //   syncTouch + lerp     keep touch devices tight (no effect on PC)
+  //   easing (cubic-out)   natural glide for scrollTo (TOC clicks etc.)
+  //   duration 1.0         slightly snappier programmatic scroll
+  //                        (default 1.2 felt sluggish on TOC clicks)
   // ─────────────────────────────────────────────────────────────
   useEffect(() => {
-    const scroll = new LocomotiveScroll();
+    const scroll = new LocomotiveScroll({
+      lenisOptions: {
+        lerp: 0.085,
+        wheelMultiplier: 0.85,
+        touchMultiplier: 1.6,
+        smoothWheel: true,
+        syncTouch: true,
+        syncTouchLerp: 0.075,
+        duration: 1.0,
+        easing: (t: number) => 1 - Math.pow(1 - t, 3),
+      },
+    });
     return () => {
       scroll.destroy();
     };
