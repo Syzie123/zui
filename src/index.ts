@@ -69,6 +69,42 @@ export { FeatureListCard } from './patterns/FeatureList/FeatureList';
 export { SignInCard, type SignInCardProps, type SignInProvider } from './patterns/SignInCard/SignInCard';
 export { LoginSplit, type LoginSplitProps, type LoginSplitVariant } from './patterns/LoginSplit/LoginSplit';
 
+/* ─────────── AI patterns ─────────── */
+export {
+  AIPrompt,
+  type AIPromptProps,
+  type AIPromptMode,
+  type AIPromptStreamState,
+  type AIPromptTag,
+  type AIPromptTool,
+  type AIPromptSuggestion,
+  type AIPromptModel,
+} from './patterns/AIPrompt/AIPrompt';
+export {
+  AIDropzone,
+  type AIDropzoneProps,
+  type AIDropzoneFileKind,
+  type AIDropzonePreview,
+  type AIDropzoneAction,
+} from './patterns/AIDropzone/AIDropzone';
+export {
+  AIRecorder,
+  type AIRecorderProps,
+  type AIRecorderState,
+} from './patterns/AIRecorder/AIRecorder';
+export {
+  AIGreeting,
+  type AIGreetingProps,
+  type AIGreetingCardVariant,
+} from './patterns/AIGreeting/AIGreeting';
+export { AIMessage, type AIMessageProps } from './patterns/AIMessage/AIMessage';
+export {
+  AIGenerating,
+  type AIGeneratingProps,
+  type AIGeneratingChip,
+  type AIGeneratingPreset,
+} from './patterns/AIGenerating/AIGenerating';
+
 /* ─────────── 3D / Neumorphic patterns ─────────── */
 export { Action3D, type Action3DProps } from './patterns/Action3D/Action3D';
 export { Switch3D, type Switch3DProps } from './patterns/Switch3D/Switch3D';

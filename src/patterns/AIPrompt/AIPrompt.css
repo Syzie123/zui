@@ -1,0 +1,468 @@
+/* ============================================================================
+   AIPrompt — multi-mode AI composer
+   ----------------------------------------------------------------------------
+   Two layouts share one shell. Internal `data-mode` swaps which slots render;
+   we don't need different CSS shells for compose / followup.
+   The shell itself is a lifted card with a soft 1px highlight at the top
+   edge and a 12px ground shadow. We avoid backdrop-filter on the shell so
+   it's safe to drop into any background.
+   ============================================================================ */
+
+.zui-aiprompt {
+  --zui-ap-radius: 1.5rem;
+
+  --zui-ap-bg-from: oklch(99% 0 0);
+  --zui-ap-bg-to:   oklch(97% 0.003 250);
+  --zui-ap-fg:      oklch(15% 0.02 250);
+  --zui-ap-fg-muted: oklch(50% 0.01 250);
+  --zui-ap-border:  oklch(0% 0 0 / 0.05);
+
+  --zui-ap-tool-bg:    transparent;
+  --zui-ap-tool-fg:    oklch(40% 0.01 250);
+  --zui-ap-tool-hover: oklch(0% 0 0 / 0.05);
+  --zui-ap-tool-active-fg: oklch(15% 0.02 250);
+
+  --zui-ap-chip-bg:    oklch(0% 0 0 / 0.04);
+  --zui-ap-chip-fg:    oklch(20% 0.02 250);
+  --zui-ap-chip-hover: oklch(0% 0 0 / 0.07);
+
+  --zui-ap-model-bg-from: oklch(99% 0 0);
+  --zui-ap-model-bg-to:   oklch(95% 0.003 250);
+  --zui-ap-model-fg:      oklch(15% 0.02 250);
+  --zui-ap-model-shadow:
+    0 1px 0 oklch(100% 0 0 / 0.9) inset,
+    0 -1px 0 oklch(0% 0 0 / 0.05) inset,
+    0 2px 6px -2px oklch(0% 0 0 / 0.10);
+
+  --zui-ap-send-bg-from: oklch(50% 0.20 270);
+  --zui-ap-send-bg-to:   oklch(38% 0.22 275);
+  --zui-ap-send-fg:      oklch(99% 0 0);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  width: 100%;
+  padding: 0.875rem 1rem 0.75rem;
+  border-radius: var(--zui-ap-radius);
+  background: linear-gradient(180deg, var(--zui-ap-bg-from), var(--zui-ap-bg-to));
+  color: var(--zui-ap-fg);
+  border: 1px solid var(--zui-ap-border);
+  box-shadow:
+    0 1px 0 oklch(100% 0 0 / 0.85) inset,
+    0 18px 36px -16px oklch(0% 0 0 / 0.16),
+    0 6px 12px -8px oklch(0% 0 0 / 0.10);
+  font-family: inherit;
+}
+
+/* ── Tags row ───────────────────────────────────────────────────────────── */
+.zui-aiprompt__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  align-items: center;
+  font-size: 0.78rem;
+}
+
+.zui-aiprompt__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  border-radius: 9999px;
+  background: var(--zui-ap-chip-bg);
+  color: var(--zui-ap-chip-fg);
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.zui-aiprompt__tag-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.zui-aiprompt__tag-suffix {
+  color: var(--zui-ap-fg-muted);
+  font-weight: 500;
+}
+
+.zui-aiprompt__tag-x {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  border: 0;
+  background: transparent;
+  color: var(--zui-ap-fg-muted);
+  cursor: pointer;
+  border-radius: 9999px;
+}
+.zui-aiprompt__tag-x:hover {
+  background: var(--zui-ap-chip-hover);
+  color: var(--zui-ap-fg);
+}
+
+/* ── Input area ─────────────────────────────────────────────────────────── */
+.zui-aiprompt__input-row {
+  display: flex;
+}
+
+.zui-aiprompt__input {
+  flex: 1 1 auto;
+  border: 0;
+  background: transparent;
+  color: var(--zui-ap-fg);
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+  resize: none;
+  outline: 0;
+  padding: 0.25rem 0;
+  width: 100%;
+  min-height: 1.75rem;
+}
+
+.zui-aiprompt__input::placeholder {
+  color: var(--zui-ap-fg-muted);
+}
+
+.zui-aiprompt__input:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ── Footer ─────────────────────────────────────────────────────────────── */
+.zui-aiprompt__footer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.zui-aiprompt__left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.zui-aiprompt__right {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  flex-shrink: 0;
+}
+
+/* ── Plus button (compose) ──────────────────────────────────────────────── */
+.zui-aiprompt__plus {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.875rem;
+  height: 1.875rem;
+  border: 0;
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--zui-ap-fg);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 140ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.zui-aiprompt__plus:hover {
+  background: var(--zui-ap-tool-hover);
+}
+
+/* ── Model picker (compose) ─────────────────────────────────────────────── */
+.zui-aiprompt__model {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.625rem;
+  border: 0;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, var(--zui-ap-model-bg-from), var(--zui-ap-model-bg-to));
+  box-shadow: var(--zui-ap-model-shadow);
+  color: var(--zui-ap-model-fg);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  flex-shrink: 0;
+  transition: translate 120ms cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 160ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.zui-aiprompt__model:active {
+  translate: 0 1px;
+}
+
+.zui-aiprompt__model-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+/* ── Tool icons (compose) ───────────────────────────────────────────────── */
+.zui-aiprompt__tools {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.125rem;
+  flex-shrink: 0;
+}
+
+.zui-aiprompt__tool {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.875rem;
+  height: 1.875rem;
+  border: 0;
+  border-radius: 9999px;
+  background: var(--zui-ap-tool-bg);
+  color: var(--zui-ap-tool-fg);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 140ms cubic-bezier(0.2, 0.8, 0.2, 1),
+              color 140ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.zui-aiprompt__tool:hover {
+  background: var(--zui-ap-tool-hover);
+  color: var(--zui-ap-tool-active-fg);
+}
+.zui-aiprompt__tool[data-active] {
+  color: var(--zui-ap-tool-active-fg);
+  background: var(--zui-ap-tool-hover);
+}
+
+/* ── Cancel (followup) ──────────────────────────────────────────────────── */
+.zui-aiprompt__cancel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--zui-ap-border);
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--zui-ap-fg);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 140ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.zui-aiprompt__cancel:hover {
+  background: var(--zui-ap-tool-hover);
+}
+
+/* ── Suggestions (followup) ─────────────────────────────────────────────── */
+.zui-aiprompt__suggestions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+  mask-image: linear-gradient(to right, black 0, black calc(100% - 1.5rem), transparent 100%);
+}
+.zui-aiprompt__suggestions::-webkit-scrollbar { display: none; }
+
+.zui-aiprompt__suggestion {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem 0.375rem 0.5rem;
+  border: 1px solid var(--zui-ap-border);
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--zui-ap-fg);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background-color 140ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.zui-aiprompt__suggestion:hover {
+  background: var(--zui-ap-tool-hover);
+}
+
+.zui-aiprompt__suggestion-icon {
+  color: oklch(50% 0.20 270);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.zui-aiprompt__suggestion-more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.875rem;
+  height: 1.875rem;
+  border: 1px solid var(--zui-ap-border);
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--zui-ap-fg);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 140ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.zui-aiprompt__suggestion-more:hover {
+  background: var(--zui-ap-tool-hover);
+}
+
+/* ── Voice button ───────────────────────────────────────────────────────── */
+.zui-aiprompt__voice {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.125rem;
+  height: 2.125rem;
+  border: 1px solid var(--zui-ap-border);
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--zui-ap-fg);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 140ms cubic-bezier(0.2, 0.8, 0.2, 1),
+              color 140ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.zui-aiprompt__voice:hover {
+  background: var(--zui-ap-tool-hover);
+}
+.zui-aiprompt__voice[data-active] {
+  background: oklch(95% 0.04 25);
+  color: oklch(50% 0.20 25);
+  border-color: oklch(85% 0.08 25);
+}
+
+/* ── Send / Stop button ─────────────────────────────────────────────────── */
+.zui-aiprompt__send {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.125rem;
+  height: 2.125rem;
+  border: 0;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, var(--zui-ap-send-bg-from), var(--zui-ap-send-bg-to));
+  color: var(--zui-ap-send-fg);
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow:
+    0 1px 0 oklch(100% 0 0 / 0.20) inset,
+    0 -1px 0 oklch(0% 0 0 / 0.20) inset,
+    0 4px 10px -2px oklch(0% 0 0 / 0.25);
+  transition: translate 120ms cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 160ms cubic-bezier(0.2, 0.8, 0.2, 1),
+              opacity 140ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+.zui-aiprompt__send:active {
+  translate: 0 1px;
+}
+.zui-aiprompt__send:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* When streaming, the send button flips to a stop button (white pill). */
+.zui-aiprompt[data-state='streaming'] .zui-aiprompt__send {
+  background: oklch(99% 0 0);
+  color: oklch(15% 0.02 250);
+  border: 1px solid var(--zui-ap-border);
+  box-shadow:
+    0 1px 0 oklch(100% 0 0 / 0.7) inset,
+    0 -1px 0 oklch(0% 0 0 / 0.05) inset,
+    0 2px 6px -2px oklch(0% 0 0 / 0.12);
+}
+
+/* ── Focus rings (universal) ────────────────────────────────────────────── */
+.zui-aiprompt__plus:focus-visible,
+.zui-aiprompt__model:focus-visible,
+.zui-aiprompt__tool:focus-visible,
+.zui-aiprompt__cancel:focus-visible,
+.zui-aiprompt__suggestion:focus-visible,
+.zui-aiprompt__suggestion-more:focus-visible,
+.zui-aiprompt__voice:focus-visible,
+.zui-aiprompt__send:focus-visible,
+.zui-aiprompt__tag-x:focus-visible {
+  outline: 2px solid var(--color-accent-base, oklch(60% 0.18 250));
+  outline-offset: 2px;
+}
+
+/* ── Dark theme ─────────────────────────────────────────────────────────── */
+:where(html.zui-dark, html.zui-luminous) .zui-aiprompt:not([data-appearance='light']),
+.zui-aiprompt[data-appearance='dark'] {
+  --zui-ap-bg-from: oklch(24% 0.005 250);
+  --zui-ap-bg-to:   oklch(18% 0.005 250);
+  --zui-ap-fg:      oklch(98% 0 0);
+  --zui-ap-fg-muted: oklch(70% 0.01 250);
+  --zui-ap-border:  oklch(100% 0 0 / 0.07);
+
+  --zui-ap-tool-fg:    oklch(78% 0.01 250);
+  --zui-ap-tool-hover: oklch(100% 0 0 / 0.07);
+  --zui-ap-tool-active-fg: oklch(98% 0 0);
+
+  --zui-ap-chip-bg:    oklch(100% 0 0 / 0.07);
+  --zui-ap-chip-fg:    oklch(95% 0 0);
+  --zui-ap-chip-hover: oklch(100% 0 0 / 0.10);
+
+  --zui-ap-model-bg-from: oklch(28% 0.005 250);
+  --zui-ap-model-bg-to:   oklch(20% 0.005 250);
+  --zui-ap-model-fg:      oklch(98% 0 0);
+  --zui-ap-model-shadow:
+    0 1px 0 oklch(100% 0 0 / 0.10) inset,
+    0 -1px 0 oklch(0% 0 0 / 0.40) inset,
+    0 2px 6px -2px oklch(0% 0 0 / 0.40);
+}
+
+:where(html.zui-dark, html.zui-luminous) .zui-aiprompt[data-state='streaming'] .zui-aiprompt__send,
+.zui-aiprompt[data-appearance='dark'][data-state='streaming'] .zui-aiprompt__send {
+  background: oklch(99% 0 0);
+  color: oklch(12% 0 0);
+  border: 0;
+}
+
+/* Force light surface even in dark mode when caller asks for it. */
+.zui-aiprompt[data-appearance='light'] {
+  --zui-ap-bg-from: oklch(99% 0 0);
+  --zui-ap-bg-to:   oklch(97% 0.003 250);
+  --zui-ap-fg:      oklch(15% 0.02 250);
+  --zui-ap-fg-muted: oklch(50% 0.01 250);
+  --zui-ap-border:  oklch(0% 0 0 / 0.05);
+  --zui-ap-tool-fg: oklch(40% 0.01 250);
+  --zui-ap-tool-hover: oklch(0% 0 0 / 0.05);
+  --zui-ap-tool-active-fg: oklch(15% 0.02 250);
+  --zui-ap-chip-bg: oklch(0% 0 0 / 0.04);
+  --zui-ap-chip-fg: oklch(20% 0.02 250);
+  --zui-ap-chip-hover: oklch(0% 0 0 / 0.07);
+  --zui-ap-model-bg-from: oklch(99% 0 0);
+  --zui-ap-model-bg-to:   oklch(95% 0.003 250);
+  --zui-ap-model-fg: oklch(15% 0.02 250);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zui-aiprompt *,
+  .zui-aiprompt {
+    transition: none !important;
+  }
+}

@@ -1,0 +1,266 @@
+/* ============================================================================
+   AIGreeting — hub greeting (orb + title + cards + pills)
+   ----------------------------------------------------------------------------
+   The shell is a centered column. The orb is a pure-CSS gradient sphere with
+   a soft inner highlight; we don't ship a raster image. Cards underneath
+   come in three tones (dark / panel / prompt) and pills are subtle.
+   ============================================================================ */
+
+.zui-aigreet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.875rem;
+  width: 100%;
+  max-width: 64rem;
+  margin: 0 auto;
+  text-align: center;
+  font-family: inherit;
+}
+
+/* ── Orb ────────────────────────────────────────────────────────────────── */
+.zui-aigreet__orb {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.zui-aigreet__orb-default {
+  display: block;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 9999px;
+  background:
+    radial-gradient(120% 120% at 30% 25%,
+      oklch(96% 0.05 260) 0%,
+      oklch(80% 0.16 260) 28%,
+      oklch(58% 0.20 270) 70%,
+      oklch(40% 0.20 275) 100%);
+  box-shadow:
+    inset 0 4px 8px oklch(100% 0 0 / 0.45),
+    inset 0 -8px 12px oklch(0% 0 0 / 0.20),
+    0 12px 28px -8px oklch(50% 0.20 270 / 0.45);
+}
+
+/* ── Heading ────────────────────────────────────────────────────────────── */
+.zui-aigreet__title {
+  margin: 0;
+  font-size: clamp(1.875rem, 3.6vw, 2.625rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+
+.zui-aigreet__subtitle {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--color-fg-muted, oklch(50% 0.01 250));
+  max-width: 36rem;
+  line-height: 1.5;
+}
+
+/* ── Cards row ──────────────────────────────────────────────────────────── */
+.zui-aigreet__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 0.75rem;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+/* ── Card ───────────────────────────────────────────────────────────────── */
+.zui-aigreet__card {
+  --zui-agc-bg-from: oklch(99% 0 0);
+  --zui-agc-bg-to:   oklch(96% 0.003 250);
+  --zui-agc-fg:      oklch(15% 0.02 250);
+  --zui-agc-fg-muted: oklch(50% 0.01 250);
+  --zui-agc-border:  oklch(0% 0 0 / 0.05);
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding: 1rem 1rem 0.75rem;
+  border-radius: 1.125rem;
+  background: linear-gradient(180deg, var(--zui-agc-bg-from), var(--zui-agc-bg-to));
+  color: var(--zui-agc-fg);
+  border: 1px solid var(--zui-agc-border);
+  box-shadow:
+    0 1px 0 oklch(100% 0 0 / 0.7) inset,
+    0 8px 18px -10px oklch(0% 0 0 / 0.18);
+  text-align: left;
+  font-size: 0.875rem;
+  min-height: 9rem;
+}
+
+.zui-aigreet__card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.zui-aigreet__card-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.625rem;
+  height: 1.625rem;
+  border-radius: 9999px;
+  background: oklch(95% 0.04 240);
+  color: oklch(35% 0.18 250);
+  font-size: 0.78rem;
+  font-weight: 700;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.zui-aigreet__card-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.zui-aigreet__card-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem 0.5rem;
+  border-radius: 9999px;
+  background: oklch(58% 0.22 250);
+  color: oklch(99% 0 0);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+}
+
+.zui-aigreet__card-body {
+  flex: 1 1 auto;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--zui-agc-fg);
+  letter-spacing: -0.005em;
+}
+
+.zui-aigreet__card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--zui-agc-fg-muted);
+}
+
+.zui-aigreet__card-footer-action {
+  color: oklch(58% 0.22 250);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Variants */
+.zui-aigreet__card--dark {
+  --zui-agc-bg-from: oklch(20% 0.005 250);
+  --zui-agc-bg-to:   oklch(12% 0.005 250);
+  --zui-agc-fg:      oklch(98% 0 0);
+  --zui-agc-fg-muted: oklch(70% 0.01 250);
+  --zui-agc-border:  oklch(100% 0 0 / 0.06);
+}
+
+.zui-aigreet__card--prompt {
+  /* Soft dotted bg to nod at "prompt area" */
+  background-image:
+    radial-gradient(oklch(0% 0 0 / 0.06) 1px, transparent 1.4px);
+  background-size: 14px 14px;
+  background-position: 0 0;
+  background-color: oklch(99% 0 0);
+}
+
+/* ── Pills row ──────────────────────────────────────────────────────────── */
+.zui-aigreet__pills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  margin-top: 0.5rem;
+}
+
+.zui-aigreet__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 1rem 0.5rem 0.5rem;
+  border: 1px solid oklch(0% 0 0 / 0.08);
+  border-radius: 9999px;
+  background: oklch(99% 0 0);
+  color: oklch(15% 0.02 250);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 1px 0 oklch(100% 0 0 / 0.7) inset;
+  transition: translate 120ms cubic-bezier(0.2, 0.8, 0.2, 1),
+              background-color 140ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.zui-aigreet__pill:hover {
+  translate: 0 -1px;
+  background: oklch(99.5% 0 0);
+}
+.zui-aigreet__pill:active {
+  translate: 0 0;
+}
+.zui-aigreet__pill:focus-visible {
+  outline: 2px solid var(--color-accent-base, oklch(60% 0.18 250));
+  outline-offset: 2px;
+}
+
+.zui-aigreet__pill-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.625rem;
+  height: 1.625rem;
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+
+.zui-aigreet__pill-icon--pink   { background: oklch(94% 0.06 15);  color: oklch(50% 0.20 15); }
+.zui-aigreet__pill-icon--blue   { background: oklch(94% 0.04 240); color: oklch(50% 0.20 250); }
+.zui-aigreet__pill-icon--amber  { background: oklch(94% 0.06 80);  color: oklch(50% 0.18 65); }
+.zui-aigreet__pill-icon--teal   { background: oklch(94% 0.04 175); color: oklch(45% 0.14 180); }
+.zui-aigreet__pill-icon--violet { background: oklch(94% 0.04 295); color: oklch(45% 0.20 290); }
+.zui-aigreet__pill-icon--gray   { background: oklch(94% 0 0);      color: oklch(35% 0 0); }
+
+/* ── Dark theme ─────────────────────────────────────────────────────────── */
+:where(html.zui-dark, html.zui-luminous) .zui-aigreet__card:not(.zui-aigreet__card--dark) {
+  --zui-agc-bg-from: oklch(22% 0.005 250);
+  --zui-agc-bg-to:   oklch(15% 0.005 250);
+  --zui-agc-fg:      oklch(98% 0 0);
+  --zui-agc-fg-muted: oklch(70% 0.01 250);
+  --zui-agc-border:  oklch(100% 0 0 / 0.07);
+}
+
+:where(html.zui-dark, html.zui-luminous) .zui-aigreet__card--prompt {
+  background-image: radial-gradient(oklch(100% 0 0 / 0.07) 1px, transparent 1.4px);
+  background-color: oklch(20% 0.005 250);
+}
+
+:where(html.zui-dark, html.zui-luminous) .zui-aigreet__pill {
+  background: oklch(22% 0.005 250);
+  color: oklch(98% 0 0);
+  border-color: oklch(100% 0 0 / 0.08);
+  box-shadow: 0 1px 0 oklch(100% 0 0 / 0.06) inset;
+}
+:where(html.zui-dark, html.zui-luminous) .zui-aigreet__pill:hover {
+  background: oklch(26% 0.005 250);
+}
+
+:where(html.zui-dark, html.zui-luminous) .zui-aigreet__pill-icon--gray {
+  background: oklch(28% 0 0);
+  color: oklch(95% 0 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zui-aigreet__pill { transition: none; }
+}

@@ -1,0 +1,193 @@
+/* ============================================================================
+   AIRecorder — voice-note recording pill
+   ============================================================================ */
+
+.zui-airec {
+  --zui-ar-bg-from: oklch(99% 0 0);
+  --zui-ar-bg-to:   oklch(96% 0.003 250);
+  --zui-ar-fg:      oklch(15% 0.02 250);
+  --zui-ar-fg-muted: oklch(50% 0.01 250);
+  --zui-ar-border:  oklch(0% 0 0 / 0.05);
+
+  --zui-ar-cancel-bg: transparent;
+  --zui-ar-cancel-fg: oklch(15% 0.02 250);
+
+  --zui-ar-pause-bg: transparent;
+  --zui-ar-pause-fg: oklch(15% 0.02 250);
+
+  --zui-ar-confirm-bg-from: oklch(50% 0.20 270);
+  --zui-ar-confirm-bg-to:   oklch(38% 0.22 275);
+  --zui-ar-confirm-fg:      oklch(99% 0 0);
+
+  --zui-ar-rec-glow:   oklch(60% 0.20 25);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.625rem 0.875rem 0.625rem 1rem;
+  border-radius: 1.5rem;
+  background: linear-gradient(180deg, var(--zui-ar-bg-from), var(--zui-ar-bg-to));
+  color: var(--zui-ar-fg);
+  border: 1px solid var(--zui-ar-border);
+  box-shadow:
+    0 1px 0 oklch(100% 0 0 / 0.85) inset,
+    0 18px 36px -16px oklch(0% 0 0 / 0.16),
+    0 6px 12px -8px oklch(0% 0 0 / 0.10);
+  font-family: inherit;
+}
+
+.zui-airec__prompt {
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--zui-ar-fg-muted);
+  padding: 0.125rem 0;
+}
+
+.zui-airec__row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ── Cancel ─────────────────────────────────────────────────────────────── */
+.zui-airec__cancel {
+  flex-shrink: 0;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--zui-ar-border);
+  border-radius: 9999px;
+  background: var(--zui-ar-cancel-bg);
+  color: var(--zui-ar-cancel-fg);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 140ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.zui-airec__cancel:hover {
+  background: oklch(0% 0 0 / 0.05);
+}
+
+/* ── Center: blinking dot + tabular timer ───────────────────────────────── */
+.zui-airec__center {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex: 1 1 auto;
+}
+
+.zui-airec__dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 9999px;
+  background: var(--zui-ar-rec-glow);
+  box-shadow: 0 0 8px 1px oklch(60% 0.20 25 / 0.55);
+  animation: zui-airec-pulse 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+.zui-airec__dot--paused {
+  background: oklch(70% 0 0);
+  box-shadow: none;
+  animation: none;
+}
+
+.zui-airec__time {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+  color: var(--zui-ar-fg);
+}
+
+/* ── Actions ────────────────────────────────────────────────────────────── */
+.zui-airec__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  flex-shrink: 0;
+}
+
+.zui-airec__pause {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.125rem;
+  height: 2.125rem;
+  border: 1px solid var(--zui-ar-border);
+  border-radius: 9999px;
+  background: var(--zui-ar-pause-bg);
+  color: var(--zui-ar-pause-fg);
+  cursor: pointer;
+  transition: background-color 140ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.zui-airec__pause:hover {
+  background: oklch(0% 0 0 / 0.05);
+}
+
+.zui-airec__confirm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.125rem;
+  height: 2.125rem;
+  border: 0;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, var(--zui-ar-confirm-bg-from), var(--zui-ar-confirm-bg-to));
+  color: var(--zui-ar-confirm-fg);
+  cursor: pointer;
+  box-shadow:
+    0 1px 0 oklch(100% 0 0 / 0.20) inset,
+    0 -1px 0 oklch(0% 0 0 / 0.20) inset,
+    0 4px 10px -2px oklch(0% 0 0 / 0.25);
+  transition: translate 120ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+.zui-airec__confirm:active {
+  translate: 0 1px;
+}
+
+.zui-airec__cancel:focus-visible,
+.zui-airec__pause:focus-visible,
+.zui-airec__confirm:focus-visible {
+  outline: 2px solid var(--color-accent-base, oklch(60% 0.18 250));
+  outline-offset: 2px;
+}
+
+/* ── Animations ─────────────────────────────────────────────────────────── */
+@keyframes zui-airec-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.55; transform: scale(0.9); }
+}
+
+/* ── Dark theme ─────────────────────────────────────────────────────────── */
+:where(html.zui-dark, html.zui-luminous) .zui-airec:not([data-appearance='light']),
+.zui-airec[data-appearance='dark'] {
+  --zui-ar-bg-from: oklch(24% 0.005 250);
+  --zui-ar-bg-to:   oklch(18% 0.005 250);
+  --zui-ar-fg:      oklch(98% 0 0);
+  --zui-ar-fg-muted: oklch(70% 0.01 250);
+  --zui-ar-border:  oklch(100% 0 0 / 0.08);
+  --zui-ar-cancel-fg: oklch(98% 0 0);
+  --zui-ar-pause-fg: oklch(98% 0 0);
+
+  /* Confirm flips to white in dark — like the screenshot */
+  --zui-ar-confirm-bg-from: oklch(99% 0 0);
+  --zui-ar-confirm-bg-to:   oklch(94% 0.003 250);
+  --zui-ar-confirm-fg:      oklch(15% 0.02 250);
+}
+
+:where(html.zui-dark, html.zui-luminous) .zui-airec:not([data-appearance='light']) .zui-airec__cancel:hover,
+.zui-airec[data-appearance='dark'] .zui-airec__cancel:hover,
+:where(html.zui-dark, html.zui-luminous) .zui-airec:not([data-appearance='light']) .zui-airec__pause:hover,
+.zui-airec[data-appearance='dark'] .zui-airec__pause:hover {
+  background: oklch(100% 0 0 / 0.07);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zui-airec__dot { animation: none; }
+  .zui-airec__cancel,
+  .zui-airec__pause,
+  .zui-airec__confirm { transition: none; }
+}

@@ -1,4 +1,4 @@
-import { BookOpen, FileText, HelpCircle, MousePointer2, PlayCircle, Rocket } from 'lucide-react';
+import { BookOpen, HelpCircle, PlayCircle, Rocket } from 'lucide-react';
 import { cn } from '../../utils/cn';
 import { Button } from '../../components/Button';
 
@@ -51,7 +51,8 @@ interface Article {
   title: string;
   blurb: string;
   isNew?: boolean;
-  thumbColors: [string, string];
+  /** Real photo URL for the thumbnail. */
+  thumb: string;
 }
 
 const ARTICLES: Article[] = [
@@ -60,14 +61,14 @@ const ARTICLES: Article[] = [
     blurb:
       "A designer's guide to getting started with interactive animation. Learn how to use interactivity to create more engaging and memorable user experiences.",
     isNew: true,
-    thumbColors: ['oklch(78% 0.16 350)', 'oklch(60% 0.18 290)'],
+    thumb: 'https://images.pexels.com/photos/390426/pexels-photo-390426.png',
   },
   {
     title: 'Rediscover your creativity: Why Gen Z designers are flocking to Tumblr',
     blurb:
       'Designers, especially young ones, are making a silent comeback to this revived platform, which was considered "abandoned" by many back in 2018.',
     isNew: true,
-    thumbColors: ['oklch(75% 0.18 30)', 'oklch(70% 0.16 320)'],
+    thumb: 'https://images.pexels.com/photos/19802121/pexels-photo-19802121.jpeg',
   },
 ];
 
@@ -128,14 +129,15 @@ export function FeatureListCard() {
           >
             <div
               aria-hidden
-              className="size-20 shrink-0 overflow-hidden rounded-[var(--radius-lg)]"
-              style={{
-                backgroundImage: `radial-gradient(circle at 30% 30%, ${a.thumbColors[0]} 0%, ${a.thumbColors[1]} 100%)`,
-              }}
+              className="size-20 shrink-0 overflow-hidden rounded-[var(--radius-lg)] bg-[var(--color-bg-subtle)]"
             >
-              <span className="grid size-full place-items-center text-white/80">
-                <MousePointer2 className="size-7 -rotate-12" />
-              </span>
+              <img
+                src={a.thumb}
+                alt=""
+                loading="lazy"
+                className="size-full object-cover"
+                draggable={false}
+              />
             </div>
             <div className="min-w-0 flex-1">
               <p className="flex items-start gap-2 text-[14px] font-bold leading-snug tracking-[-0.01em]">
