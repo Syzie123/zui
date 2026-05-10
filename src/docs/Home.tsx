@@ -85,7 +85,13 @@ function Hero() {
       className={cn(
         'relative isolate w-full overflow-hidden',
         'transition-[min-height,padding] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]',
-        fullBleed ? 'min-h-screen' : 'py-24 lg:py-32'
+        // Pull the Hero up under the sticky transparent header so the
+        // background video extends behind it — no dark gradient strip
+        // showing above the video. Header is h-14 (56 px).
+        // pt is bumped to compensate so inner content keeps its position.
+        fullBleed
+          ? '-mt-14 min-h-screen pt-14'
+          : '-mt-14 pt-[9.5rem] pb-24 lg:pt-[11.5rem] lg:pb-32'
       )}
     >
       {/* Video background */}
@@ -110,13 +116,14 @@ function Hero() {
         }}
       />
 
-      {/* Fullbleed toggle — top right */}
+      {/* Fullbleed toggle — top right. Anchored below the sticky header
+          (header is h-14 / 56 px; +1rem visual gap = top-[4.5rem]). */}
       <button
         type="button"
         onClick={() => setFullBleed((v) => !v)}
         aria-label={fullBleed ? 'Fit to content' : 'Full-bleed'}
         className={cn(
-          'absolute right-4 top-4 z-20 inline-flex size-9 items-center justify-center',
+          'absolute right-4 top-[4.5rem] z-20 inline-flex size-9 items-center justify-center',
           'rounded-[10px] backdrop-blur-xl',
           'border border-white/20 bg-white/10 text-white',
           'transition-all hover:bg-white/20',
