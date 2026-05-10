@@ -116,13 +116,15 @@ const Root = forwardRef<HTMLDivElement, RootProps>(function SegmentedControl(
         )}
         {...rest}
       >
-        {/* Sliding thumb — sits behind the items */}
+        {/* Sliding thumb — sits behind the items.
+         *  Uses --segmented-thumb-bg so it can flip white in dark mode
+         *  while staying soft in clean/luminous. */}
         {thumb && (
           <span
             aria-hidden
             className={cn(
               'absolute top-1 bottom-1 -z-[1] rounded-full',
-              'bg-[var(--color-bg-elevated)]',
+              'bg-[var(--segmented-thumb-bg)]',
               'shadow-[var(--shadow-sm)]',
               hasMoved && 'transition-[transform,width] duration-[260ms] ease-[cubic-bezier(0.32,0.72,0,1)]'
             )}
@@ -188,7 +190,7 @@ const Item = forwardRef<HTMLButtonElement, ItemProps>(function SegmentedItem(
         'transition-colors duration-[260ms] ease-[cubic-bezier(0.32,0.72,0,1)]',
         sizeClasses[ctx.size],
         active
-          ? 'text-[var(--color-fg-base)]'
+          ? 'text-[var(--segmented-thumb-fg)] font-semibold'
           : 'text-[var(--color-fg-muted)] hover:text-[var(--color-fg-base)]',
         'focus-visible:shadow-[var(--shadow-focus)]',
         'disabled:opacity-50 disabled:cursor-not-allowed',

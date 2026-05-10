@@ -153,6 +153,13 @@
   --sidebar-accent:       var(--color-bg-subtle);
   --sidebar-accent-fg:    var(--color-fg-base);
   --sidebar-ring:         var(--color-accent-ring);
+
+  /* ──────────── Segmented control thumb ────────────
+   * In light themes the thumb sits white-on-gray (matches body card colors).
+   * In dark mode the thumb flips to bright white so it pops against the
+   * near-black pill bg. Override in theme blocks below. */
+  --segmented-thumb-bg:   var(--color-bg-elevated);
+  --segmented-thumb-fg:   var(--color-fg-base);
 }
 
 .theme-dark {
@@ -162,6 +169,11 @@
   --sidebar-border:       oklch(99% 0 0 / 0.10);
   --sidebar-accent:       oklch(99% 0 0 / 0.08);
   --sidebar-accent-fg:    var(--color-fg-base);
+
+  /* Bright white thumb for the segmented control — pops against the
+   * dark pill bg, near-black text inside reads cleanly. */
+  --segmented-thumb-bg:   oklch(99% 0 0);
+  --segmented-thumb-fg:   oklch(8%  0 0);
 }
 
 /* ============================================================
