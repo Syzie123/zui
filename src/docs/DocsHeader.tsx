@@ -62,13 +62,14 @@ export function DocsHeader({
         {/* Sidebar trigger (in docs layout) — opens mobile sheet or toggles desktop sidebar */}
         {showSidebarTrigger && <Sidebar.Trigger />}
 
-        {/* Logo — hidden when sidebar is showing (sidebar header has its own logo) */}
+        {/* Logo — hidden when sidebar is showing (sidebar header has its own logo).
+            Landing locks the page surface to dark, so force the dark-mode logo. */}
         {!showSidebarTrigger && (
           <Link
             href="/"
             className="flex items-center gap-2 font-semibold tracking-[-0.02em]"
           >
-            <Logo />
+            <Logo forceTheme={landing ? 'dark' : undefined} />
             <span className="font-display text-base">ZUI</span>
           </Link>
         )}
@@ -91,30 +92,34 @@ export function DocsHeader({
           ))}
         </nav>
 
-        {/* Search */}
+        {/* Search — hidden on landing (kept on docs pages where it's useful) */}
         <div className="ml-auto flex items-center gap-2">
-          <button
-            type="button"
-            onClick={onOpenSearch}
-            className={cn(
-              'flex h-9 w-full max-w-72 min-w-[10rem] items-center gap-2 px-3',
-              'sm:min-w-[16rem]',
-              'rounded-[var(--radius-lg)]',
-              'border border-[var(--color-border-base)]',
-              'bg-[var(--color-bg-subtle)]',
-              'text-[13px] text-[var(--color-fg-subtle)]',
-              'transition-colors',
-              'hover:border-[var(--color-border-strong)] hover:text-[var(--color-fg-muted)]'
-            )}
-          >
-            <Search className="size-4" />
-            <span className="hidden flex-1 text-left sm:block">Search documentation…</span>
-            <span className="hidden sm:block">
-              <kbd className="rounded border border-[var(--color-border-base)] bg-[var(--color-bg-elevated)] px-1.5 py-0.5 font-mono text-[10px] font-medium">
-                ⌘K
-              </kbd>
-            </span>
-          </button>
+          {!landing && (
+            <button
+              type="button"
+              onClick={onOpenSearch}
+              className={cn(
+                'flex h-9 w-full max-w-72 min-w-[10rem] items-center gap-2 px-3',
+                'sm:min-w-[16rem]',
+                'rounded-[var(--radius-lg)]',
+                'border border-[var(--color-border-base)]',
+                'bg-[var(--color-bg-subtle)]',
+                'text-[13px] text-[var(--color-fg-subtle)]',
+                'transition-colors',
+                'hover:border-[var(--color-border-strong)] hover:text-[var(--color-fg-muted)]'
+              )}
+            >
+              <Search className="size-4" />
+              <span className="hidden flex-1 text-left sm:block">
+                Search documentation…
+              </span>
+              <span className="hidden sm:block">
+                <kbd className="rounded border border-[var(--color-border-base)] bg-[var(--color-bg-elevated)] px-1.5 py-0.5 font-mono text-[10px] font-medium">
+                  ⌘K
+                </kbd>
+              </span>
+            </button>
+          )}
 
           <a
             href="https://github.com/Syzie123/zui"

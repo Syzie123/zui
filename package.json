@@ -94,7 +94,6 @@
     "@types/react": "^18.3.17",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
-    "locomotive-scroll": "^5.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "rollup-plugin-dts": "^6.4.1",

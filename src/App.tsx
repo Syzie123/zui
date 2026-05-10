@@ -1,7 +1,3 @@
-import { useEffect } from 'react';
-import LocomotiveScroll from 'locomotive-scroll';
-import 'locomotive-scroll/locomotive-scroll.css';
-
 import { Tooltip } from './components/Tooltip';
 import { ToastProvider } from './components/Toast';
 import { useTheme } from './hooks/useTheme';
@@ -15,38 +11,10 @@ export default function App() {
   useTheme();
   const { path } = useHashRoute();
 
-  // ─────────────────────────────────────────────────────────────
-  // Locomotive Scroll v5 (Lenis-based) — global smooth scroll.
-  //
-  // Tuned for PC wheel + high-Hz monitors. Defaults can read as a
-  // bit steppy on 120 Hz displays — lower lerp and a softer wheel
-  // multiplier give a settled, glassy glide.
-  //
-  //   lerp 0.085           slower interpolation, smoother glide
-  //                        (default 0.1 felt steppy on high-Hz)
-  //   wheelMultiplier 0.85 softer wheel response, less overshoot
-  //   syncTouch + lerp     keep touch devices tight (no effect on PC)
-  //   easing (cubic-out)   natural glide for scrollTo (TOC clicks etc.)
-  //   duration 1.0         slightly snappier programmatic scroll
-  //                        (default 1.2 felt sluggish on TOC clicks)
-  // ─────────────────────────────────────────────────────────────
-  useEffect(() => {
-    const scroll = new LocomotiveScroll({
-      lenisOptions: {
-        lerp: 0.085,
-        wheelMultiplier: 0.85,
-        touchMultiplier: 1.6,
-        smoothWheel: true,
-        syncTouch: true,
-        syncTouchLerp: 0.075,
-        duration: 1.0,
-        easing: (t: number) => 1 - Math.pow(1 - t, 3),
-      },
-    });
-    return () => {
-      scroll.destroy();
-    };
-  }, []);
+  // Native browser scroll only. (Tried locomotive-scroll v5 / Lenis —
+  // defaults flickered on PC trackpads + high-Hz monitors and tuning
+  // didn't fully settle it. The CSS `scroll-behavior: smooth` on <html>
+  // already handles anchor smooth-scroll natively.)
 
   // Route table — small enough to keep inline.
   let view: React.ReactNode;
