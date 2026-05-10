@@ -15,6 +15,11 @@ import { Logo } from './Logo';
 import { Link } from '../hooks/useHashRoute';
 import { Sidebar, useSidebar } from '../components/Sidebar';
 import { cn } from '../utils/cn';
+// Pulled straight from package.json so the sidebar pill never drifts —
+// every npm publish updates this automatically.
+import pkg from '../../package.json';
+
+const ZUI_VERSION = `v${(pkg as { version: string }).version}`;
 
 interface Props {
   /** The slug from the route, e.g. "button". */
@@ -58,7 +63,7 @@ function DocsLayoutInner({ slug }: Props) {
               ZUI
             </span>
             <span className="ml-auto rounded-full bg-[var(--sidebar-accent)] px-2 py-0.5 text-[10px] font-medium tracking-wider text-[var(--sidebar-fg-muted)]">
-              v0.1
+              {ZUI_VERSION}
             </span>
           </Link>
         </Sidebar.Header>
