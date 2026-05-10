@@ -12,8 +12,6 @@ import {
   Image as ImageIcon,
   Check,
   Copy,
-  Maximize2,
-  Minimize2,
 } from 'lucide-react';
 import { Button } from '../components/Button';
 import { Avatar } from '../components/Avatar';
@@ -28,6 +26,7 @@ import { Link } from '../hooks/useHashRoute';
 import { cn } from '../utils/cn';
 import { DocsHeader } from './DocsHeader';
 import { DocsSearch } from './DocsSearch';
+import { Logo } from './Logo';
 import './Home.css';
 
 export function Home() {
@@ -75,23 +74,18 @@ const HERO_VIDEO =
 
 /* ─────────────────────────────────────────────────────────────
  * Hero — full-bleed video bg + glass overlay, light-on-dark.
- * Toggleable between full-screen and fit-to-content (top-right).
+ * Always full-bleed (the maximize/minimize toggle was removed).
  * ───────────────────────────────────────────────────────────── */
 function Hero() {
-  const [fullBleed, setFullBleed] = useState(true);
-
   return (
     <section
       className={cn(
         'relative isolate w-full overflow-hidden',
-        'transition-[min-height,padding] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]',
         // Pull the Hero up under the sticky transparent header so the
         // background video extends behind it — no dark gradient strip
-        // showing above the video. Header is h-14 (56 px).
-        // pt is bumped to compensate so inner content keeps its position.
-        fullBleed
-          ? '-mt-14 min-h-screen pt-14'
-          : '-mt-14 pt-[9.5rem] pb-24 lg:pt-[11.5rem] lg:pb-32'
+        // showing above the video. Header is h-14 (56 px); pt-14 keeps
+        // inner content where it was visually.
+        '-mt-14 min-h-screen pt-14'
       )}
     >
       {/* Video background */}
@@ -115,23 +109,6 @@ function Hero() {
             'radial-gradient(ellipse 80% 60% at 50% 40%, transparent 0%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0.55) 100%)',
         }}
       />
-
-      {/* Fullbleed toggle — top right. Anchored below the sticky header
-          (header is h-14 / 56 px; +1rem visual gap = top-[4.5rem]). */}
-      <button
-        type="button"
-        onClick={() => setFullBleed((v) => !v)}
-        aria-label={fullBleed ? 'Fit to content' : 'Full-bleed'}
-        className={cn(
-          'absolute right-4 top-[4.5rem] z-20 inline-flex size-9 items-center justify-center',
-          'rounded-[10px] backdrop-blur-xl',
-          'border border-white/20 bg-white/10 text-white',
-          'transition-all hover:bg-white/20',
-          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60'
-        )}
-      >
-        {fullBleed ? <Minimize2 className="size-4" /> : <Maximize2 className="size-4" />}
-      </button>
 
       <div className="mx-auto max-w-5xl px-6 pt-20 pb-16 text-center sm:pt-28 sm:pb-24 lg:pt-36">
         {/* Inline pill — "New" mini-badge + version line.
@@ -490,14 +467,22 @@ function Footer() {
   return (
     <footer className="border-t border-white/[0.06] py-10">
       <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-6 sm:flex-row sm:items-center">
-        <div>
-          <p className="font-display text-sm font-semibold tracking-[-0.01em] text-white">
-            ZUI
-          </p>
-          <p className="mt-0.5 text-xs text-white/55">
-            Modern React components. MIT.
-          </p>
-        </div>
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2.5 transition-opacity hover:opacity-90"
+        >
+          {/* Same dark-mode mark used in the header logo (forceTheme="dark"
+              keeps the white logo regardless of the user's theme pref). */}
+          <Logo size={28} forceTheme="dark" />
+          <div>
+            <p className="font-display text-sm font-semibold tracking-[-0.01em] text-white">
+              ZUI
+            </p>
+            <p className="mt-0.5 text-xs text-white/55">
+              Modern React components. MIT.
+            </p>
+          </div>
+        </Link>
         <div className="flex items-center gap-5 text-xs text-white/55">
           <Link href="/components/introduction" className="transition-colors hover:text-white">
             Docs

@@ -80,17 +80,29 @@ export function DocsHeader({
           </Link>
         )}
 
-        {/* Top nav — visible on both home + doc pages (covers all groups) */}
-        <nav className="hidden items-center gap-1 md:flex">
+        {/* Top nav. On the landing page we keep the links visible at every
+            viewport size — the page is built to be browsed from anywhere.
+            Docs pages collapse the nav at <md so the sidebar trigger has
+            room. Landing also uses brighter white-alpha text for legibility
+            against the hero video. */}
+        <nav
+          className={cn(
+            'items-center gap-1',
+            landing
+              ? 'flex flex-wrap'
+              : 'hidden md:flex'
+          )}
+        >
           {TOP_NAV.map((l) => (
             <Link
               key={l.href}
               href={l.href}
               className={cn(
                 'rounded-[var(--radius-md)] px-3 py-1.5 text-sm font-medium',
-                'text-[var(--color-fg-muted)]',
                 'transition-colors duration-[var(--duration-fast)]',
-                'hover:bg-[var(--color-bg-subtle)] hover:text-[var(--color-fg-base)]'
+                landing
+                  ? 'text-white/75 hover:bg-white/10 hover:text-white'
+                  : 'text-[var(--color-fg-muted)] hover:bg-[var(--color-bg-subtle)] hover:text-[var(--color-fg-base)]'
               )}
             >
               {l.label}
