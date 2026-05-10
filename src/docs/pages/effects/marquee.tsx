@@ -1,9 +1,35 @@
-import { Star } from 'lucide-react';
 import { Marquee } from '../../../components/effects/Marquee/Marquee';
 import { Avatar } from '../../../components/Avatar';
 import { Card } from '../../../components/Card';
+import {
+  GoogleIcon,
+  AppleIcon,
+  MicrosoftIcon,
+  FacebookIcon,
+  XIcon,
+  GithubBrandIcon,
+} from '../../../components/icons/brand';
 import { PreviewTabs } from '../../PreviewTabs';
 import { H2, P, PropsTable } from '../../page-kit';
+
+/* Cycle the brand-icon set + a name per pill in the two-row marquee. */
+const BRANDS = [
+  { name: 'Google',    Icon: GoogleIcon },
+  { name: 'Apple',     Icon: AppleIcon },
+  { name: 'Microsoft', Icon: MicrosoftIcon },
+  { name: 'Facebook',  Icon: FacebookIcon },
+  { name: 'X',         Icon: XIcon },
+  { name: 'GitHub',    Icon: GithubBrandIcon },
+] as const;
+
+const STUDIOS = [
+  { name: 'Anthropic',  Icon: GithubBrandIcon },
+  { name: 'Vercel',     Icon: XIcon },
+  { name: 'Linear',     Icon: AppleIcon },
+  { name: 'Notion',     Icon: MicrosoftIcon },
+  { name: 'Figma',      Icon: FacebookIcon },
+  { name: 'Stripe',     Icon: GoogleIcon },
+] as const;
 
 const TESTIMONIALS = [
   { name: 'Lara Chen',     handle: '@larac',     body: 'Best DX I\'ve had in a year. The motion is so polished.', img: 14 },
@@ -65,23 +91,43 @@ export default function MarqueeDoc() {
         preview={
           <div className="w-full space-y-3">
             <Marquee pauseOnHover speed={40}>
-              {Array.from({ length: 8 }, (_, i) => (
-                <BrandPill key={i}>Brand {i + 1}</BrandPill>
+              {BRANDS.map((b) => (
+                <BrandPill key={`b-${b.name}`} icon={<b.Icon className="size-4" />}>
+                  {b.name}
+                </BrandPill>
               ))}
             </Marquee>
             <Marquee pauseOnHover speed={50} reverse>
-              {Array.from({ length: 8 }, (_, i) => (
-                <BrandPill key={i}>Studio {i + 1}</BrandPill>
+              {STUDIOS.map((s) => (
+                <BrandPill key={`s-${s.name}`} icon={<s.Icon className="size-4" />}>
+                  {s.name}
+                </BrandPill>
               ))}
             </Marquee>
           </div>
         }
         minHeight="12rem"
-        code={`<Marquee pauseOnHover speed={40}>
-  {brands.map((b) => <BrandPill key={b}>{b}</BrandPill>)}
+        code={`import { GoogleIcon, AppleIcon, MicrosoftIcon, FacebookIcon, XIcon, GithubBrandIcon }
+  from '@zui.react/zui';
+
+const brands = [
+  { name: 'Google',    Icon: GoogleIcon },
+  { name: 'Apple',     Icon: AppleIcon },
+  { name: 'Microsoft', Icon: MicrosoftIcon },
+  { name: 'Facebook',  Icon: FacebookIcon },
+  { name: 'X',         Icon: XIcon },
+  { name: 'GitHub',    Icon: GithubBrandIcon },
+];
+
+<Marquee pauseOnHover speed={40}>
+  {brands.map((b) => (
+    <BrandPill key={b.name} icon={<b.Icon className="size-4" />}>
+      {b.name}
+    </BrandPill>
+  ))}
 </Marquee>
 <Marquee pauseOnHover speed={50} reverse>
-  {studios.map((s) => <BrandPill key={s}>{s}</BrandPill>)}
+  {studios.map(...)}
 </Marquee>`}
       />
 
@@ -127,10 +173,16 @@ export default function MarqueeDoc() {
   );
 }
 
-function BrandPill({ children }: { children: React.ReactNode }) {
+function BrandPill({
+  children,
+  icon,
+}: {
+  children: React.ReactNode;
+  icon?: React.ReactNode;
+}) {
   return (
     <span className="inline-flex shrink-0 items-center gap-2 rounded-full border border-[var(--color-border-base)] bg-[var(--color-bg-elevated)] px-4 py-2 text-sm font-medium">
-      <Star className="size-3.5 text-[var(--color-warning)] fill-[var(--color-warning)]" />
+      {icon}
       {children}
     </span>
   );
