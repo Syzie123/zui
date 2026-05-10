@@ -69,6 +69,22 @@ export { FeatureListCard } from './patterns/FeatureList/FeatureList';
 export { SignInCard, type SignInCardProps, type SignInProvider } from './patterns/SignInCard/SignInCard';
 export { LoginSplit, type LoginSplitProps, type LoginSplitVariant } from './patterns/LoginSplit/LoginSplit';
 
+/* ─────────── 3D / Neumorphic patterns ─────────── */
+export { Action3D, type Action3DProps } from './patterns/Action3D/Action3D';
+export { Switch3D, type Switch3DProps } from './patterns/Switch3D/Switch3D';
+export { ImageCard3D, type ImageCard3DProps } from './patterns/ImageCard3D/ImageCard3D';
+export {
+  PlanCard3D,
+  type PlanCard3DProps,
+  type PlanCard3DTone,
+} from './patterns/PlanCard3D/PlanCard3D';
+export {
+  MenuList3D,
+  type MenuList3DProps,
+  type MenuList3DItemProps,
+  type MenuList3DProgressProps,
+} from './patterns/MenuList3D/MenuList3D';
+
 /* ─────────── Brand icons ─────────── */
 export {
   GoogleIcon,
