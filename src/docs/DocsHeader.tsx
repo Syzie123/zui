@@ -54,14 +54,11 @@ export function DocsHeader({
       className={cn(
         'sticky top-0 z-40 w-full',
         'transition-[backdrop-filter,background-color,border-color] duration-[var(--duration-base)]',
-        // On the landing page the page background is the brand purple-black
-        // gradient — we want to see it through the header. Stay transparent
-        // until the user scrolls, then add a soft glass blur with a tinted
-        // dark wash so the nav text stays legible without a hard fill.
+        // On the landing page the header is fully transparent at all times —
+        // no scroll-based glass wash. The brand purple-black gradient (and
+        // hero video underneath) shows through cleanly, scroll or not.
         landing
-          ? scrolled
-            ? 'bg-[rgb(8_4_18_/_0.55)] backdrop-blur-md border-b border-white/5'
-            : 'bg-transparent border-b border-transparent'
+          ? 'bg-transparent border-b border-transparent'
           : scrolled
           ? 'bg-[color-mix(in_oklch,var(--color-bg-base)_82%,transparent)] backdrop-blur-md border-b border-[var(--color-border-subtle)]'
           : 'bg-[var(--color-bg-base)] border-b border-transparent'

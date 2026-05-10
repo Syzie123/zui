@@ -1,6 +1,6 @@
 {
   "name": "@zui.react/zui",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "description": "A modern React component library focused on speed, polish, and motion. 22 components, 6 motion effects, 27 production patterns (5 base, 7 AI-native, 12 3D / scene, content generator) plus 26 inline brand & AI-IDE icons. Premium purple gradient theme. Ships with @zui.react/mcp — drop-in MCP server for Claude Code, Cursor, Windsurf, Copilot, Antigravity. Sub-millisecond renders, accessible by default.",
   "type": "module",
   "license": "MIT",
