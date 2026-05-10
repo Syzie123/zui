@@ -11,6 +11,7 @@ import { Link } from '../../../hooks/useHashRoute';
 import { Button } from '../../../components/Button';
 import { CodeBlock } from '../../CodeBlock';
 import { H2, H3, P, InlineCode } from '../../page-kit';
+import { COUNTS } from '../../registry';
 
 export default function MCPIntroduction() {
   return (
@@ -25,8 +26,9 @@ export default function MCPIntroduction() {
       </P>
       <P>
         It speaks JSON-RPC 2.0 over stdio. Cold start is sub-300 ms. The whole
-        catalog (27 components, 26 patterns, 6 effects, 26 brand &amp; AI-IDE icons,
-        and three themes worth of design tokens) ships as static JSON inside the
+        catalog ({COUNTS.components} components, {COUNTS.patterns} patterns,{' '}
+        {COUNTS.effects} effects, {COUNTS.icons} brand &amp; AI-IDE icons, and
+        three themes worth of design tokens) ships as static JSON inside the
         package — no model calls, no network, no parsing TS at runtime.
       </P>
 

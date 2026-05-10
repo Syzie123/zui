@@ -3,11 +3,13 @@
  *  - sidebar order & grouping
  *  - search index
  *  - prev/next navigation between pages
+ *  - live counts shown in marketing copy (hero, intro, MCP docs)
  *
  * Pages are referenced by `slug` and the actual content lives in
  * src/docs/pages/<slug>.tsx — loaded lazily via the `loader`.
  */
 import { lazy, type ComponentType, type LazyExoticComponent } from 'react';
+import * as brandIcons from '../components/icons/brand';
 
 export interface DocPage {
   slug: string;
@@ -440,6 +442,58 @@ export const DOCS: DocGroup[] = [
     ],
   },
 ];
+
+/* ────────────────────────────────────────────────────────────
+ * Live counts — single source of truth for marketing copy.
+ * Every place on the docs site that says "27 components" or
+ * "26 patterns" reads from here so adding a new doc page never
+ * requires hunting for stale numbers across the codebase.
+ * ──────────────────────────────────────────────────────────── */
+
+function groupSize(name: string): number {
+  return DOCS.find((g) => g.name === name)?.pages.length ?? 0;
+}
+
+/** All exports from src/components/icons/brand.tsx whose name ends in
+ *  `Icon` — gives us a live brand-icon count without a manual list. */
+const ICONS_COUNT = Object.keys(brandIcons).filter((k) =>
+  k.endsWith('Icon')
+).length;
+
+export const COUNTS = {
+  /** Documented components in the sidebar's "Components" group. */
+  components: groupSize('Components'),
+
+  /** Motion effects (Marquee, BorderBeam, …). */
+  effects: groupSize('Effects'),
+
+  /** "Production patterns" umbrella — base + AI + 3D + Ecommerce. */
+  patterns:
+    groupSize('Patterns') +
+    groupSize('AI') +
+    groupSize('3D') +
+    groupSize('Ecommerce'),
+
+  /** Per-tier breakdown so copy like "5 base, 7 AI, 12 3D" stays accurate. */
+  patternsByGroup: {
+    base: groupSize('Patterns'),
+    ai: groupSize('AI'),
+    '3d': groupSize('3D'),
+    ecommerce: groupSize('Ecommerce'),
+  },
+
+  /** Inline brand & AI-IDE icons exported from ../components/icons/brand. */
+  icons: ICONS_COUNT,
+
+  /** Total documented pages (excluding Getting Started + MCP docs). */
+  documented:
+    groupSize('Components') +
+    groupSize('Effects') +
+    groupSize('Patterns') +
+    groupSize('AI') +
+    groupSize('3D') +
+    groupSize('Ecommerce'),
+} as const;
 
 /* ────────────────────────────────────────────────────────────
  * Lookup helpers

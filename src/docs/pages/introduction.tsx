@@ -2,6 +2,7 @@ import { ArrowRight, Sparkles, Zap, Eye, Layers, Terminal } from 'lucide-react';
 import { Link } from '../../hooks/useHashRoute';
 import { Button } from '../../components/Button';
 import { H2, H3, P, InlineCode } from '../page-kit';
+import { COUNTS } from '../registry';
 
 export default function Introduction() {
   return (
@@ -47,12 +48,16 @@ export default function Introduction() {
 
       <H2>What's inside</H2>
       <P>
-        27 components grouped into five tiers — Foundations (Button, Input,
-        Avatar…), Overlays (Popover, Tooltip, DropdownMenu…), the Modal layer
-        (Dialog, AlertDialog, Toast, Sheet), Forms (Checkbox, Switch, Select,
-        SegmentedControl…), and Composition (Card, Tabs, Accordion, Sidebar).
-        Plus 6 motion effects, 26 production patterns (5 base, 7 AI-native,
-        12 3D / scene), and 26 inline brand &amp; AI-IDE icons.
+        {COUNTS.components} components grouped into five tiers — Foundations
+        (Button, Input, Avatar…), Overlays (Popover, Tooltip, DropdownMenu…),
+        the Modal layer (Dialog, AlertDialog, Toast, Sheet), Forms (Checkbox,
+        Switch, Select, SegmentedControl…), and Composition (Card, Tabs,
+        Accordion, Sidebar). Plus {COUNTS.effects} motion effects,{' '}
+        {COUNTS.patterns} production patterns (
+        {COUNTS.patternsByGroup.base} base,{' '}
+        {COUNTS.patternsByGroup.ai} AI-native,{' '}
+        {COUNTS.patternsByGroup['3d']} 3D / scene), and{' '}
+        {COUNTS.icons} inline brand &amp; AI-IDE icons.
       </P>
 
       <H3>Stack</H3>

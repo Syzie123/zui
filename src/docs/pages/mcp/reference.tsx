@@ -1,5 +1,6 @@
 import { CodeBlock } from '../../CodeBlock';
 import { H2, H3, P, InlineCode, PropsTable } from '../../page-kit';
+import { COUNTS } from '../../registry';
 
 export default function MCPReference() {
   return (
@@ -14,10 +15,10 @@ export default function MCPReference() {
       <H3>Discovery</H3>
       <PropsTable
         rows={[
-          { name: 'list_components', type: '{ group?, includeNew? }', description: 'List all 27 components with name, slug, group, one-line description.' },
-          { name: 'list_patterns', type: '{ group? }', description: 'List all 26 patterns. Filter by Patterns, AI, 3D, Ecommerce.' },
-          { name: 'list_effects', type: '{}', description: 'List all 6 motion effects.' },
-          { name: 'list_icons', type: '{ tag? }', description: 'List all 26 brand & AI-IDE icons. Filter by tag (social / ai / ide).' },
+          { name: 'list_components', type: '{ group?, includeNew? }', description: `List all ${COUNTS.components} components with name, slug, group, one-line description.` },
+          { name: 'list_patterns', type: '{ group? }', description: `List all ${COUNTS.patterns} patterns. Filter by Patterns, AI, 3D, Ecommerce.` },
+          { name: 'list_effects', type: '{}', description: `List all ${COUNTS.effects} motion effects.` },
+          { name: 'list_icons', type: '{ tag? }', description: `List all ${COUNTS.icons} brand & AI-IDE icons. Filter by tag (social / ai / ide).` },
           { name: 'list_groups', type: '{}', description: 'Sidebar group order — same as the docs site.' },
           { name: 'search', type: '{ query, kinds?, limit? }', description: 'Unified BM25 search across components, patterns, effects, and icons.' },
         ]}
@@ -95,7 +96,7 @@ export default function MCPReference() {
         rows={[
           { name: 'zui://components/{name}/source', type: 'application/typescript', description: 'TSX source for a component. Example: zui://components/Button/source.' },
           { name: 'zui://components/{name}/css', type: 'text/css', description: 'Component-scoped CSS file when present.' },
-          { name: 'zui://patterns/{name}/source', type: 'application/typescript', description: 'Full source for any of the 26 patterns.' },
+          { name: 'zui://patterns/{name}/source', type: 'application/typescript', description: `Full source for any of the ${COUNTS.patterns} patterns.` },
           { name: 'zui://patterns/{name}/css', type: 'text/css', description: 'Pattern-scoped CSS — useful when copying without using the published package.' },
           { name: 'zui://effects/{name}/source', type: 'application/typescript', description: 'TSX source for a motion effect.' },
           { name: 'zui://icons/{name}.svg', type: 'image/svg+xml', description: 'Inline SVG markup for any brand or IDE icon.' },

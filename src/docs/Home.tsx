@@ -27,7 +27,12 @@ import { cn } from '../utils/cn';
 import { DocsHeader } from './DocsHeader';
 import { DocsSearch } from './DocsSearch';
 import { Logo } from './Logo';
+import { COUNTS } from './registry';
+import pkg from '../../package.json';
 import './Home.css';
+
+// "v0.8" not "v0.8.6" — minor-line is what marketing copy talks about.
+const ZUI_MINOR = `v${pkg.version.split('.').slice(0, 2).join('.')}`;
 
 export function Home() {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -139,7 +144,8 @@ function Hero() {
             New
           </span>
           <span className="text-[13px] font-medium text-white/95">
-            Say hello to <span className="font-semibold">@zui.react/zui v0.8</span>
+            Say hello to{' '}
+            <span className="font-semibold">@zui.react/zui {ZUI_MINOR}</span>
             <span className="mx-1.5 text-white/40">·</span>
             <span className="font-semibold">+ MCP server</span>
           </span>
@@ -183,8 +189,9 @@ function Hero() {
             'drop-shadow-[0_1px_8px_rgb(0_0_0/0.30)]'
           )}
         >
-          27 components, 6 motion effects, 26 production patterns,
-          26 inline brand & AI-IDE icons. Ships with{' '}
+          {COUNTS.components} components, {COUNTS.effects} motion effects,{' '}
+          {COUNTS.patterns} production patterns,{' '}
+          {COUNTS.icons} inline brand &amp; AI-IDE icons. Ships with{' '}
           <span className="font-semibold text-white">
             @zui.react/mcp
           </span>{' '}
@@ -283,9 +290,9 @@ function StatsBand() {
     <section className="border-y border-white/5 bg-transparent">
       <dl className="mx-auto grid max-w-3xl grid-cols-3 gap-3 px-6 py-10 sm:gap-8">
         {[
-          { v: 27, l: 'components' },
-          { v: 26, l: 'patterns' },
-          { v: 26, l: 'brand icons' },
+          { v: COUNTS.components, l: 'components' },
+          { v: COUNTS.patterns,   l: 'patterns' },
+          { v: COUNTS.icons,      l: 'brand icons' },
         ].map((s) => (
           <div key={s.l} className="text-center">
             <dt className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-fg-subtle)]">
