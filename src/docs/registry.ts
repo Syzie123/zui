@@ -48,6 +48,32 @@ export const DOCS: DocGroup[] = [
     ],
   },
   {
+    name: 'MCP',
+    pages: [
+      {
+        slug: 'mcp-introduction',
+        title: 'Introduction',
+        description: 'What @zui.react/mcp is and why every coding agent gets the catalog right with it.',
+        isNew: true,
+        loader: () => import('./pages/mcp/introduction'),
+      },
+      {
+        slug: 'mcp-installation',
+        title: 'Installation',
+        description: 'One-line install for Claude Code, Cursor, Windsurf, Continue, Zed, Replit, VS Code Copilot, Antigravity.',
+        isNew: true,
+        loader: () => import('./pages/mcp/installation'),
+      },
+      {
+        slug: 'mcp-reference',
+        title: 'Reference',
+        description: '14 tools, 12 resources, 6 prompts — full schema and examples.',
+        isNew: true,
+        loader: () => import('./pages/mcp/reference'),
+      },
+    ],
+  },
+  {
     name: 'Components',
     pages: [
       {
@@ -254,13 +280,9 @@ export const DOCS: DocGroup[] = [
         isNew: true,
         loader: () => import('./pages/patterns/ai-generating'),
       },
-      {
-        slug: 'content-generator',
-        title: 'Content Generator',
-        description: 'Three-pane content gen layout — fields, controls, history of outputs.',
-        isNew: true,
-        loader: () => import('./pages/patterns/content-generator'),
-      },
+      // ContentGenerator (`./pages/patterns/content-generator`) is intentionally
+      // hidden from the sidebar/search. The component still exports from the
+      // package barrel — only the docs entry is omitted while we polish it.
     ],
   },
   {

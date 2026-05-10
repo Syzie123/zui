@@ -34,6 +34,11 @@
   --color-accent-soft:    oklch(96%   0.04  287);
   --color-accent-fg:      #ffffff;
   --color-accent-ring:    rgb(124 58 237 / 0.35);
+  /* Foreground color for icons sitting on `--color-accent-soft`. In light
+     themes the soft surface is barely-tinted lavender so a saturated purple
+     icon reads cleanly. Dark themes flip the tile to a translucent purple
+     wash where white icons pop instead. Override per theme below. */
+  --color-accent-on-soft: var(--color-accent-base);
 
   /* ──────────── Premium gradients ────────────
    * Single source of truth for the gradient surface treatments. Applied via
@@ -253,6 +258,9 @@
   --color-accent-soft:    rgb(124 58 237 / 0.18);
   --color-accent-fg:      #ffffff;
   --color-accent-ring:    rgb(139 92 246 / 0.45);
+  /* On the dark translucent-purple tile, white icons read cleaner than
+     bright-purple ones (purple-on-purple loses contrast). */
+  --color-accent-on-soft: #ffffff;
 
   --color-success-soft:   oklch(22%   0.08  148);
   --color-warning-soft:   oklch(24%   0.10  75);
@@ -294,6 +302,7 @@
   --color-accent-active:  oklch(82%   0.27  290);
   --color-accent-soft:    oklch(28%   0.10  290);
   --color-accent-ring:    oklch(70%   0.27  290 / 0.45);
+  --color-accent-on-soft: #ffffff;
 }
 
 /* ============================================================

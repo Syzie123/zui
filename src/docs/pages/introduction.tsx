@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles, Zap, Eye, Layers } from 'lucide-react';
+import { ArrowRight, Sparkles, Zap, Eye, Layers, Terminal } from 'lucide-react';
 import { Link } from '../../hooks/useHashRoute';
 import { Button } from '../../components/Button';
 import { H2, H3, P, InlineCode } from '../page-kit';
@@ -11,8 +11,14 @@ export default function Introduction() {
         ZUI is a modern React component library built on a single token-based design
         system. Three themes — <InlineCode>theme-clean</InlineCode>,{' '}
         <InlineCode>theme-dark</InlineCode>, and <InlineCode>theme-luminous</InlineCode> —
-        share the same components; theme swap is a single class on{' '}
+        share the same components; theme swap is one class on{' '}
         <InlineCode>&lt;html&gt;</InlineCode>, no React re-renders.
+      </P>
+      <P>
+        v0.8 ships a premium purple gradient brand surface and{' '}
+        <InlineCode>@zui.react/mcp</InlineCode> — a drop-in MCP server that exposes the
+        whole catalog to Claude Code, Cursor, Windsurf, Copilot, and Antigravity in
+        one command.
       </P>
 
       <H2>Design principles</H2>
@@ -41,17 +47,30 @@ export default function Introduction() {
 
       <H2>What's inside</H2>
       <P>
-        20+ components grouped into four tiers — Foundations (Button, Input,
+        27 components grouped into five tiers — Foundations (Button, Input,
         Avatar…), Overlays (Popover, Tooltip, DropdownMenu…), the Modal layer
-        (Dialog, Toast), Forms (Checkbox, Switch, Select…), and Composition
-        (Card, Tabs, Accordion). Plus 6 motion effects and 5 production patterns.
+        (Dialog, AlertDialog, Toast, Sheet), Forms (Checkbox, Switch, Select,
+        SegmentedControl…), and Composition (Card, Tabs, Accordion, Sidebar).
+        Plus 6 motion effects, 26 production patterns (5 base, 7 AI-native,
+        12 3D / scene), and 26 inline brand &amp; AI-IDE icons.
       </P>
 
       <H3>Stack</H3>
       <P>
         React 18+, Tailwind CSS v4 (CSS-first config), Radix UI primitives, and
         Floating UI. No CSS-in-JS runtime, no global side effects on import.
+        ESM-only, ~52 KB gzipped JS + ~34 KB gzipped CSS.
       </P>
+
+      <H3>MCP — let your editor write ZUI for you</H3>
+      <P>
+        The <InlineCode>@zui.react/mcp</InlineCode> server speaks JSON-RPC over stdio
+        and gives any MCP-aware coding agent the full ZUI catalog as tools, resources,
+        and slash commands. Add it to Claude Code in one line:
+      </P>
+      <pre className="my-3 overflow-x-auto rounded-[var(--radius-lg)] border border-[var(--color-border-base)] bg-[var(--color-bg-subtle)] px-4 py-3 font-mono text-[13px]">
+        <code>claude mcp add zui -- npx -y @zui.react/mcp</code>
+      </pre>
 
       <div className="mt-8 flex flex-wrap items-center gap-3">
         <Link href="/components/installation">
@@ -59,8 +78,13 @@ export default function Introduction() {
             Get started
           </Button>
         </Link>
+        <Link href="/components/mcp-introduction">
+          <Button variant="secondary" leftIcon={<Terminal className="size-4" />}>
+            Set up the MCP server
+          </Button>
+        </Link>
         <Link href="/components/button">
-          <Button variant="secondary">Browse components</Button>
+          <Button variant="ghost">Browse components</Button>
         </Link>
       </div>
     </article>
@@ -78,7 +102,12 @@ function Tile({
 }) {
   return (
     <div className="rounded-[var(--radius-xl)] border border-[var(--color-border-base)] bg-[var(--color-bg-elevated)] p-5">
-      <span className="grid size-9 place-items-center rounded-[var(--radius-md)] bg-[var(--color-accent-soft)] text-[var(--color-accent-base)]">
+      <span
+        className="grid size-9 place-items-center rounded-[var(--radius-md)] bg-[var(--color-accent-soft)]"
+        // `--color-accent-on-soft` is purple in the clean theme and white
+        // in dark / luminous so icons stay legible on the tinted tile.
+        style={{ color: 'var(--color-accent-on-soft)' }}
+      >
         {icon}
       </span>
       <p className="mt-3 text-[15px] font-semibold tracking-[-0.01em]">{title}</p>

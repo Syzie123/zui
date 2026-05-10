@@ -16,9 +16,10 @@ const THEME_ICON: Record<Theme, JSX.Element> = {
 };
 
 const TOP_NAV = [
-  { href: '/components/button',        label: 'Components' },
-  { href: '/components/filter-panel',  label: 'Patterns' },
-  { href: '/components/product-card',  label: 'Ecommerce' },
+  { href: '/components/button',            label: 'Components' },
+  { href: '/components/filter-panel',      label: 'Patterns' },
+  { href: '/components/product-card',      label: 'Ecommerce' },
+  { href: '/components/mcp-introduction',  label: 'MCP' },
 ];
 
 interface Props {
