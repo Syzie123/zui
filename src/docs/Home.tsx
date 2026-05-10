@@ -28,6 +28,7 @@ import { DocsHeader } from './DocsHeader';
 import { DocsSearch } from './DocsSearch';
 import { Logo } from './Logo';
 import { COUNTS } from './registry';
+import { AgentRow } from './AgentList';
 import pkg from '../../package.json';
 import './Home.css';
 
@@ -200,9 +201,15 @@ function Hero() {
           {COUNTS.icons} inline brand &amp; AI-IDE icons. Ships with{' '}
           <span className="font-semibold text-white">
             @zui.react/mcp
-          </span>{' '}
-          for Claude Code, Cursor, Windsurf, Copilot &amp; Antigravity.
+          </span>
+          .
         </p>
+
+        {/* Visual: row of supported coding-agent badges. Same source of
+            truth (AgentList.tsx) used by the MCP intro / installation pages. */}
+        <div className="zui-hero-cta mt-5 flex justify-center sm:mt-6">
+          <AgentRow tone="glass" iconSize={16} showLabel={false} className="gap-1.5" />
+        </div>
 
         {/* CTAs — premium purple gradient (Button.primary picks up
             .btn-primary-purple automatically) + glass white secondary.

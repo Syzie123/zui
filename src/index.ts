@@ -189,6 +189,8 @@ export {
   BoltIcon,
   PerplexityIcon,
   GrokIcon,
+  ZedIcon,
+  ContinueIcon,
 } from './components/icons/brand';
 
 /* ─────────── Hooks & utils ─────────── */

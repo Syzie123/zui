@@ -1,5 +1,6 @@
 import { CodeBlock } from '../CodeBlock';
 import { H2, H3, P, InlineCode, InstallSnippet } from '../page-kit';
+import { AgentRow } from '../AgentList';
 
 export default function Installation() {
   return (
@@ -57,11 +58,12 @@ export default function App() {
 
       <H2>Set up the MCP server (optional)</H2>
       <P>
-        <InlineCode>@zui.react/mcp</InlineCode> lets any coding agent (Claude Code,
-        Cursor, Windsurf, Continue, Zed, Replit Agent, GitHub Copilot, Antigravity)
-        read the ZUI catalog directly — no hallucinated prop names, no stale import
-        paths. One line:
+        <InlineCode>@zui.react/mcp</InlineCode> lets any coding agent read the ZUI
+        catalog directly — no hallucinated prop names, no stale import paths. One
+        line install for any of these:
       </P>
+
+      <AgentRow tone="neutral" className="my-5 justify-start" />
       <CodeBlock
         language="bash"
         code={`# Claude Code

@@ -420,3 +420,47 @@ export function GrokIcon({ className, size }: BrandIconProps) {
     </svg>
   );
 }
+
+/** Zed — geometric Z stack mark. */
+export function ZedIcon({ className, size }: BrandIconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      <defs>
+        <linearGradient id="zed-grad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#0f172a" />
+          <stop offset="1" stopColor="#1e293b" />
+        </linearGradient>
+      </defs>
+      <rect width="24" height="24" rx="6" fill="url(#zed-grad)" />
+      <path
+        d="M6.5 7h11l-7.6 9.4H17V18H6v-1.4L13.6 7.2H6.5V7z"
+        fill="#84cc16"
+      />
+    </svg>
+  );
+}
+
+/** Continue.dev — play-arrow chevron mark. */
+export function ContinueIcon({ className, size }: BrandIconProps) {
+  return (
+    <svg {...baseProps(size, className)}>
+      <defs>
+        <linearGradient id="cont-grad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#1f2937" />
+          <stop offset="1" stopColor="#0f172a" />
+        </linearGradient>
+      </defs>
+      <rect width="24" height="24" rx="6" fill="url(#cont-grad)" />
+      <path
+        d="M8 6.5l8 5.5-8 5.5V6.5z"
+        fill="#fff"
+        fillOpacity="0.96"
+      />
+      <path
+        d="M5 9.5l4 2.5-4 2.5V9.5z"
+        fill="#fff"
+        fillOpacity="0.55"
+      />
+    </svg>
+  );
+}

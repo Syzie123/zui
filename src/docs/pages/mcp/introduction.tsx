@@ -12,6 +12,7 @@ import { Button } from '../../../components/Button';
 import { CodeBlock } from '../../CodeBlock';
 import { H2, H3, P, InlineCode } from '../../page-kit';
 import { COUNTS } from '../../registry';
+import { AgentRow } from '../../AgentList';
 
 export default function MCPIntroduction() {
   return (
@@ -19,11 +20,13 @@ export default function MCPIntroduction() {
       <H2>What is the ZUI MCP server?</H2>
       <P>
         <InlineCode>@zui.react/mcp</InlineCode> is a Model Context Protocol server that
-        gives any MCP-aware coding agent — Claude Code, Cursor, Windsurf, Continue,
-        Zed, Replit Agent, GitHub Copilot, Antigravity — full read access to the
-        ZUI catalog plus a small set of write tools that propose file diffs the
-        host editor applies.
+        gives any MCP-aware coding agent full read access to the ZUI catalog plus
+        a small set of write tools that propose file diffs the host editor applies.
       </P>
+
+      {/* Live grid of every supported agent — same source of truth as the
+          install matrix on the next page. */}
+      <AgentRow tone="neutral" className="my-6 justify-start" />
       <P>
         It speaks JSON-RPC 2.0 over stdio. Cold start is sub-300 ms. The whole
         catalog ({COUNTS.components} components, {COUNTS.patterns} patterns,{' '}

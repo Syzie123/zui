@@ -1,5 +1,21 @@
 import { CodeBlock } from '../../CodeBlock';
 import { H2, H3, P, InlineCode } from '../../page-kit';
+import { AgentRow, findAgent } from '../../AgentList';
+
+/* Tiny inline helper — renders <H2 with the agent's brand icon prefix>. */
+const Sec = ({ name }: { name: string }) => {
+  const agent = findAgent(name);
+  if (!agent) return <H2>{name}</H2>;
+  const { Icon } = agent;
+  return (
+    <H2 className="flex items-center gap-3">
+      <span className="inline-flex size-8 items-center justify-center rounded-[10px] bg-[var(--color-bg-elevated)] border border-[var(--color-border-base)] shadow-[var(--shadow-xs)]">
+        <Icon size={20} />
+      </span>
+      {agent.name}
+    </H2>
+  );
+};
 
 export default function MCPInstallation() {
   return (
@@ -12,7 +28,12 @@ export default function MCPInstallation() {
         file location differs.
       </P>
 
-      <H2>Claude Code</H2>
+      {/* Visual index of every agent we cover below — clickable too if a
+          reader just wants to jump straight to their tool. */}
+      <AgentRow tone="neutral" className="my-6 justify-start" />
+
+
+      <Sec name="Claude Code" />
       <P>
         One command. Claude Code stores it in <InlineCode>~/.claude.json</InlineCode>{' '}
         (per-project) or <InlineCode>.mcp.json</InlineCode> at the repo root if you
@@ -30,7 +51,7 @@ claude mcp add --scope project zui -- npx -y @zui.react/mcp
 claude mcp add --scope user zui -- npx -y @zui.react/mcp`}
       />
 
-      <H2>Cursor</H2>
+      <Sec name="Cursor" />
       <P>
         Edit <InlineCode>~/.cursor/mcp.json</InlineCode>:
       </P>
@@ -48,13 +69,13 @@ claude mcp add --scope user zui -- npx -y @zui.react/mcp`}
 }`}
       />
 
-      <H2>Windsurf</H2>
+      <Sec name="Windsurf" />
       <P>
         Edit <InlineCode>~/.codeium/windsurf/mcp_config.json</InlineCode> — same
         JSON as Cursor.
       </P>
 
-      <H2>Continue</H2>
+      <Sec name="Continue" />
       <CodeBlock
         filename="~/.continue/config.yaml"
         language="yaml"
@@ -64,13 +85,21 @@ claude mcp add --scope user zui -- npx -y @zui.react/mcp`}
     args: ["-y", "@zui.react/mcp"]`}
       />
 
-      <H2>Zed</H2>
+      <Sec name="Zed" />
       <P>
         Settings → MCP → add stdio server with command{' '}
         <InlineCode>npx -y @zui.react/mcp</InlineCode>.
       </P>
 
-      <H2>VS Code (Copilot)</H2>
+      <H2 className="flex items-center gap-3">
+        <span className="inline-flex size-8 items-center justify-center rounded-[10px] bg-[var(--color-bg-elevated)] border border-[var(--color-border-base)] shadow-[var(--shadow-xs)]">
+          {(() => {
+            const c = findAgent('Copilot');
+            return c ? <c.Icon size={20} /> : null;
+          })()}
+        </span>
+        VS Code (Copilot)
+      </H2>
       <P>
         Project-scoped <InlineCode>.vscode/mcp.json</InlineCode>:
       </P>
@@ -88,13 +117,13 @@ claude mcp add --scope user zui -- npx -y @zui.react/mcp`}
 }`}
       />
 
-      <H2>Antigravity</H2>
+      <Sec name="Antigravity" />
       <P>
         Project-level <InlineCode>.antigravity/mcp.json</InlineCode> — identical to
         VS Code.
       </P>
 
-      <H2>Replit Agent</H2>
+      <Sec name="Replit Agent" />
       <P>
         Replit MCP marketplace listing — one click. Search for{' '}
         <strong>ZUI</strong>.

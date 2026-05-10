@@ -3,6 +3,7 @@ import { Link } from '../../hooks/useHashRoute';
 import { Button } from '../../components/Button';
 import { H2, H3, P, InlineCode } from '../page-kit';
 import { COUNTS } from '../registry';
+import { AgentRow } from '../AgentList';
 
 export default function Introduction() {
   return (
@@ -76,6 +77,10 @@ export default function Introduction() {
       <pre className="my-3 overflow-x-auto rounded-[var(--radius-lg)] border border-[var(--color-border-base)] bg-[var(--color-bg-subtle)] px-4 py-3 font-mono text-[13px]">
         <code>claude mcp add zui -- npx -y @zui.react/mcp</code>
       </pre>
+
+      {/* Visual list of every supported editor — single source of truth
+          for the icon row, kept in src/docs/AgentList.tsx. */}
+      <AgentRow tone="neutral" className="my-5 justify-start" />
 
       <div className="mt-8 flex flex-wrap items-center gap-3">
         <Link href="/components/installation">
