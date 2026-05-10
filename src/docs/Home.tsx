@@ -90,7 +90,10 @@ function Hero() {
         // background video extends behind it — no dark gradient strip
         // showing above the video. Header is h-14 (56 px); pt-14 keeps
         // inner content where it was visually.
-        '-mt-14 min-h-screen pt-14'
+        // Use the small-viewport unit (100svh) so iOS / Android address-bar
+        // collapse doesn't reflow the hero mid-scroll. min-h-screen falls
+        // back to 100vh on browsers that don't grok svh yet.
+        '-mt-14 min-h-screen min-h-[100svh] pt-14'
       )}
     >
       {/* Video background */}
@@ -120,12 +123,13 @@ function Hero() {
           own pt-14 (header offset) above this; total top breathing room
           on lg is now 14 + 16 = 7.5rem instead of 14 + 36 = 12.5rem. */}
       <div className="mx-auto max-w-5xl px-6 pt-10 pb-16 text-center sm:pt-12 sm:pb-24 lg:pt-16">
-        {/* Inline pill — "New" mini-badge + version line.
-            Same shape as the reference glass-pill, but neutral / clean. */}
+        {/* Inline pill — "New" mini-badge + version line. Sized down on
+            phones so 'Say hello to v0.X · + MCP server' fits 320 px. */}
         <Link
           href="/components/introduction"
           className={cn(
-            'zui-hero-tag group mb-8 inline-flex items-center gap-2 h-10 pl-1 pr-4',
+            'zui-hero-tag group mb-6 sm:mb-8 inline-flex max-w-full items-center',
+            'gap-1.5 sm:gap-2 h-9 sm:h-10 pl-1 pr-3 sm:pr-4',
             'rounded-full backdrop-blur-xl',
             'border border-white/20 bg-white/10',
             'shadow-[0_2px_12px_rgb(0_0_0/0.20),inset_0_1px_0_rgb(255_255_255/0.20)]',
@@ -135,29 +139,31 @@ function Hero() {
         >
           <span
             className={cn(
-              'inline-flex h-8 items-center rounded-full px-3',
+              'inline-flex shrink-0 h-7 sm:h-8 items-center rounded-full px-2.5 sm:px-3',
               'bg-white text-[oklch(15%_0.02_270)]',
-              'text-[11px] font-semibold uppercase tracking-[0.08em]',
+              'text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.08em]',
               'shadow-[0_1px_2px_rgb(0_0_0/0.20)]'
             )}
           >
             New
           </span>
-          <span className="text-[13px] font-medium text-white/95">
-            Say hello to{' '}
+          <span className="min-w-0 truncate text-[12px] sm:text-[13px] font-medium text-white/95">
+            <span className="hidden sm:inline">Say hello to </span>
             <span className="font-semibold">@zui.react/zui {ZUI_MINOR}</span>
             <span className="mx-1.5 text-white/40">·</span>
-            <span className="font-semibold">+ MCP server</span>
+            <span className="font-semibold">+ MCP</span>
           </span>
-          <ArrowRight className="size-3.5 text-white/70 transition-transform group-hover:translate-x-0.5" />
+          <ArrowRight className="size-3.5 shrink-0 text-white/70 transition-transform group-hover:translate-x-0.5" />
         </Link>
 
-        {/* Headline — Instrument Serif italic flourish on "modern" */}
+        {/* Headline — Instrument Serif italic flourish on "modern".
+            Clamp lower-bound dropped to 2rem so 'Components' fits on a
+            320 px viewport; text-balance handles the line wrap above sm. */}
         <h1
           className={cn(
             'zui-hero-title text-balance text-white',
             'font-display font-semibold leading-[0.98] tracking-[-0.045em]',
-            'text-[clamp(2.75rem,8vw,6rem)]',
+            'text-[clamp(2rem,8.5vw,6rem)]',
             'drop-shadow-[0_2px_24px_rgb(0_0_0/0.40)]'
           )}
         >
@@ -184,8 +190,8 @@ function Hero() {
 
         <p
           className={cn(
-            'zui-hero-body mx-auto mt-7 max-w-xl text-balance',
-            'text-base leading-[1.55] text-white/85 sm:text-lg',
+            'zui-hero-body mx-auto mt-5 max-w-xl text-balance sm:mt-7',
+            'text-[15px] leading-[1.55] text-white/85 sm:text-lg',
             'drop-shadow-[0_1px_8px_rgb(0_0_0/0.30)]'
           )}
         >
@@ -200,14 +206,15 @@ function Hero() {
 
         {/* CTAs — premium purple gradient (Button.primary picks up
             .btn-primary-purple automatically) + glass white secondary.
-            Per spec: no hover glow on the primary; press feedback only. */}
-        <div className="zui-hero-cta mt-10 flex flex-wrap items-center justify-center gap-3">
-          <Link href="/components/introduction">
+            On mobile both CTAs go full-width and stack so they don't
+            cramp; sm+ they sit side by side. No hover glow on primary. */}
+        <div className="zui-hero-cta mt-8 flex flex-col items-stretch justify-center gap-3 sm:mt-10 sm:flex-row sm:items-center">
+          <Link href="/components/introduction" className="w-full sm:w-auto">
             <Button
               variant="primary"
               size="lg"
               rightIcon={<ArrowRight className="size-4" />}
-              className="rounded-full px-7 text-base"
+              className="w-full rounded-full px-7 text-base sm:w-auto"
             >
               Browse components
             </Button>
@@ -217,7 +224,7 @@ function Hero() {
             target="_blank"
             rel="noreferrer"
             className={cn(
-              'inline-flex h-12 items-center justify-center gap-2 px-7',
+              'inline-flex h-12 w-full items-center justify-center gap-2 px-7 sm:w-auto',
               'rounded-full text-base font-semibold tracking-[-0.01em]',
               'backdrop-blur-xl',
               'border border-white/15 bg-white/[0.06] text-white',
@@ -248,16 +255,19 @@ function GlassInstallSnippet() {
   return (
     <div
       className={cn(
-        'mx-auto inline-flex items-center gap-3',
-        'h-11 px-4',
+        // Pill scales: tighter padding + smaller font on phones so the
+        // 26-char command never overflows a 320 px viewport.
+        'mx-auto inline-flex max-w-full items-center',
+        'gap-2 sm:gap-3',
+        'h-10 px-3 sm:h-11 sm:px-4',
         'rounded-[var(--radius-lg)] backdrop-blur-xl',
         'border border-white/20 bg-white/10',
         'shadow-[inset_0_1px_0_rgb(255_255_255/0.15)]',
-        'font-mono text-[13px] text-white'
+        'font-mono text-[12px] text-white sm:text-[13px]'
       )}
     >
-      <span className="text-white/60">$</span>
-      <code className="select-all">{cmd}</code>
+      <span className="shrink-0 text-white/60">$</span>
+      <code className="min-w-0 truncate select-all">{cmd}</code>
       <button
         type="button"
         aria-label="Copy install command"
@@ -288,17 +298,19 @@ function GlassInstallSnippet() {
 function StatsBand() {
   return (
     <section className="border-y border-white/5 bg-transparent">
-      <dl className="mx-auto grid max-w-3xl grid-cols-3 gap-3 px-6 py-10 sm:gap-8">
+      <dl className="mx-auto grid max-w-3xl grid-cols-3 gap-2 px-4 py-8 sm:gap-8 sm:px-6 sm:py-10">
         {[
+          // Labels kept short ("icons" not "brand icons") so they fit a
+          // 320 px viewport without breaking the uppercase tracking.
           { v: COUNTS.components, l: 'components' },
           { v: COUNTS.patterns,   l: 'patterns' },
-          { v: COUNTS.icons,      l: 'brand icons' },
+          { v: COUNTS.icons,      l: 'icons' },
         ].map((s) => (
           <div key={s.l} className="text-center">
-            <dt className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-fg-subtle)]">
+            <dt className="text-[9px] font-semibold uppercase tracking-[0.12em] text-[var(--color-fg-subtle)] sm:text-[10px] sm:tracking-[0.16em]">
               {s.l}
             </dt>
-            <dd className="mt-1 font-display text-3xl font-semibold tracking-[-0.025em] sm:text-4xl">
+            <dd className="mt-1 font-display text-2xl font-semibold tracking-[-0.025em] sm:text-4xl">
               <NumberTicker value={s.v} />
             </dd>
           </div>
@@ -313,17 +325,17 @@ function StatsBand() {
  * ───────────────────────────────────────────────────────────── */
 function FeatureGrid() {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-      <header className="mb-10 max-w-2xl">
+    <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-24">
+      <header className="mb-8 max-w-2xl sm:mb-10">
         <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#a78bfa]">
           Featured
         </p>
-        <h2 className="mt-2 font-display text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">
+        <h2 className="mt-2 font-display text-[1.75rem] font-semibold tracking-[-0.03em] sm:text-4xl">
           The motion primitives, in a row.
         </h2>
       </header>
 
-      <div className="grid auto-rows-[14rem] gap-3 md:grid-cols-3 md:auto-rows-[15rem]">
+      <div className="grid auto-rows-[12rem] gap-3 sm:auto-rows-[14rem] md:grid-cols-3 md:auto-rows-[15rem]">
         <FeatureCell
           slug="border-beam"
           title="Border Beam"
@@ -476,8 +488,8 @@ function FeatureCell({
 
 function Footer() {
   return (
-    <footer className="border-t border-white/[0.06] py-10">
-      <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-6 sm:flex-row sm:items-center">
+    <footer className="border-t border-white/[0.06] py-8 sm:py-10">
+      <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-5 px-4 sm:flex-row sm:items-center sm:gap-4 sm:px-6">
         <Link
           href="/"
           className="inline-flex items-center gap-3 transition-opacity hover:opacity-90"
@@ -494,7 +506,8 @@ function Footer() {
             </p>
           </div>
         </Link>
-        <div className="flex items-center gap-5 text-xs text-white/55">
+        {/* flex-wrap so the four links never overflow narrow viewports. */}
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-white/55">
           <Link href="/components/introduction" className="transition-colors hover:text-white">
             Docs
           </Link>
