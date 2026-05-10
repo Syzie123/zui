@@ -66,6 +66,18 @@ export { ViewingOptionsCard } from './patterns/ViewingOptions/ViewingOptions';
 export { ProjectDetailCard } from './patterns/ProjectDetail/ProjectDetail';
 export { SharePanelCard } from './patterns/SharePanel/SharePanel';
 export { FeatureListCard } from './patterns/FeatureList/FeatureList';
+export { SignInCard, type SignInCardProps, type SignInProvider } from './patterns/SignInCard/SignInCard';
+export { LoginSplit, type LoginSplitProps, type LoginSplitVariant } from './patterns/LoginSplit/LoginSplit';
+
+/* ─────────── Brand icons ─────────── */
+export {
+  GoogleIcon,
+  AppleIcon,
+  MicrosoftIcon,
+  FacebookIcon,
+  XIcon,
+  GithubBrandIcon,
+} from './components/icons/brand';
 
 /* ─────────── Hooks & utils ─────────── */
 export { useTheme, type Theme } from './hooks/useTheme';

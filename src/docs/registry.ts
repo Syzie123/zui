@@ -268,6 +268,20 @@ export const DOCS: DocGroup[] = [
         description: 'Recipient list with permission pickers and link sharing.',
         loader: () => import('./pages/patterns/share-panel'),
       },
+      {
+        slug: 'sign-in-card',
+        title: 'Sign In Card',
+        description: 'Stacked sign-in modal with social providers + email + SSO.',
+        isNew: true,
+        loader: () => import('./pages/patterns/sign-in-card'),
+      },
+      {
+        slug: 'login-split',
+        title: 'Login Split',
+        description: 'Side-by-side login layout — clean and glassmorphism variants.',
+        isNew: true,
+        loader: () => import('./pages/patterns/login-split'),
+      },
     ],
   },
 ];

@@ -2,10 +2,9 @@
  * Global animation system — gated by [data-animations="on"]
  * on <html>. Toggle via the header button.
  *
- * Components mark themselves with `data-animate-in` (or one of
- * the fly-from-* variants). When the toggle is OFF, those marks
- * are no-ops. When ON, they animate in with a Framer-Motion-style
- * stagger via :nth-of-type delays.
+ * Tone: subtle, smooth, quick. Tiny distance (4–6px), short
+ * duration (260–340ms), gentle ease-out curve, tight stagger
+ * (~30ms steps). Never spring or bounce.
  * ============================================================ */
 
 /* Default: no animation. Components render instant. */
@@ -19,55 +18,56 @@
 
 /* When animations are ON */
 :root[data-animations='on'] [data-animate-in] {
-  animation: zui-anim-in 520ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation: zui-anim-in 260ms cubic-bezier(0.32, 0.72, 0, 1) backwards;
 }
 
 :root[data-animations='on'] [data-animate-up] {
-  animation: zui-anim-up 600ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation: zui-anim-up 320ms cubic-bezier(0.32, 0.72, 0, 1) backwards;
 }
 
 :root[data-animations='on'] [data-animate-scale] {
-  animation: zui-anim-scale 480ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation: zui-anim-scale 280ms cubic-bezier(0.32, 0.72, 0, 1) backwards;
 }
 
 :root[data-animations='on'] [data-animate-pop] {
-  animation: zui-anim-pop 600ms cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+  animation: zui-anim-pop 320ms cubic-bezier(0.32, 0.72, 0, 1) backwards;
 }
 
-/* Stagger — siblings auto-stagger by their position in their parent */
+/* Stagger — siblings auto-stagger by their position in their parent.
+ * 35ms steps, capped at ~210ms total so a long page doesn't drag. */
 :root[data-animations='on'] [data-animate-in]:nth-of-type(1),
 :root[data-animations='on'] [data-animate-up]:nth-of-type(1),
 :root[data-animations='on'] [data-animate-scale]:nth-of-type(1) { animation-delay:   0ms; }
 :root[data-animations='on'] [data-animate-in]:nth-of-type(2),
 :root[data-animations='on'] [data-animate-up]:nth-of-type(2),
-:root[data-animations='on'] [data-animate-scale]:nth-of-type(2) { animation-delay:  60ms; }
+:root[data-animations='on'] [data-animate-scale]:nth-of-type(2) { animation-delay:  35ms; }
 :root[data-animations='on'] [data-animate-in]:nth-of-type(3),
 :root[data-animations='on'] [data-animate-up]:nth-of-type(3),
-:root[data-animations='on'] [data-animate-scale]:nth-of-type(3) { animation-delay: 120ms; }
+:root[data-animations='on'] [data-animate-scale]:nth-of-type(3) { animation-delay:  70ms; }
 :root[data-animations='on'] [data-animate-in]:nth-of-type(4),
 :root[data-animations='on'] [data-animate-up]:nth-of-type(4),
-:root[data-animations='on'] [data-animate-scale]:nth-of-type(4) { animation-delay: 180ms; }
+:root[data-animations='on'] [data-animate-scale]:nth-of-type(4) { animation-delay: 105ms; }
 :root[data-animations='on'] [data-animate-in]:nth-of-type(5),
 :root[data-animations='on'] [data-animate-up]:nth-of-type(5),
-:root[data-animations='on'] [data-animate-scale]:nth-of-type(5) { animation-delay: 240ms; }
+:root[data-animations='on'] [data-animate-scale]:nth-of-type(5) { animation-delay: 140ms; }
 :root[data-animations='on'] [data-animate-in]:nth-of-type(6),
 :root[data-animations='on'] [data-animate-up]:nth-of-type(6),
-:root[data-animations='on'] [data-animate-scale]:nth-of-type(6) { animation-delay: 300ms; }
-:root[data-animations='on'] [data-animate-in]:nth-of-type(n+7) { animation-delay: 360ms; }
+:root[data-animations='on'] [data-animate-scale]:nth-of-type(6) { animation-delay: 175ms; }
+:root[data-animations='on'] [data-animate-in]:nth-of-type(n+7) { animation-delay: 210ms; }
 
 /* Explicit delay slots (use data-animate-delay="N") */
-[data-animate-delay='1'] { animation-delay:  40ms !important; }
-[data-animate-delay='2'] { animation-delay:  80ms !important; }
-[data-animate-delay='3'] { animation-delay: 120ms !important; }
-[data-animate-delay='4'] { animation-delay: 160ms !important; }
-[data-animate-delay='5'] { animation-delay: 200ms !important; }
-[data-animate-delay='6'] { animation-delay: 280ms !important; }
-[data-animate-delay='7'] { animation-delay: 360ms !important; }
-[data-animate-delay='8'] { animation-delay: 440ms !important; }
+[data-animate-delay='1'] { animation-delay:  35ms !important; }
+[data-animate-delay='2'] { animation-delay:  70ms !important; }
+[data-animate-delay='3'] { animation-delay: 105ms !important; }
+[data-animate-delay='4'] { animation-delay: 140ms !important; }
+[data-animate-delay='5'] { animation-delay: 175ms !important; }
+[data-animate-delay='6'] { animation-delay: 210ms !important; }
+[data-animate-delay='7'] { animation-delay: 245ms !important; }
+[data-animate-delay='8'] { animation-delay: 280ms !important; }
 
 /* ============================================================
- * Keyframes — Framer-Motion-style entrances (transform + opacity
- * only, no layout work). Subtle distance, ease-out cubic.
+ * Keyframes — subtle, transform + opacity only.
+ * Tiny travel distance (4–6px); never enough to feel "thrown".
  * ============================================================ */
 
 @keyframes zui-anim-in {
@@ -76,23 +76,20 @@
 }
 
 @keyframes zui-anim-up {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(6px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes zui-anim-scale {
-  from { opacity: 0; transform: scale(0.96); }
+  from { opacity: 0; transform: scale(0.985); }
   to   { opacity: 1; transform: scale(1); }
 }
 
 @keyframes zui-anim-pop {
-  from { opacity: 0; transform: scale(0.92) translateY(8px); }
-  to   { opacity: 1; transform: scale(1)    translateY(0); }
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
-/* ============================================================
- * Reduced motion — always respected, regardless of toggle.
- * ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   :root[data-animations='on'] [data-animate-in],
   :root[data-animations='on'] [data-animate-up],

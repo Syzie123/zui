@@ -185,9 +185,9 @@ function Hero() {
                 'inline-flex h-12 items-center justify-center gap-2 px-7',
                 'rounded-[var(--radius-lg)] text-base font-semibold tracking-[-0.01em]',
                 'bg-[oklch(64%_0.22_285)] text-white',
-                'shadow-[0_8px_24px_-8px_oklch(64%_0.22_285),inset_0_1px_0_rgb(255_255_255/0.20)]',
-                'transition-all duration-[var(--duration-fast)] ease-[var(--ease-out)]',
-                'hover:brightness-110 hover:shadow-[0_12px_32px_-8px_oklch(64%_0.22_285),inset_0_1px_0_rgb(255_255_255/0.30)]',
+                'shadow-[inset_0_1px_0_rgb(255_255_255/0.14)]',
+                'transition-colors duration-[var(--duration-fast)] ease-[var(--ease-out)]',
+                'hover:bg-[oklch(60%_0.22_285)]',
                 'active:scale-[0.98]',
                 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60'
               )}

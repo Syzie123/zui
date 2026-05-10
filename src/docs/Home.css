@@ -1,7 +1,7 @@
 /* ============================================================
- * Hero entrance animations — always run on landing, regardless
- * of the global toggle. One-shot first impression.
- * Each line staggers by 80ms; spring-y ease-out.
+ * Hero entrance animations — always run on landing.
+ * Subtle: 6px travel, 360ms, ease-out. No blur, no scale,
+ * no bounce. Each line staggers by ~60ms.
  * ============================================================ */
 
 .zui-hero-tag,
@@ -11,28 +11,20 @@
 .zui-hero-install,
 .zui-hero-stats {
   opacity: 0;
-  animation: zui-hero-rise 700ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: zui-hero-rise 380ms cubic-bezier(0.32, 0.72, 0, 1) forwards;
   will-change: transform, opacity;
 }
 
-.zui-hero-tag     { animation-delay:  60ms; }
-.zui-hero-title   { animation-delay: 140ms; animation-duration: 800ms; }
-.zui-hero-body    { animation-delay: 240ms; }
-.zui-hero-cta     { animation-delay: 340ms; }
-.zui-hero-install { animation-delay: 440ms; }
-.zui-hero-stats   { animation-delay: 560ms; }
+.zui-hero-tag     { animation-delay:  40ms; }
+.zui-hero-title   { animation-delay: 100ms; animation-duration: 440ms; }
+.zui-hero-body    { animation-delay: 180ms; }
+.zui-hero-cta     { animation-delay: 240ms; }
+.zui-hero-install { animation-delay: 300ms; }
+.zui-hero-stats   { animation-delay: 360ms; }
 
 @keyframes zui-hero-rise {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-    filter: blur(2px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @media (prefers-reduced-motion: reduce) {

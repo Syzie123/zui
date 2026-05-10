@@ -159,8 +159,8 @@
   --sidebar-bg:           oklch(4% 0 0);
   --sidebar-fg:           var(--color-fg-base);
   --sidebar-fg-muted:     var(--color-fg-muted);
-  --sidebar-border:       oklch(99% 0 0 / 0.06);
-  --sidebar-accent:       oklch(99% 0 0 / 0.05);
+  --sidebar-border:       oklch(99% 0 0 / 0.10);
+  --sidebar-accent:       oklch(99% 0 0 / 0.08);
   --sidebar-accent-fg:    var(--color-fg-base);
 }
 
@@ -181,10 +181,12 @@
   --color-fg-on-accent:   oklch(99%   0     0);
   --color-fg-on-inverse:  oklch(0%    0     0);
 
-  /* Hairline borders — translucent white reads better on pure black */
-  --color-border-base:    oklch(99% 0 0 / 0.08);
-  --color-border-strong:  oklch(99% 0 0 / 0.15);
-  --color-border-subtle:  oklch(99% 0 0 / 0.05);
+  /* Hairline borders — translucent white. Bumped from 0.08/0.15
+   * so cards + inputs + segmented controls are clearly delineated
+   * against pure-black surfaces. */
+  --color-border-base:    oklch(99% 0 0 / 0.13);
+  --color-border-strong:  oklch(99% 0 0 / 0.22);
+  --color-border-subtle:  oklch(99% 0 0 / 0.08);
 
   --color-accent-base:    oklch(72%   0.22  285);
   --color-accent-hover:   oklch(78%   0.22  285);

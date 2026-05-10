@@ -29,17 +29,14 @@ const buttonStyles = cva(
       variant: {
         primary: [
           'bg-[var(--color-accent-base)] text-[var(--color-accent-fg)]',
-          'shadow-[0_1px_2px_-1px_rgb(16_24_40_/_0.10),inset_0_1px_0_0_rgb(255_255_255_/_0.14)]',
+          'shadow-[inset_0_1px_0_0_rgb(255_255_255_/_0.10)]',
           'hover:bg-[var(--color-accent-hover)]',
-          'hover:shadow-[0_4px_12px_-4px_var(--color-accent-base),inset_0_1px_0_0_rgb(255_255_255_/_0.18)]',
           'active:bg-[var(--color-accent-active)]',
         ],
         secondary: [
           'bg-[var(--color-bg-elevated)] text-[var(--color-fg-base)]',
           'border border-[var(--color-border-base)]',
-          'shadow-[var(--shadow-xs)]',
           'hover:bg-[var(--color-bg-subtle)] hover:border-[var(--color-border-strong)]',
-          'hover:shadow-[var(--shadow-sm)]',
         ],
         ghost: [
           'bg-transparent text-[var(--color-fg-base)]',
@@ -47,9 +44,8 @@ const buttonStyles = cva(
         ],
         destructive: [
           'bg-[var(--color-danger)] text-white',
-          'shadow-[0_1px_2px_-1px_rgb(16_24_40_/_0.10),inset_0_1px_0_0_rgb(255_255_255_/_0.12)]',
+          'shadow-[inset_0_1px_0_0_rgb(255_255_255_/_0.10)]',
           'hover:bg-[var(--color-danger-hover)]',
-          'hover:shadow-[0_4px_12px_-4px_var(--color-danger),inset_0_1px_0_0_rgb(255_255_255_/_0.18)]',
         ],
         outline: [
           'bg-transparent text-[var(--color-fg-base)]',
