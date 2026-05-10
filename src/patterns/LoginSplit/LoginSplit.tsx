@@ -20,10 +20,18 @@ import {
 
 export type LoginSplitVariant = 'clean' | 'glass';
 
+export type LoginSplitMode = 'login' | 'signup';
+
 export interface LoginSplitProps {
   /** Image URL for the hero panel (Unsplash defaults provided). */
   imageUrl?: string;
   variant?: LoginSplitVariant;
+  /** Form mode. Defaults to 'login'. Pass `mode` for controlled state. */
+  defaultMode?: LoginSplitMode;
+  mode?: LoginSplitMode;
+  onModeChange?: (m: LoginSplitMode) => void;
+  /** Show the Login / Sign Up tab toggle above the form. */
+  showModeTabs?: boolean;
   /** Welcome heading copy. */
   title?: string;
   subtitle?: string;
@@ -38,8 +46,10 @@ export interface LoginSplitProps {
   /** OAuth providers to show below the form. */
   providers?: ('google' | 'apple' | 'facebook')[];
   onProvider?: (p: string) => void;
-  /** Form submit. */
+  /** Form submit (login mode). */
   onLogin?: (creds: { email: string; password: string }) => void;
+  /** Form submit (signup mode). */
+  onSignup?: (creds: { name: string; email: string; password: string }) => void;
   /** Footer "Don't have an account?" link. */
   onSignUp?: () => void;
   className?: string;
@@ -53,8 +63,12 @@ const DEFAULT_IMG_GLASS =
 export function LoginSplit({
   variant = 'clean',
   imageUrl,
-  title = 'Welcome back!',
-  subtitle = 'Sign in to your account',
+  defaultMode = 'login',
+  mode: controlledMode,
+  onModeChange,
+  showModeTabs = true,
+  title,
+  subtitle,
   imageCaption = 'Find your sweet home',
   imageCaptionSub = 'Schedule visits in just a few clicks',
   testimonial,
@@ -63,15 +77,35 @@ export function LoginSplit({
   providers = ['google', 'apple', 'facebook'],
   onProvider,
   onLogin,
+  onSignup,
   onSignUp,
   className,
 }: LoginSplitProps) {
+  const [internalMode, setInternalMode] = useState<LoginSplitMode>(defaultMode);
+  const mode = controlledMode ?? internalMode;
+  const setMode = (m: LoginSplitMode) => {
+    if (controlledMode === undefined) setInternalMode(m);
+    onModeChange?.(m);
+  };
+
+  // Sensible defaults per mode
+  const resolvedTitle =
+    title ?? (mode === 'login' ? 'Welcome back!' : 'Create your account');
+  const resolvedSubtitle =
+    subtitle ??
+    (mode === 'login'
+      ? 'Sign in to your account'
+      : 'Start your journey in seconds');
+
   if (variant === 'glass') {
     return (
       <GlassVariant
         imageUrl={imageUrl ?? DEFAULT_IMG_GLASS}
-        title={title}
-        subtitle={subtitle}
+        title={resolvedTitle}
+        subtitle={resolvedSubtitle}
+        mode={mode}
+        setMode={setMode}
+        showModeTabs={showModeTabs}
         testimonial={
           testimonial ?? {
             quote:
@@ -83,6 +117,7 @@ export function LoginSplit({
         providers={providers}
         onProvider={onProvider}
         onLogin={onLogin}
+        onSignup={onSignup}
         onSignUp={onSignUp}
         className={className}
       />
@@ -92,8 +127,11 @@ export function LoginSplit({
   return (
     <CleanVariant
       imageUrl={imageUrl ?? DEFAULT_IMG_CLEAN}
-      title={title}
-      subtitle={subtitle}
+      title={resolvedTitle}
+      subtitle={resolvedSubtitle}
+      mode={mode}
+      setMode={setMode}
+      showModeTabs={showModeTabs}
       imageCaption={imageCaption}
       imageCaptionSub={imageCaptionSub}
       brand={brand}
@@ -101,6 +139,7 @@ export function LoginSplit({
       providers={providers}
       onProvider={onProvider}
       onLogin={onLogin}
+      onSignup={onSignup}
       onSignUp={onSignUp}
       className={className}
     />
@@ -111,10 +150,32 @@ export function LoginSplit({
  * Clean variant — image left panel, form right panel.
  * ──────────────────────────────────────────────────────────── */
 
+interface CleanVariantInner {
+  imageUrl: string;
+  title: string;
+  subtitle: string;
+  mode: LoginSplitMode;
+  setMode: (m: LoginSplitMode) => void;
+  showModeTabs: boolean;
+  imageCaption: string;
+  imageCaptionSub: string;
+  brand: string;
+  providers: ('google' | 'apple' | 'facebook')[];
+  brandLogo?: ReactNode;
+  onProvider?: (p: string) => void;
+  onLogin?: (creds: { email: string; password: string }) => void;
+  onSignup?: (creds: { name: string; email: string; password: string }) => void;
+  onSignUp?: () => void;
+  className?: string;
+}
+
 function CleanVariant({
   imageUrl,
   title,
   subtitle,
+  mode,
+  setMode,
+  showModeTabs,
   imageCaption,
   imageCaptionSub,
   brand,
@@ -122,21 +183,10 @@ function CleanVariant({
   providers,
   onProvider,
   onLogin,
+  onSignup,
   onSignUp,
   className,
-}: Required<
-  Pick<
-    LoginSplitProps,
-    | 'imageUrl'
-    | 'title'
-    | 'subtitle'
-    | 'imageCaption'
-    | 'imageCaptionSub'
-    | 'brand'
-    | 'providers'
-  >
-> &
-  Pick<LoginSplitProps, 'brandLogo' | 'onProvider' | 'onLogin' | 'onSignUp' | 'className'>) {
+}: CleanVariantInner) {
   return (
     <div
       className={cn(
@@ -146,7 +196,8 @@ function CleanVariant({
         className
       )}
     >
-      {/* Left — image panel */}
+      {/* Left — image panel. Brand + caption rendered in BLACK over a soft
+          white wash for legibility against any photo. */}
       <div
         className="relative hidden min-h-[28rem] overflow-hidden lg:block"
         style={{
@@ -155,22 +206,24 @@ function CleanVariant({
           backgroundPosition: 'center',
         }}
       >
-        {/* Brand */}
-        <div className="absolute left-6 top-6 z-10 flex items-center gap-2 text-white">
+        {/* Brand — black text in a small white pill */}
+        <div className="absolute left-6 top-6 z-10 flex items-center gap-2 rounded-full bg-white/85 px-3 py-1.5 backdrop-blur-md">
           {brandLogo ?? (
-            <span className="grid size-8 place-items-center rounded-full bg-white text-[oklch(15%_0_0)] font-bold">
+            <span className="grid size-6 place-items-center rounded-full bg-[oklch(15%_0_0)] text-white text-[11px] font-bold">
               ◆
             </span>
           )}
-          <span className="font-display text-lg font-bold">{brand}</span>
+          <span className="font-display text-sm font-bold text-[oklch(15%_0_0)]">
+            {brand}
+          </span>
         </div>
 
-        {/* Bottom caption */}
-        <div className="absolute inset-x-0 bottom-0 p-8 text-white">
-          <p className="font-display text-3xl font-bold tracking-[-0.02em]">
+        {/* Bottom caption — black text on a soft white panel */}
+        <div className="absolute inset-x-4 bottom-4 rounded-[var(--radius-xl)] bg-white/85 p-5 backdrop-blur-md">
+          <p className="font-display text-2xl font-bold tracking-[-0.02em] text-[oklch(15%_0_0)]">
             {imageCaption}
           </p>
-          <p className="mt-1 text-sm text-white/85">{imageCaptionSub}</p>
+          <p className="mt-1 text-sm text-[oklch(35%_0_0)]">{imageCaptionSub}</p>
         </div>
       </div>
 
@@ -178,11 +231,14 @@ function CleanVariant({
       <FormPanel
         title={title}
         subtitle={subtitle}
+        mode={mode}
+        setMode={setMode}
+        showModeTabs={showModeTabs}
         providers={providers}
         onProvider={onProvider}
         onLogin={onLogin}
+        onSignup={onSignup}
         onSignUp={onSignUp}
-        signInButton="Login"
       />
     </div>
   );
@@ -192,18 +248,37 @@ function CleanVariant({
  * Glass variant — form panel left, image with glass testimonial right.
  * ──────────────────────────────────────────────────────────── */
 
+interface GlassVariantInner {
+  imageUrl: string;
+  title: string;
+  subtitle: string;
+  mode: LoginSplitMode;
+  setMode: (m: LoginSplitMode) => void;
+  showModeTabs: boolean;
+  testimonial?: { quote: string; name: string; role: string };
+  providers: ('google' | 'apple' | 'facebook')[];
+  onProvider?: (p: string) => void;
+  onLogin?: (creds: { email: string; password: string }) => void;
+  onSignup?: (creds: { name: string; email: string; password: string }) => void;
+  onSignUp?: () => void;
+  className?: string;
+}
+
 function GlassVariant({
   imageUrl,
   title,
   subtitle,
+  mode,
+  setMode,
+  showModeTabs,
   testimonial,
   providers,
   onProvider,
   onLogin,
+  onSignup,
   onSignUp,
   className,
-}: Required<Pick<LoginSplitProps, 'imageUrl' | 'title' | 'subtitle' | 'providers'>> &
-  Pick<LoginSplitProps, 'testimonial' | 'onProvider' | 'onLogin' | 'onSignUp' | 'className'>) {
+}: GlassVariantInner) {
   return (
     <div
       className={cn(
@@ -217,11 +292,14 @@ function GlassVariant({
       <FormPanel
         title={title}
         subtitle={subtitle}
+        mode={mode}
+        setMode={setMode}
+        showModeTabs={showModeTabs}
         providers={providers}
         onProvider={onProvider}
         onLogin={onLogin}
+        onSignup={onSignup}
         onSignUp={onSignUp}
-        signInButton="Log In"
         compact
       />
 
@@ -259,11 +337,14 @@ function GlassVariant({
 interface FormPanelProps {
   title: string;
   subtitle: string;
+  mode: LoginSplitMode;
+  setMode: (m: LoginSplitMode) => void;
+  showModeTabs: boolean;
   providers: ('google' | 'apple' | 'facebook')[];
   onProvider?: (p: string) => void;
   onLogin?: (creds: { email: string; password: string }) => void;
+  onSignup?: (creds: { name: string; email: string; password: string }) => void;
   onSignUp?: () => void;
-  signInButton: string;
   compact?: boolean;
 }
 
@@ -279,30 +360,65 @@ const PROVIDER_META: Record<
 function FormPanel({
   title,
   subtitle,
+  mode,
+  setMode,
+  showModeTabs,
   providers,
   onProvider,
   onLogin,
+  onSignup,
   onSignUp,
-  signInButton,
   compact,
 }: FormPanelProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [remember, setRemember] = useState(true);
+  const [acceptTerms, setAcceptTerms] = useState(false);
+
+  const isLogin = mode === 'login';
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (isLogin) onLogin?.({ email, password });
+    else onSignup?.({ name, email, password });
+  };
 
   return (
     <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        onLogin?.({ email, password });
-      }}
+      onSubmit={handleSubmit}
       className={cn(
         'flex flex-col justify-center bg-[var(--color-bg-elevated)] text-[var(--color-fg-base)]',
         compact ? 'p-8 sm:p-10' : 'p-8 sm:p-12'
       )}
     >
       <div className={cn('mx-auto w-full', compact ? 'max-w-sm' : 'max-w-md')}>
+        {/* Mode tabs */}
+        {showModeTabs && (
+          <div className="mx-auto mb-6 inline-flex items-center rounded-full border border-[var(--color-border-base)] bg-[var(--color-bg-subtle)] p-1">
+            {(['login', 'signup'] as LoginSplitMode[]).map((m) => {
+              const active = mode === m;
+              return (
+                <button
+                  key={m}
+                  type="button"
+                  onClick={() => setMode(m)}
+                  className={cn(
+                    'inline-flex h-8 items-center rounded-full px-4 text-[13px] font-semibold',
+                    'transition-colors',
+                    active
+                      ? 'bg-[var(--color-bg-elevated)] text-[var(--color-fg-base)] shadow-[var(--shadow-xs)]'
+                      : 'text-[var(--color-fg-muted)] hover:text-[var(--color-fg-base)]'
+                  )}
+                >
+                  {m === 'login' ? 'Login' : 'Sign Up'}
+                </button>
+              );
+            })}
+          </div>
+        )}
+
         {/* Header */}
         <div className="text-center">
           <h2 className="font-display text-2xl font-bold tracking-[-0.02em] sm:text-[28px]">
@@ -311,8 +427,30 @@ function FormPanel({
           <p className="mt-1.5 text-sm text-[var(--color-fg-muted)]">{subtitle}</p>
         </div>
 
+        {/* Name field — signup only */}
+        {!isLogin && (
+          <>
+            <label className="mt-7 block text-[13px] font-medium text-[var(--color-fg-base)]">
+              Full name
+            </label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Jane Doe"
+              autoComplete="name"
+              className={inputCls}
+            />
+          </>
+        )}
+
         {/* Email */}
-        <label className="mt-7 block text-[13px] font-medium text-[var(--color-fg-base)]">
+        <label
+          className={cn(
+            'block text-[13px] font-medium text-[var(--color-fg-base)]',
+            isLogin ? 'mt-7' : 'mt-4'
+          )}
+        >
           Email address
         </label>
         <input
@@ -320,24 +458,21 @@ function FormPanel({
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter your email address"
-          className={cn(
-            'mt-1.5 block h-11 w-full rounded-[var(--radius-lg)] px-3.5 text-sm',
-            'border border-[var(--color-border-base)] bg-[var(--color-bg-elevated)]',
-            'placeholder:text-[var(--color-fg-subtle)]',
-            'transition-colors outline-none',
-            'focus:border-[var(--color-fg-base)]'
-          )}
+          autoComplete="email"
+          className={inputCls}
         />
 
         {/* Password */}
         <div className="mt-4 flex items-center justify-between">
           <label className="text-[13px] font-medium">Password</label>
-          <button
-            type="button"
-            className="text-[13px] font-medium text-[var(--color-fg-muted)] hover:text-[var(--color-fg-base)]"
-          >
-            Forgot password?
-          </button>
+          {isLogin && (
+            <button
+              type="button"
+              className="text-[13px] font-medium text-[var(--color-fg-muted)] hover:text-[var(--color-fg-base)]"
+            >
+              Forgot password?
+            </button>
+          )}
         </div>
         <div
           className={cn(
@@ -351,7 +486,8 @@ function FormPanel({
             type={showPassword ? 'text' : 'password'}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter your password"
+            placeholder={isLogin ? 'Enter your password' : 'At least 8 characters'}
+            autoComplete={isLogin ? 'current-password' : 'new-password'}
             className="h-full w-full bg-transparent text-sm outline-none placeholder:text-[var(--color-fg-subtle)]"
           />
           <button
@@ -364,27 +500,51 @@ function FormPanel({
           </button>
         </div>
 
-        {/* Remember + submit */}
-        <label className="mt-4 flex items-center gap-2 text-[13px]">
-          <input
-            type="checkbox"
-            checked={remember}
-            onChange={(e) => setRemember(e.target.checked)}
-            className="size-4 rounded-[3px] border border-[var(--color-border-strong)] bg-[var(--color-bg-elevated)] accent-[var(--color-fg-base)]"
-          />
-          Remember me
-        </label>
+        {/* Login: Remember me. Signup: Accept terms. */}
+        {isLogin ? (
+          <label className="mt-4 flex items-center gap-2 text-[13px]">
+            <input
+              type="checkbox"
+              checked={remember}
+              onChange={(e) => setRemember(e.target.checked)}
+              className="size-4 rounded-[3px] border border-[var(--color-border-strong)] bg-[var(--color-bg-elevated)] accent-[var(--color-fg-base)]"
+            />
+            Remember me
+          </label>
+        ) : (
+          <label className="mt-4 flex items-start gap-2 text-[13px] leading-snug">
+            <input
+              type="checkbox"
+              checked={acceptTerms}
+              onChange={(e) => setAcceptTerms(e.target.checked)}
+              className="mt-0.5 size-4 rounded-[3px] border border-[var(--color-border-strong)] bg-[var(--color-bg-elevated)] accent-[var(--color-fg-base)]"
+            />
+            <span className="text-[var(--color-fg-muted)]">
+              I agree to the{' '}
+              <span className="font-medium text-[var(--color-fg-base)] underline underline-offset-4">
+                Terms of Service
+              </span>{' '}
+              and{' '}
+              <span className="font-medium text-[var(--color-fg-base)] underline underline-offset-4">
+                Privacy Policy
+              </span>
+              .
+            </span>
+          </label>
+        )}
 
         <button
           type="submit"
+          disabled={!isLogin && !acceptTerms}
           className={cn(
             'mt-5 inline-flex h-11 w-full items-center justify-center rounded-[var(--radius-lg)]',
             'bg-[var(--color-fg-base)] text-[var(--color-bg-base)]',
             'text-sm font-semibold tracking-[-0.005em]',
-            'transition-colors hover:opacity-90'
+            'transition-colors hover:opacity-90',
+            'disabled:opacity-50 disabled:cursor-not-allowed'
           )}
         >
-          {signInButton}
+          {isLogin ? 'Login' : 'Create account'}
         </button>
 
         {/* Divider */}
@@ -417,20 +577,29 @@ function FormPanel({
           })}
         </div>
 
-        {/* Sign up footer */}
-        {onSignUp && (
-          <p className="mt-6 text-center text-[13px] text-[var(--color-fg-muted)]">
-            Don't have any account?{' '}
-            <button
-              type="button"
-              onClick={onSignUp}
-              className="font-semibold text-[var(--color-fg-base)] underline underline-offset-4 hover:opacity-80"
-            >
-              Register
-            </button>
-          </p>
-        )}
+        {/* Footer link — switches mode if tabs are off, calls onSignUp otherwise */}
+        <p className="mt-6 text-center text-[13px] text-[var(--color-fg-muted)]">
+          {isLogin ? "Don't have an account? " : 'Already have an account? '}
+          <button
+            type="button"
+            onClick={() => {
+              if (showModeTabs) setMode(isLogin ? 'signup' : 'login');
+              else onSignUp?.();
+            }}
+            className="font-semibold text-[var(--color-fg-base)] underline underline-offset-4 hover:opacity-80"
+          >
+            {isLogin ? 'Sign up' : 'Sign in'}
+          </button>
+        </p>
       </div>
     </form>
   );
 }
+
+const inputCls = cn(
+  'mt-1.5 block h-11 w-full rounded-[var(--radius-lg)] px-3.5 text-sm',
+  'border border-[var(--color-border-base)] bg-[var(--color-bg-elevated)]',
+  'placeholder:text-[var(--color-fg-subtle)]',
+  'transition-colors outline-none',
+  'focus:border-[var(--color-fg-base)]'
+);

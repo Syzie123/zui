@@ -24,6 +24,41 @@ const PROVIDER_META: Record<
   facebook:  { label: 'Sign In with Facebook',  icon: (c) => <FacebookIcon className={c} /> },
 };
 
+/* ─────────── Gradient presets ─────────── */
+export type SignInGradient =
+  | 'sunset'
+  | 'ocean'
+  | 'aurora'
+  | 'magma'
+  | 'forest'
+  | 'midnight';
+
+export interface CustomGradient {
+  /** Full CSS `background` string. Overrides preset entirely. */
+  background: string;
+}
+
+const GRADIENT_PRESETS: Record<SignInGradient, string> = {
+  // Coral / pink / magenta — the original Kapwing-style warm wash
+  sunset:
+    'radial-gradient(120% 80% at 30% 0%, oklch(72% 0.20 30) 0%, oklch(60% 0.25 15) 55%, oklch(55% 0.24 350) 100%)',
+  // Teal / cyan / deep blue — cool aquatic
+  ocean:
+    'radial-gradient(120% 80% at 70% 0%, oklch(72% 0.18 200) 0%, oklch(55% 0.20 230) 55%, oklch(35% 0.18 260) 100%)',
+  // Green → cyan → violet — northern lights
+  aurora:
+    'radial-gradient(140% 90% at 30% 100%, oklch(70% 0.20 145) 0%, oklch(64% 0.20 200) 45%, oklch(55% 0.22 290) 100%)',
+  // Red / orange / amber — high-energy
+  magma:
+    'radial-gradient(140% 100% at 50% 100%, oklch(50% 0.22 25) 0%, oklch(65% 0.22 50) 60%, oklch(78% 0.16 75) 100%)',
+  // Emerald / teal — moody, organic
+  forest:
+    'radial-gradient(140% 100% at 30% 0%, oklch(58% 0.18 145) 0%, oklch(40% 0.15 165) 60%, oklch(28% 0.10 200) 100%)',
+  // Violet / indigo — late-night
+  midnight:
+    'radial-gradient(140% 100% at 70% 0%, oklch(40% 0.20 285) 0%, oklch(25% 0.16 270) 55%, oklch(15% 0.10 250) 100%)',
+};
+
 export interface SignInCardProps {
   title?: string;
   subtitle?: string;
@@ -41,10 +76,16 @@ export interface SignInCardProps {
   onClose?: () => void;
   /**
    * Visual variant.
-   *  - "gradient" — bright multi-stop background (Kapwing-style).
-   *  - "clean" — neutral surface, dark in dark mode.
+   *  - "gradient" — bright multi-stop background. Pick a preset via `gradient`.
+   *  - "clean" — neutral surface, follows the active theme.
    */
   variant?: 'gradient' | 'clean';
+  /**
+   * Gradient preset (when variant="gradient"). Pass an object with
+   * `background` to use a fully custom CSS background.
+   * @default "sunset"
+   */
+  gradient?: SignInGradient | CustomGradient;
   className?: string;
 }
 
@@ -58,18 +99,26 @@ export function SignInCard({
   legal,
   onClose,
   variant = 'gradient',
+  gradient = 'sunset',
   className,
 }: SignInCardProps) {
   const [email, setEmail] = useState('');
   const isGradient = variant === 'gradient';
 
+  // Resolve gradient: preset string → CSS background; object → use as-is.
+  const gradientBg =
+    typeof gradient === 'string'
+      ? GRADIENT_PRESETS[gradient]
+      : gradient.background;
+
   return (
     <div
+      style={isGradient ? { background: gradientBg } : undefined}
       className={cn(
         'relative w-full max-w-md overflow-hidden p-7 sm:p-9',
         'rounded-[var(--radius-2xl)]',
         isGradient
-          ? 'text-white bg-[radial-gradient(120%_80%_at_30%_0%,oklch(72%_0.20_30)_0%,oklch(60%_0.25_15)_55%,oklch(55%_0.24_350)_100%)]'
+          ? 'text-white'
           : 'bg-[var(--color-bg-elevated)] text-[var(--color-fg-base)] border border-[var(--color-border-base)]',
         className
       )}

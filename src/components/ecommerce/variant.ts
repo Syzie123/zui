@@ -28,7 +28,7 @@ export const ctaByVariant: Record<EcommerceVariant, string> = {
   material:
     'rounded-[8px] bg-[oklch(54%_0.22_265)] text-white hover:bg-[oklch(50%_0.22_265)] shadow-[0_1px_3px_rgb(0_0_0/0.20)]',
   brutal:
-    'rounded-none bg-[oklch(86%_0.18_140)] text-[var(--color-fg-base)] border-[2.5px] border-[var(--color-fg-base)] shadow-[3px_3px_0_0_var(--color-fg-base)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_0_var(--color-fg-base)] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none',
+    'rounded-none bg-[oklch(86%_0.18_140)] text-[oklch(12%_0_0)] border-[2.5px] border-[oklch(12%_0_0)] shadow-[3px_3px_0_0_oklch(12%_0_0)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_0_oklch(12%_0_0)] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none',
 };
 
 /** Per-variant inner radius (for image, input, sub-card). */

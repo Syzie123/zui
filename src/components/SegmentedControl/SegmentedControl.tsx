@@ -189,8 +189,11 @@ const Item = forwardRef<HTMLButtonElement, ItemProps>(function SegmentedItem(
         'cursor-pointer outline-none select-none',
         'transition-colors duration-[260ms] ease-[cubic-bezier(0.32,0.72,0,1)]',
         sizeClasses[ctx.size],
+        // Note: don't change font-weight on active — the width shift
+        // breaks the thumb's measure-and-translate. White-on-dark pill
+        // already provides plenty of emphasis.
         active
-          ? 'text-[var(--segmented-thumb-fg)] font-semibold'
+          ? 'text-[var(--segmented-thumb-fg)]'
           : 'text-[var(--color-fg-muted)] hover:text-[var(--color-fg-base)]',
         'focus-visible:shadow-[var(--shadow-focus)]',
         'disabled:opacity-50 disabled:cursor-not-allowed',

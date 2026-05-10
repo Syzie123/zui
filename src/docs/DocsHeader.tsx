@@ -16,7 +16,9 @@ const THEME_ICON: Record<Theme, JSX.Element> = {
 };
 
 const TOP_NAV = [
-  { href: '/components/button', label: 'Components' },
+  { href: '/components/button',        label: 'Components' },
+  { href: '/components/filter-panel',  label: 'Patterns' },
+  { href: '/components/product-card',  label: 'Ecommerce' },
 ];
 
 interface Props {
@@ -71,25 +73,23 @@ export function DocsHeader({
           </Link>
         )}
 
-        {/* Top nav — only on home */}
-        {!showSidebarTrigger && (
-          <nav className="hidden items-center gap-1 md:flex">
-            {TOP_NAV.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className={cn(
-                  'rounded-[var(--radius-md)] px-3 py-1.5 text-sm font-medium',
-                  'text-[var(--color-fg-muted)]',
-                  'transition-colors duration-[var(--duration-fast)]',
-                  'hover:bg-[var(--color-bg-subtle)] hover:text-[var(--color-fg-base)]'
-                )}
-              >
-                {l.label}
-              </Link>
-            ))}
-          </nav>
-        )}
+        {/* Top nav — visible on both home + doc pages (covers all groups) */}
+        <nav className="hidden items-center gap-1 md:flex">
+          {TOP_NAV.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className={cn(
+                'rounded-[var(--radius-md)] px-3 py-1.5 text-sm font-medium',
+                'text-[var(--color-fg-muted)]',
+                'transition-colors duration-[var(--duration-fast)]',
+                'hover:bg-[var(--color-bg-subtle)] hover:text-[var(--color-fg-base)]'
+              )}
+            >
+              {l.label}
+            </Link>
+          ))}
+        </nav>
 
         {/* Search */}
         <div className="ml-auto flex items-center gap-2">

@@ -1,5 +1,6 @@
 import { Sidebar } from '../components/Sidebar';
 import { DOCS } from './registry';
+import { useActiveAnchors } from './anchors';
 import { Link } from '../hooks/useHashRoute';
 import { cn } from '../utils/cn';
 
@@ -13,8 +14,14 @@ interface Props {
 /**
  * The doc-site sidebar contents. Wrap with <Sidebar> in the layout.
  * Each group becomes a Sidebar.Group with its own label + menu.
+ *
+ * When a page is the active one, its H2 anchors render below the link
+ * as nested clickable sub-nodes — synced from DocsTOC via the shared
+ * `useActiveAnchors()` hook.
  */
 export function DocsSidebarBody({ activeSlug, onNavigate }: Props) {
+  const { slug: anchorSlug, anchors } = useActiveAnchors();
+
   return (
     <Sidebar.Content>
       {DOCS.map((group) => (
@@ -24,6 +31,9 @@ export function DocsSidebarBody({ activeSlug, onNavigate }: Props) {
             <Sidebar.Menu>
               {group.pages.map((p) => {
                 const active = p.slug === activeSlug;
+                const showAnchors =
+                  active && anchorSlug === activeSlug && anchors.length > 0;
+
                 return (
                   <Sidebar.MenuItem key={p.slug}>
                     <Sidebar.MenuButton
@@ -34,9 +44,7 @@ export function DocsSidebarBody({ activeSlug, onNavigate }: Props) {
                       <Link
                         href={`/components/${p.slug}`}
                         onClick={() => onNavigate?.()}
-                        className={cn(
-                          'flex w-full items-center justify-between gap-2'
-                        )}
+                        className="flex w-full items-center justify-between gap-2"
                       >
                         <span className="truncate">{p.title}</span>
                         {p.isNew && (
@@ -46,6 +54,47 @@ export function DocsSidebarBody({ activeSlug, onNavigate }: Props) {
                         )}
                       </Link>
                     </Sidebar.MenuButton>
+
+                    {/* Sub-anchors — only for the active page */}
+                    {showAnchors && (
+                      <ul
+                        className={cn(
+                          'mt-1 ml-3 flex flex-col gap-0.5 border-l',
+                          'border-[var(--sidebar-border)]',
+                          'group-data-[collapsible=icon]:hidden'
+                        )}
+                      >
+                        {anchors
+                          .filter((a) => a.level === 2)
+                          .map((a) => (
+                            <li key={a.id}>
+                              <a
+                                href={`#${a.id}`}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  const el = document.getElementById(a.id);
+                                  if (el) {
+                                    el.scrollIntoView({
+                                      behavior: 'smooth',
+                                      block: 'start',
+                                    });
+                                    history.replaceState(null, '', `#${a.id}`);
+                                  }
+                                  onNavigate?.();
+                                }}
+                                className={cn(
+                                  '-ml-px block border-l-2 border-transparent py-1 pl-3',
+                                  'text-[12px] text-[var(--sidebar-fg-muted)]',
+                                  'transition-colors',
+                                  'hover:border-[var(--sidebar-fg-muted)] hover:text-[var(--sidebar-fg)]'
+                                )}
+                              >
+                                {a.text}
+                              </a>
+                            </li>
+                          ))}
+                      </ul>
+                    )}
                   </Sidebar.MenuItem>
                 );
               })}

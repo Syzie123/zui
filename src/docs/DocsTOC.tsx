@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { cn } from '../utils/cn';
+import { setActiveAnchors, type DocAnchor } from './anchors';
 
 interface TOCItem {
   id: string;
@@ -55,6 +56,9 @@ export function DocsTOC({
       });
       setItems(collected);
       setActive(collected[0]?.id ?? null);
+
+      // Publish to the shared pub/sub so the sidebar can render sub-nodes.
+      if (slug) setActiveAnchors(slug, collected as DocAnchor[]);
 
       io?.disconnect();
       io = new IntersectionObserver(
