@@ -1,0 +1,59 @@
+{
+  "name": "@zui.react/mcp",
+  "version": "0.8.0",
+  "description": "MCP server for the ZUI React component library — exposes 22 components, 27 patterns, 6 effects, 35 inline brand & AI-IDE icons to Claude Code, Cursor, Windsurf, Continue, Zed, Replit Agent, VS Code Copilot and Antigravity.",
+  "mcpName": "io.github.zui-react/mcp",
+  "type": "module",
+  "license": "MIT",
+  "author": "syeddd",
+  "homepage": "https://github.com/Syzie123/zui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Syzie123/zui.git",
+    "directory": "packages/mcp"
+  },
+  "bugs": {
+    "url": "https://github.com/Syzie123/zui/issues"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "zui",
+    "react",
+    "components",
+    "design-system",
+    "claude-code",
+    "cursor",
+    "windsurf",
+    "ai-coding"
+  ],
+  "main": "./dist/index.js",
+  "bin": {
+    "zui-mcp": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "data",
+    "README.md",
+    "server.json"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx src/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

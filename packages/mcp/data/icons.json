@@ -1,0 +1,276 @@
+[
+  {
+    "name": "GoogleIcon",
+    "importPath": "@zui.react/zui",
+    "tags": [
+      "icon",
+      "svg",
+      "google",
+      "social"
+    ]
+  },
+  {
+    "name": "AppleIcon",
+    "importPath": "@zui.react/zui",
+    "tags": [
+      "icon",
+      "svg",
+      "apple",
+      "social"
+    ]
+  },
+  {
+    "name": "MicrosoftIcon",
+    "importPath": "@zui.react/zui",
+    "tags": [
+      "icon",
+      "svg",
+      "microsoft",
+      "social"
+    ]
+  },
+  {
+    "name": "FacebookIcon",
+    "importPath": "@zui.react/zui",
+    "tags": [
+      "icon",
+      "svg",
+      "facebook",
+      "social"
+    ]
+  },
+  {
+    "name": "XIcon",
+    "importPath": "@zui.react/zui",
+    "tags": [
+      "icon",
+      "svg",
+      "x",
+      "social"
+    ]
+  },
+  {
+    "name": "GithubBrandIcon",
+    "importPath": "@zui.react/zui",
+    "tags": [
+      "icon",
+      "svg",
+      "githubbrand",
+      "social"
+    ]
+  },
+  {
+    "name": "OpenAIIcon",
+    "importPath": "@zui.react/zui",
+    "tags": [
+      "icon",
+      "svg",
+      "openai",
+      "ai"
+    ]
+  },
+  {
+    "name": "AnthropicIcon",
+    "importPath": "@zui.react/zui",
+    "tags": [
+      "icon",
+      "svg",
+      "anthropic",
+      "ai"
+    ]
+  },
+  {
+    "name": "ZoomIcon",
+    "importPath": "@zui.react/zui",
+    "tags": [
+      "icon",
+      "svg",
+      "zoom",
+      "ide",
+      "tool"
+    ]
+  },
+  {
+    "name": "SlackIcon",
+    "importPath": "@zui.react/zui",
+    "tags": [
+      "icon",
+      "svg",
+      "slack",
+      "ide",
+      "tool"
+    ]
+  },
+  {
+    "name": "FramerIcon",
+    "importPath": "@zui.react/zui",
+    "tags": [
+      "icon",
+      "svg",
+      "framer",
+      "ide",
+      "tool"
+    ]
+  },
+  {
+    "name": "LoomIcon",
+    "importPath": "@zui.react/zui",
+    "tags": [
+      "icon",
+      "svg",
+      "loom",
+      "ide",
+      "tool"
+    ]
+  },
+  {
+    "name": "HopinIcon",
+    "importPath": "@zui.react/zui",
+    "tags": [
+      "icon",
+      "svg",
+      "hopin",
+      "ide",
+      "tool"
+    ]
+  },
+  {
+    "name": "NotionIcon",
+    "importPath": "@zui.react/zui",
+    "tags": [
+      "icon",
+      "svg",
+      "notion",
+      "ide",
+      "tool"
+    ]
+  },
+  {
+    "name": "FigmaIcon",
+    "importPath": "@zui.react/zui",
+    "tags": [
+      "icon",
+      "svg",
+      "figma",
+      "ide",
+      "tool"
+    ]
+  },
+  {
+    "name": "CursorIcon",
+    "importPath": "@zui.react/zui",
+    "tags": [
+      "icon",
+      "svg",
+      "cursor",
+      "ide",
+      "tool"
+    ]
+  },
+  {
+    "name": "GeminiIcon",
+    "importPath": "@zui.react/zui",
+    "tags": [
+      "icon",
+      "svg",
+      "gemini",
+      "ai"
+    ]
+  },
+  {
+    "name": "ClaudeIcon",
+    "importPath": "@zui.react/zui",
+    "tags": [
+      "icon",
+      "svg",
+      "claude",
+      "ai"
+    ]
+  },
+  {
+    "name": "WindsurfIcon",
+    "importPath": "@zui.react/zui",
+    "tags": [
+      "icon",
+      "svg",
+      "windsurf",
+      "ide",
+      "tool"
+    ]
+  },
+  {
+    "name": "CopilotIcon",
+    "importPath": "@zui.react/zui",
+    "tags": [
+      "icon",
+      "svg",
+      "copilot",
+      "ide",
+      "tool"
+    ]
+  },
+  {
+    "name": "AntigravityIcon",
+    "importPath": "@zui.react/zui",
+    "tags": [
+      "icon",
+      "svg",
+      "antigravity",
+      "ide",
+      "tool"
+    ]
+  },
+  {
+    "name": "ReplitIcon",
+    "importPath": "@zui.react/zui",
+    "tags": [
+      "icon",
+      "svg",
+      "replit",
+      "ide",
+      "tool"
+    ]
+  },
+  {
+    "name": "V0Icon",
+    "importPath": "@zui.react/zui",
+    "tags": [
+      "icon",
+      "svg",
+      "v0",
+      "ide",
+      "tool"
+    ]
+  },
+  {
+    "name": "BoltIcon",
+    "importPath": "@zui.react/zui",
+    "tags": [
+      "icon",
+      "svg",
+      "bolt",
+      "ide",
+      "tool"
+    ]
+  },
+  {
+    "name": "PerplexityIcon",
+    "importPath": "@zui.react/zui",
+    "tags": [
+      "icon",
+      "svg",
+      "perplexity",
+      "ai"
+    ]
+  },
+  {
+    "name": "GrokIcon",
+    "importPath": "@zui.react/zui",
+    "tags": [
+      "icon",
+      "svg",
+      "grok",
+      "ai"
+    ]
+  }
+]

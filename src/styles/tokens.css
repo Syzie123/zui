@@ -25,13 +25,56 @@
   --color-border-strong:  oklch(85%   0.012 250);
   --color-border-subtle:  oklch(95%   0.006 250);
 
-  /* ──────────── Accent (brand) ──────────── */
-  --color-accent-base:    oklch(54%   0.22  274);
-  --color-accent-hover:   oklch(50%   0.22  274);
-  --color-accent-active:  oklch(46%   0.22  274);
-  --color-accent-soft:    oklch(96%   0.04  280);
-  --color-accent-fg:      oklch(99%   0     0);
-  --color-accent-ring:    oklch(54%   0.22  274 / 0.35);
+  /* ──────────── Accent (brand) — premium purple ──────────── */
+  /* Solo color tokens (used for text, focus rings, soft pills, links).
+   * Matches `#7c3aed` — middle stop of the brand gradient. */
+  --color-accent-base:    #7c3aed;
+  --color-accent-hover:   #6d28d9;
+  --color-accent-active:  #5b21b6;
+  --color-accent-soft:    oklch(96%   0.04  287);
+  --color-accent-fg:      #ffffff;
+  --color-accent-ring:    rgb(124 58 237 / 0.35);
+
+  /* ──────────── Premium gradients ────────────
+   * Single source of truth for the gradient surface treatments. Applied via
+   * `background-image: var(--gradient-*)`. The order in the var matters:
+   * the brand gradient is consumed by Button.primary, hero CTAs, the
+   * launchpad orb, and any "feature" tile. The dark BG gradient is the
+   * default body fill in dark mode. The glow radials sit on top of the
+   * dark BG to add ambient color without lifting the page.
+   * The glass overlay is a top-layer for buttons and cards — it produces
+   * the +4% white sheen at the top edge, falling off to nothing.            */
+  --gradient-primary:
+    linear-gradient(
+      135deg,
+      #6d28d9 0%,
+      #7c3aed 30%,
+      #8b5cf6 60%,
+      #5b21b6 100%
+    );
+  --gradient-bg-dark:
+    linear-gradient(
+      135deg,
+      #04020a 0%,
+      #090512 30%,
+      #120a24 65%,
+      #06030d 100%
+    );
+  --gradient-bg-glow:
+    radial-gradient(circle at 20% 20%, rgb(185 120 255 / 0.18), transparent 35%),
+    radial-gradient(circle at 80% 70%, rgb(124  58 237 / 0.15), transparent 40%);
+  --gradient-glass-overlay:
+    linear-gradient(180deg, rgb(255 255 255 / 0.08) 0%, rgb(255 255 255 / 0.02) 100%);
+
+  /* ──────────── Premium-button shadow stack ────────────
+   * Composed in declaration order: top-edge gloss, internal depth shade,
+   * outer purple ambient, grounded dark drop. No hover glow — the button
+   * only animates on :active per spec. */
+  --shadow-btn-purple-inner-highlight: inset 0 1px 0 rgb(255 255 255 / 0.14);
+  --shadow-btn-purple-inner-depth:     inset 0 -8px 18px rgb(0 0 0 / 0.35);
+  --shadow-btn-purple-outer-glow:      0 10px 30px rgb(91 33 182 / 0.30);
+  --shadow-btn-purple-dark:            0 2px 10px rgb(0 0 0 / 0.45);
+  --border-glass:                      1px solid rgb(255 255 255 / 0.08);
 
   /* ──────────── Semantic ──────────── */
   --color-success:        oklch(62%   0.18  148);
@@ -181,31 +224,35 @@
  * lightness only, with hairline white-alpha borders for depth.
  * ============================================================ */
 .theme-dark {
-  --color-bg-base:        oklch(0%    0     0);     /* #000 */
-  --color-bg-subtle:      oklch(10%   0     0);     /* #0a0a0a */
-  --color-bg-muted:       oklch(16%   0     0);     /* #1a1a1a */
-  --color-bg-elevated:    oklch(8%    0     0);     /* #060606 — cards */
+  /* The dark page surface is the brand purple-black gradient (applied to
+   * <body>; see styles/index.css). Solid token values below are kept as
+   * fallbacks for components that read `--color-bg-base` as a paint. */
+  --color-bg-base:        #04020a;                  /* darkest stop */
+  --color-bg-subtle:      #0a0616;                  /* +4% lift */
+  --color-bg-muted:       #120a24;                  /* +8%, mid-stop */
+  --color-bg-elevated:    #0c0716;                  /* card fill */
   --color-bg-inverse:     oklch(99%   0.005 250);
 
   --color-fg-base:        oklch(99%   0     0);
-  --color-fg-muted:       oklch(70%   0     0);
-  --color-fg-subtle:      oklch(48%   0     0);
+  --color-fg-muted:       oklch(70%   0.01  290);
+  --color-fg-subtle:      oklch(50%   0.01  290);
   --color-fg-on-accent:   oklch(99%   0     0);
   --color-fg-on-inverse:  oklch(0%    0     0);
 
-  /* Hairline borders — translucent white. Bumped from 0.08/0.15
-   * so cards + inputs + segmented controls are clearly delineated
-   * against pure-black surfaces. */
-  --color-border-base:    oklch(99% 0 0 / 0.13);
-  --color-border-strong:  oklch(99% 0 0 / 0.22);
-  --color-border-subtle:  oklch(99% 0 0 / 0.08);
+  /* Hairline borders — translucent white with a tiny purple tint so they
+   * sit naturally on the purple-black bg. */
+  --color-border-base:    rgb(255 255 255 / 0.13);
+  --color-border-strong:  rgb(255 255 255 / 0.22);
+  --color-border-subtle:  rgb(255 255 255 / 0.08);
 
-  --color-accent-base:    oklch(72%   0.22  285);
-  --color-accent-hover:   oklch(78%   0.22  285);
-  --color-accent-active:  oklch(82%   0.22  285);
-  --color-accent-soft:    oklch(22%   0.08  285);
-  --color-accent-fg:      oklch(0%    0     0);
-  --color-accent-ring:    oklch(72%   0.22  285 / 0.40);
+  /* Dark-mode accent — lift the brand purple a notch so it pops against
+   * the gradient bg, but keep the same hue. */
+  --color-accent-base:    #8b5cf6;                  /* soft bright */
+  --color-accent-hover:   #a78bfa;
+  --color-accent-active:  #7c3aed;
+  --color-accent-soft:    rgb(124 58 237 / 0.18);
+  --color-accent-fg:      #ffffff;
+  --color-accent-ring:    rgb(139 92 246 / 0.45);
 
   --color-success-soft:   oklch(22%   0.08  148);
   --color-warning-soft:   oklch(24%   0.10  75);

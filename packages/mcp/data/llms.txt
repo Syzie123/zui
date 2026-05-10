@@ -1,0 +1,111 @@
+# ZUI — @zui.react/zui v0.8.0
+
+Modern React component library. All exports come from a single barrel:
+
+    import { Button, Card, … } from '@zui.react/zui';
+    import '@zui.react/zui/styles.css';
+
+## Getting started
+
+- Introduction — A modern React component library focused on speed, polish, and motion.
+- Installation — How to add ZUI to your project.
+- Theming — Three themes share one token system. Switch via class on <html>.
+
+## Components
+
+- Button — Interactive button with 9 variants, 4 sizes, loading state, and asChild.
+- Input — Text input with prefix, suffix, validation, and three sizes.
+- Card — Content container with 9 variants — flat, elevated, glow, glass, featured.
+- Dialog — Modal layer with focus trap, scroll lock, and animated overlay.
+- Toast — Notifications with queue management, swipe-to-dismiss, and auto-dismiss.
+- Tabs — Tabbed navigation with animated underline indicator.
+- Accordion — Collapsible content sections with smooth height animation.
+- Select — Dropdown selector with keyboard nav, type-ahead, and groups.
+- Switch — Animated toggle with 3 sizes and 4 color tones.
+- Badge — Status pill with 8 semantic tones and 3 shapes.
+- Avatar — User avatar with image, fallback initials, and status indicator.
+- Segmented Control (new) — Pill-shaped segmented selector for view-mode / scope toggles.
+
+## Effects
+
+- Marquee (new) — Endless scrolling row of items. Pure CSS, GPU-only.
+- Border Beam (new) — Animated light that travels along an element border.
+- Shine Border (new) — Conic-gradient border that rotates around the card.
+- Number Ticker (new) — Smoothly counts up to a target value when in view.
+- Magic Card (new) — Card with a soft spotlight that follows the cursor.
+- Dock (new) — macOS-style dock with cursor-aware magnification.
+
+## Patterns
+
+- Filter Panel — Multi-step filter card with sub-panels, search, and chips.
+- Project Detail — Property list + activity feed sheet for project records.
+- Share Panel — Recipient list with permission pickers and link sharing.
+- Sign In Card (new) — Stacked sign-in modal with social providers + email + SSO.
+- Login Split (new) — Side-by-side login layout — clean and glassmorphism variants.
+
+## AI
+
+- AI Prompt (new) — Multi-mode AI composer — compose, follow-up, model picker, tools.
+- AI Dropzone (new) — Dashed-border drop area with quick actions and a file preview.
+- AI Recorder (new) — Voice-note pill — cancel, blinking dot, timer, pause, confirm.
+- AI Greeting (new) — Hub greeting with orb, suggested cards, and quick action pills.
+- AI Message (new) — Chat bubble for user / assistant / system with reactions.
+- AI Generating (new) — Streaming card with shader-style header, caret, and action chips.
+- Content Generator (new) — Three-pane content gen layout — fields, controls, history of outputs.
+
+## 3D
+
+- Action 3D (new) — Raised neumorphic CTA pill with icon and chevron wells.
+- Switch 3D (new) — Recessed track + raised pill thumb. ON/OFF labels.
+- Image Card 3D (new) — Image with a floating glassy tag in the corner.
+- Plan Card 3D (new) — Pricing card with 5 tones, badge, features, and a raised CTA.
+- Menu List 3D (new) — Profile menu with avatar, progress bar, and inset rows.
+- Job Card Stack (new) — Tilted pile of pastel job cards with brand logos and tags.
+- Track Delivery (new) — Status card with an isometric box-on-conveyor SVG illustration.
+- Travel Card (new) — Phone-aspect image card with location, fare and search CTA.
+- Install Card (new) — Product card with isometric shapes illustration and install count.
+- Pricing Dark (new) — Dark glassy pricing tier with abstract scribble illustration.
+- Stats Card (new) — Dark sales card with breakdown rows and a sparkline chart.
+- Talent Grid (new) — Tilted grid of talent cards with avatar, role badge and skills.
+
+## Ecommerce
+
+- Product Card — Product tile with image, badge, tags, price, and add-to-cart.
+- Cart Item — Single line in a shopping cart — image, qty stepper, price, remove.
+- Order Summary — Sub-totals, coupon, total, and checkout CTA. Includes a dark variant.
+- Payment Method Picker — Radio-card list of payment methods (cards, wallets, BNPL).
+- Credit Card Form — Name, number, expiry, CVC with auto-formatting.
+- Shipping Option — Carrier-aware delivery picker with ETA and badges.
+- Checkout Stepper — Progress indicator across cart → payment → review.
+- Promo Code — Inline coupon input with apply state.
+- Quantity Stepper — Plus/minus quantity control. Used inside CartItem.
+- Price Tag — Price text with optional strikethrough original.
+
+## Brand & IDE icons
+
+- GoogleIcon
+- AppleIcon
+- MicrosoftIcon
+- FacebookIcon
+- XIcon
+- GithubBrandIcon
+- OpenAIIcon
+- AnthropicIcon
+- ZoomIcon
+- SlackIcon
+- FramerIcon
+- LoomIcon
+- HopinIcon
+- NotionIcon
+- FigmaIcon
+- CursorIcon
+- GeminiIcon
+- ClaudeIcon
+- WindsurfIcon
+- CopilotIcon
+- AntigravityIcon
+- ReplitIcon
+- V0Icon
+- BoltIcon
+- PerplexityIcon
+- GrokIcon

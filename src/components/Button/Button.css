@@ -1,4 +1,72 @@
 /* ────────────────────────────────────────────────────────────
+ * Primary purple — premium brand button. Built from six layers:
+ *   1. Glass overlay  — top-edge white sheen
+ *   2. Brand gradient — 4-stop diagonal violet
+ *   3. Inner highlight  (inset 0 1px 0 / .14)
+ *   4. Inner depth      (inset 0 -8px 18px / .35) — bottom shade
+ *   5. Outer purple glow (0 10px 30px / .30)
+ *   6. Grounded dark drop (0 2px 10px / .45)
+ * Plus a 1px glass border and a 14px backdrop-blur.
+ *
+ * The whole thing is static — no hover glow, no scale-up, no hue shift
+ * (per spec). Press only translates 1px and softens the outer glow.
+ * ──────────────────────────────────────────────────────────── */
+.btn-primary-purple {
+  position: relative;
+  isolation: isolate;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  /* Glass overlay layered on top of the brand gradient — the comma
+     stack means the overlay sits at the top, the gradient underneath. */
+  background:
+    var(--gradient-glass-overlay),
+    var(--gradient-primary);
+  border: var(--border-glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow:
+    var(--shadow-btn-purple-inner-highlight),
+    var(--shadow-btn-purple-inner-depth),
+    var(--shadow-btn-purple-outer-glow),
+    var(--shadow-btn-purple-dark);
+  text-shadow: 0 1px 0 rgb(0 0 0 / 0.18);
+  transition: transform var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out);
+  will-change: transform;
+}
+
+button.btn-primary-purple:active,
+.btn-primary-purple:active {
+  /* Press feedback — sit 1px lower + tiny squish, soften the outer glow
+     + drop so the pill reads as "pressed in". The double selector
+     out-specifies the cva utility's `active:scale-[0.98]`. */
+  transform: translateY(1px) scale(0.99);
+  box-shadow:
+    var(--shadow-btn-purple-inner-highlight),
+    inset 0 -6px 14px rgb(0 0 0 / 0.30),
+    0 4px 14px rgb(91 33 182 / 0.20),
+    0 1px 4px rgb(0 0 0 / 0.40);
+}
+
+.btn-primary-purple:focus-visible {
+  outline: none;
+  /* Same shadow stack + accessibility ring. Order matters — the focus
+     ring sits on top of the regular layers. */
+  box-shadow:
+    var(--shadow-btn-purple-inner-highlight),
+    var(--shadow-btn-purple-inner-depth),
+    var(--shadow-btn-purple-outer-glow),
+    var(--shadow-btn-purple-dark),
+    0 0 0 3px var(--color-accent-ring);
+}
+
+.btn-primary-purple:disabled {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* ────────────────────────────────────────────────────────────
  * Luminous — aurora glow CTA. Layered: gradient fill, outer glow,
  * inner highlight, dark ring. Cheap to render: only transform +
  * box-shadow on hover, plus a one-shot shine sweep.

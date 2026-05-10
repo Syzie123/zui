@@ -3,6 +3,7 @@ import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { Loader2 } from 'lucide-react';
 import { cn } from '../../utils/cn';
+import './Button.css';
 
 const buttonStyles = cva(
   [
@@ -27,12 +28,7 @@ const buttonStyles = cva(
   {
     variants: {
       variant: {
-        primary: [
-          'bg-[var(--color-accent-base)] text-[var(--color-accent-fg)]',
-          'shadow-[inset_0_1px_0_0_rgb(255_255_255_/_0.10)]',
-          'hover:bg-[var(--color-accent-hover)]',
-          'active:bg-[var(--color-accent-active)]',
-        ],
+        primary: ['btn-primary-purple'],
         secondary: [
           'bg-[var(--color-bg-elevated)] text-[var(--color-fg-base)]',
           'border border-[var(--color-border-base)]',

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.zui-react/mcp",
+  "description": "ZUI React design-system MCP — components, patterns, effects, brand & AI-IDE icons, scaffolding.",
+  "repository": {
+    "url": "https://github.com/Syzie123/zui",
+    "source": "github"
+  },
+  "version": "0.8.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@zui.react/mcp",
+      "version": "0.8.0",
+      "transport": { "type": "stdio" }
+    }
+  ]
+}

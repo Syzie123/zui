@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-05-10T17:08:45.681Z",
+  "zuiVersion": "0.8.0",
+  "groups": [
+    "Getting started",
+    "Components",
+    "Effects",
+    "Patterns",
+    "AI",
+    "3D",
+    "Ecommerce"
+  ],
+  "counts": {
+    "components": 27,
+    "patterns": 26,
+    "effects": 7,
+    "icons": 26
+  }
+}

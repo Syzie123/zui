@@ -1,0 +1,112 @@
+[
+  {
+    "kind": "effect",
+    "name": "BorderBeam",
+    "slug": "border-beam",
+    "group": "Effects",
+    "description": "Animated light that travels along an element border.",
+    "isNew": true,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/effects/BorderBeam/BorderBeam.tsx",
+    "docsRel": "src/docs/pages/effects/border-beam.tsx",
+    "tags": [
+      "borderbeam",
+      "effect",
+      "animation"
+    ]
+  },
+  {
+    "kind": "effect",
+    "name": "Dock",
+    "slug": "dock",
+    "group": "Effects",
+    "description": "macOS-style dock with cursor-aware magnification.",
+    "isNew": true,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/effects/Dock/Dock.tsx",
+    "docsRel": "src/docs/pages/effects/dock.tsx",
+    "tags": [
+      "dock",
+      "effect",
+      "animation"
+    ]
+  },
+  {
+    "kind": "effect",
+    "name": "MagicCard",
+    "slug": "magic-card",
+    "group": "Effects",
+    "description": "Card with a soft spotlight that follows the cursor.",
+    "isNew": true,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/effects/MagicCard/MagicCard.tsx",
+    "docsRel": "src/docs/pages/effects/magic-card.tsx",
+    "tags": [
+      "magiccard",
+      "effect",
+      "animation"
+    ]
+  },
+  {
+    "kind": "effect",
+    "name": "Marquee",
+    "slug": "marquee",
+    "group": "Effects",
+    "description": "Endless scrolling row of items. Pure CSS, GPU-only.",
+    "isNew": true,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/effects/Marquee/Marquee.tsx",
+    "docsRel": "src/docs/pages/effects/marquee.tsx",
+    "tags": [
+      "marquee",
+      "effect",
+      "animation"
+    ]
+  },
+  {
+    "kind": "effect",
+    "name": "NumberTicker",
+    "slug": "number-ticker",
+    "group": "Effects",
+    "description": "Smoothly counts up to a target value when in view.",
+    "isNew": true,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/effects/NumberTicker/NumberTicker.tsx",
+    "docsRel": "src/docs/pages/effects/number-ticker.tsx",
+    "tags": [
+      "numberticker",
+      "effect",
+      "animation"
+    ]
+  },
+  {
+    "kind": "effect",
+    "name": "ShineBorder",
+    "slug": "shine-border",
+    "group": "Effects",
+    "description": "Conic-gradient border that rotates around the card.",
+    "isNew": true,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/effects/ShineBorder/ShineBorder.tsx",
+    "docsRel": "src/docs/pages/effects/shine-border.tsx",
+    "tags": [
+      "shineborder",
+      "effect",
+      "animation"
+    ]
+  },
+  {
+    "kind": "effect",
+    "name": "WordRotate",
+    "slug": "word-rotate",
+    "group": "Effects",
+    "description": "Words to cycle through.",
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/effects/WordRotate/WordRotate.tsx",
+    "tags": [
+      "wordrotate",
+      "effect",
+      "animation"
+    ]
+  }
+]

@@ -1,7 +1,7 @@
 {
   "name": "@zui.react/zui",
-  "version": "0.7.1",
-  "description": "A modern React component library focused on speed, polish, and motion. 22 components, 6 motion effects, 27 production patterns (5 base, 7 AI-native, 12 3D / scene, content generator) plus 26 inline brand & AI-IDE icons. Sub-millisecond renders, accessible by default.",
+  "version": "0.8.0",
+  "description": "A modern React component library focused on speed, polish, and motion. 22 components, 6 motion effects, 27 production patterns (5 base, 7 AI-native, 12 3D / scene, content generator) plus 26 inline brand & AI-IDE icons. Now ships with @zui.react/mcp — drop-in MCP server for Claude Code, Cursor, Windsurf, Copilot, Antigravity. Sub-millisecond renders, accessible by default.",
   "type": "module",
   "license": "MIT",
   "author": "syeddd",
@@ -54,16 +54,22 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "build:lib": "vite build --config vite.lib.config.ts",
+    "build:mcp": "tsx scripts/build-mcp-registry.ts && npm --workspace @zui.react/mcp run build",
+    "build:all": "npm run build:lib && npm run build:mcp",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "npm run build:lib"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "peerDependencies": {
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"
   },
   "dependencies": {
     "@floating-ui/react": "^0.27.0",
+    "@modelcontextprotocol/sdk": "^1.29.0",
     "@radix-ui/react-accordion": "^1.2.2",
     "@radix-ui/react-alert-dialog": "^1.1.4",
     "@radix-ui/react-avatar": "^1.1.2",
@@ -86,7 +92,8 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.468.0",
-    "tailwind-merge": "^2.5.5"
+    "tailwind-merge": "^2.5.5",
+    "tsx": "^4.21.0"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.0.0",

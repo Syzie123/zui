@@ -95,6 +95,19 @@
                 color var(--duration-base) var(--ease-out);
   }
 
+  /* Premium dark surface — layered glow radials over the brand bg gradient.
+   * `background-attachment: fixed` keeps the gradient stable while content
+   * scrolls so the page reads as one continuous "field of glass". The
+   * solid `--color-bg-base` underneath catches any letterbox area. */
+  html.theme-dark body,
+  html.theme-luminous body {
+    background-image:
+      var(--gradient-bg-glow),
+      var(--gradient-bg-dark);
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;

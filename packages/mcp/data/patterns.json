@@ -1,0 +1,423 @@
+[
+  {
+    "kind": "pattern",
+    "name": "Action3D",
+    "slug": "action-3-d",
+    "group": "Patterns",
+    "description": "Solid / soft.",
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/patterns/Action3D/Action3D.tsx",
+    "cssRel": "src/patterns/Action3D/Action3D.css",
+    "tags": [
+      "action3d",
+      "pattern",
+      ""
+    ]
+  },
+  {
+    "kind": "pattern",
+    "name": "AIDropzone",
+    "slug": "ai-dropzone",
+    "group": "AI",
+    "description": "Dashed-border drop area with quick actions and a file preview.",
+    "isNew": true,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/patterns/AIDropzone/AIDropzone.tsx",
+    "cssRel": "src/patterns/AIDropzone/AIDropzone.css",
+    "docsRel": "src/docs/pages/patterns/ai-dropzone.tsx",
+    "tags": [
+      "aidropzone",
+      "pattern",
+      "ai"
+    ]
+  },
+  {
+    "kind": "pattern",
+    "name": "AIGenerating",
+    "slug": "ai-generating",
+    "group": "AI",
+    "description": "Streaming card with shader-style header, caret, and action chips.",
+    "isNew": true,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/patterns/AIGenerating/AIGenerating.tsx",
+    "cssRel": "src/patterns/AIGenerating/AIGenerating.css",
+    "docsRel": "src/docs/pages/patterns/ai-generating.tsx",
+    "tags": [
+      "aigenerating",
+      "pattern",
+      "ai"
+    ]
+  },
+  {
+    "kind": "pattern",
+    "name": "AIGreeting",
+    "slug": "ai-greeting",
+    "group": "AI",
+    "description": "Hub greeting with orb, suggested cards, and quick action pills.",
+    "isNew": true,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/patterns/AIGreeting/AIGreeting.tsx",
+    "cssRel": "src/patterns/AIGreeting/AIGreeting.css",
+    "docsRel": "src/docs/pages/patterns/ai-greeting.tsx",
+    "tags": [
+      "aigreeting",
+      "pattern",
+      "ai"
+    ]
+  },
+  {
+    "kind": "pattern",
+    "name": "AIMessage",
+    "slug": "ai-message",
+    "group": "AI",
+    "description": "Chat bubble for user / assistant / system with reactions.",
+    "isNew": true,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/patterns/AIMessage/AIMessage.tsx",
+    "cssRel": "src/patterns/AIMessage/AIMessage.css",
+    "docsRel": "src/docs/pages/patterns/ai-message.tsx",
+    "tags": [
+      "aimessage",
+      "pattern",
+      "ai"
+    ]
+  },
+  {
+    "kind": "pattern",
+    "name": "AIPrompt",
+    "slug": "ai-prompt",
+    "group": "AI",
+    "description": "Multi-mode AI composer — compose, follow-up, model picker, tools.",
+    "isNew": true,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/patterns/AIPrompt/AIPrompt.tsx",
+    "cssRel": "src/patterns/AIPrompt/AIPrompt.css",
+    "docsRel": "src/docs/pages/patterns/ai-prompt.tsx",
+    "tags": [
+      "aiprompt",
+      "pattern",
+      "ai"
+    ]
+  },
+  {
+    "kind": "pattern",
+    "name": "AIRecorder",
+    "slug": "ai-recorder",
+    "group": "AI",
+    "description": "Voice-note pill — cancel, blinking dot, timer, pause, confirm.",
+    "isNew": true,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/patterns/AIRecorder/AIRecorder.tsx",
+    "cssRel": "src/patterns/AIRecorder/AIRecorder.css",
+    "docsRel": "src/docs/pages/patterns/ai-recorder.tsx",
+    "tags": [
+      "airecorder",
+      "pattern",
+      "ai"
+    ]
+  },
+  {
+    "kind": "pattern",
+    "name": "ContentGenerator",
+    "slug": "content-generator",
+    "group": "AI",
+    "description": "Three-pane content gen layout — fields, controls, history of outputs.",
+    "isNew": true,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/patterns/ContentGenerator/ContentGenerator.tsx",
+    "cssRel": "src/patterns/ContentGenerator/ContentGenerator.css",
+    "docsRel": "src/docs/pages/patterns/content-generator.tsx",
+    "tags": [
+      "contentgenerator",
+      "pattern",
+      "ai"
+    ]
+  },
+  {
+    "kind": "pattern",
+    "name": "FeatureList",
+    "slug": "feature-list",
+    "group": "Patterns",
+    "description": "\"Features\" card — list of feature items with colored icon blocks + article cards with thumbnails and \"New\" badges + footer CTA.",
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/patterns/FeatureList/FeatureList.tsx",
+    "tags": [
+      "featurelist",
+      "pattern",
+      ""
+    ]
+  },
+  {
+    "kind": "pattern",
+    "name": "FilterPanel",
+    "slug": "filter-panel",
+    "group": "Patterns",
+    "description": "Multi-step filter card with sub-panels, search, and chips.",
+    "isNew": false,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/patterns/FilterPanel/FilterPanel.tsx",
+    "docsRel": "src/docs/pages/patterns/filter-panel.tsx",
+    "tags": [
+      "filterpanel",
+      "pattern",
+      "patterns"
+    ]
+  },
+  {
+    "kind": "pattern",
+    "name": "ImageCard3D",
+    "slug": "image-card-3-d",
+    "group": "Patterns",
+    "description": "Image URL.",
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/patterns/ImageCard3D/ImageCard3D.tsx",
+    "cssRel": "src/patterns/ImageCard3D/ImageCard3D.css",
+    "tags": [
+      "imagecard3d",
+      "pattern",
+      ""
+    ]
+  },
+  {
+    "kind": "pattern",
+    "name": "InstallCard",
+    "slug": "install-card",
+    "group": "3D",
+    "description": "Product card with isometric shapes illustration and install count.",
+    "isNew": true,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/patterns/InstallCard/InstallCard.tsx",
+    "cssRel": "src/patterns/InstallCard/InstallCard.css",
+    "docsRel": "src/docs/pages/patterns/install-card.tsx",
+    "tags": [
+      "installcard",
+      "pattern",
+      "3d"
+    ]
+  },
+  {
+    "kind": "pattern",
+    "name": "JobCardStack",
+    "slug": "job-card-stack",
+    "group": "3D",
+    "description": "Tilted pile of pastel job cards with brand logos and tags.",
+    "isNew": true,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/patterns/JobCardStack/JobCardStack.tsx",
+    "cssRel": "src/patterns/JobCardStack/JobCardStack.css",
+    "docsRel": "src/docs/pages/patterns/job-card-stack.tsx",
+    "tags": [
+      "jobcardstack",
+      "pattern",
+      "3d"
+    ]
+  },
+  {
+    "kind": "pattern",
+    "name": "LoginSplit",
+    "slug": "login-split",
+    "group": "Patterns",
+    "description": "Side-by-side login layout — clean and glassmorphism variants.",
+    "isNew": true,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/patterns/LoginSplit/LoginSplit.tsx",
+    "docsRel": "src/docs/pages/patterns/login-split.tsx",
+    "tags": [
+      "loginsplit",
+      "pattern",
+      "patterns"
+    ]
+  },
+  {
+    "kind": "pattern",
+    "name": "MenuList3D",
+    "slug": "menu-list-3-d",
+    "group": "Patterns",
+    "description": "Avatar image URL for the header.",
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/patterns/MenuList3D/MenuList3D.tsx",
+    "cssRel": "src/patterns/MenuList3D/MenuList3D.css",
+    "tags": [
+      "menulist3d",
+      "pattern",
+      ""
+    ]
+  },
+  {
+    "kind": "pattern",
+    "name": "PlanCard3D",
+    "slug": "plan-card-3-d",
+    "group": "Patterns",
+    "description": "Color preset.",
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/patterns/PlanCard3D/PlanCard3D.tsx",
+    "cssRel": "src/patterns/PlanCard3D/PlanCard3D.css",
+    "tags": [
+      "plancard3d",
+      "pattern",
+      ""
+    ]
+  },
+  {
+    "kind": "pattern",
+    "name": "PricingDark",
+    "slug": "pricing-dark",
+    "group": "3D",
+    "description": "Dark glassy pricing tier with abstract scribble illustration.",
+    "isNew": true,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/patterns/PricingDark/PricingDark.tsx",
+    "cssRel": "src/patterns/PricingDark/PricingDark.css",
+    "docsRel": "src/docs/pages/patterns/pricing-dark.tsx",
+    "tags": [
+      "pricingdark",
+      "pattern",
+      "3d"
+    ]
+  },
+  {
+    "kind": "pattern",
+    "name": "ProjectDetail",
+    "slug": "project-detail",
+    "group": "Patterns",
+    "description": "Property list + activity feed sheet for project records.",
+    "isNew": false,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/patterns/ProjectDetail/ProjectDetail.tsx",
+    "docsRel": "src/docs/pages/patterns/project-detail.tsx",
+    "tags": [
+      "projectdetail",
+      "pattern",
+      "patterns"
+    ]
+  },
+  {
+    "kind": "pattern",
+    "name": "SharePanel",
+    "slug": "share-panel",
+    "group": "Patterns",
+    "description": "Recipient list with permission pickers and link sharing.",
+    "isNew": false,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/patterns/SharePanel/SharePanel.tsx",
+    "docsRel": "src/docs/pages/patterns/share-panel.tsx",
+    "tags": [
+      "sharepanel",
+      "pattern",
+      "patterns"
+    ]
+  },
+  {
+    "kind": "pattern",
+    "name": "SignInCard",
+    "slug": "sign-in-card",
+    "group": "Patterns",
+    "description": "Stacked sign-in modal with social providers + email + SSO.",
+    "isNew": true,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/patterns/SignInCard/SignInCard.tsx",
+    "docsRel": "src/docs/pages/patterns/sign-in-card.tsx",
+    "tags": [
+      "signincard",
+      "pattern",
+      "patterns"
+    ]
+  },
+  {
+    "kind": "pattern",
+    "name": "StatsCard",
+    "slug": "stats-card",
+    "group": "3D",
+    "description": "Dark sales card with breakdown rows and a sparkline chart.",
+    "isNew": true,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/patterns/StatsCard/StatsCard.tsx",
+    "cssRel": "src/patterns/StatsCard/StatsCard.css",
+    "docsRel": "src/docs/pages/patterns/stats-card.tsx",
+    "tags": [
+      "statscard",
+      "pattern",
+      "3d"
+    ]
+  },
+  {
+    "kind": "pattern",
+    "name": "Switch3D",
+    "slug": "switch-3-d",
+    "group": "Patterns",
+    "description": "Controlled value.",
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/patterns/Switch3D/Switch3D.tsx",
+    "cssRel": "src/patterns/Switch3D/Switch3D.css",
+    "tags": [
+      "switch3d",
+      "pattern",
+      ""
+    ]
+  },
+  {
+    "kind": "pattern",
+    "name": "TalentGrid",
+    "slug": "talent-grid",
+    "group": "3D",
+    "description": "Tilted grid of talent cards with avatar, role badge and skills.",
+    "isNew": true,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/patterns/TalentGrid/TalentGrid.tsx",
+    "cssRel": "src/patterns/TalentGrid/TalentGrid.css",
+    "docsRel": "src/docs/pages/patterns/talent-grid.tsx",
+    "tags": [
+      "talentgrid",
+      "pattern",
+      "3d"
+    ]
+  },
+  {
+    "kind": "pattern",
+    "name": "TrackDelivery",
+    "slug": "track-delivery",
+    "group": "3D",
+    "description": "Status card with an isometric box-on-conveyor SVG illustration.",
+    "isNew": true,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/patterns/TrackDelivery/TrackDelivery.tsx",
+    "cssRel": "src/patterns/TrackDelivery/TrackDelivery.css",
+    "docsRel": "src/docs/pages/patterns/track-delivery.tsx",
+    "tags": [
+      "trackdelivery",
+      "pattern",
+      "3d"
+    ]
+  },
+  {
+    "kind": "pattern",
+    "name": "TravelCard",
+    "slug": "travel-card",
+    "group": "3D",
+    "description": "Phone-aspect image card with location, fare and search CTA.",
+    "isNew": true,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/patterns/TravelCard/TravelCard.tsx",
+    "cssRel": "src/patterns/TravelCard/TravelCard.css",
+    "docsRel": "src/docs/pages/patterns/travel-card.tsx",
+    "tags": [
+      "travelcard",
+      "pattern",
+      "3d"
+    ]
+  },
+  {
+    "kind": "pattern",
+    "name": "ViewingOptions",
+    "slug": "viewing-options",
+    "group": "Patterns",
+    "description": "\"Viewing Options\" panel — segmented Grid/List + sort + toggle list. Matches screenshot 2 1:1 in structure.",
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/patterns/ViewingOptions/ViewingOptions.tsx",
+    "tags": [
+      "viewingoptions",
+      "pattern",
+      ""
+    ]
+  }
+]

@@ -1,0 +1,365 @@
+[
+  {
+    "kind": "component",
+    "name": "Accordion",
+    "slug": "accordion",
+    "group": "Components",
+    "description": "Collapsible content sections with smooth height animation.",
+    "isNew": false,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/Accordion/Accordion.tsx",
+    "docsRel": "src/docs/pages/accordion.tsx",
+    "tags": [
+      "accordion",
+      "component"
+    ]
+  },
+  {
+    "kind": "component",
+    "name": "AlertDialog",
+    "slug": "alert-dialog",
+    "group": "Components",
+    "description": "",
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/AlertDialog/AlertDialog.tsx",
+    "tags": [
+      "component"
+    ]
+  },
+  {
+    "kind": "component",
+    "name": "Avatar",
+    "slug": "avatar",
+    "group": "Components",
+    "description": "User avatar with image, fallback initials, and status indicator.",
+    "isNew": false,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/Avatar/Avatar.tsx",
+    "docsRel": "src/docs/pages/avatar.tsx",
+    "tags": [
+      "avatar",
+      "component"
+    ]
+  },
+  {
+    "kind": "component",
+    "name": "Badge",
+    "slug": "badge",
+    "group": "Components",
+    "description": "Status pill with 8 semantic tones and 3 shapes.",
+    "isNew": false,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/Badge/Badge.tsx",
+    "docsRel": "src/docs/pages/badge.tsx",
+    "tags": [
+      "badge",
+      "component"
+    ]
+  },
+  {
+    "kind": "component",
+    "name": "Button",
+    "slug": "button",
+    "group": "Components",
+    "description": "Interactive button with 9 variants, 4 sizes, loading state, and asChild.",
+    "isNew": false,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/Button/Button.tsx",
+    "cssRel": "src/components/Button/Button.css",
+    "docsRel": "src/docs/pages/button.tsx",
+    "tags": [
+      "button",
+      "component"
+    ]
+  },
+  {
+    "kind": "component",
+    "name": "Card",
+    "slug": "card",
+    "group": "Components",
+    "description": "Content container with 9 variants — flat, elevated, glow, glass, featured.",
+    "isNew": false,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/Card/Card.tsx",
+    "cssRel": "src/components/Card/Card.css",
+    "docsRel": "src/docs/pages/card.tsx",
+    "tags": [
+      "card",
+      "component"
+    ]
+  },
+  {
+    "kind": "component",
+    "name": "Checkbox",
+    "slug": "checkbox",
+    "group": "Components",
+    "description": "",
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/Checkbox/Checkbox.tsx",
+    "tags": [
+      "component"
+    ]
+  },
+  {
+    "kind": "component",
+    "name": "Dialog",
+    "slug": "dialog",
+    "group": "Components",
+    "description": "Modal layer with focus trap, scroll lock, and animated overlay.",
+    "isNew": false,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/Dialog/Dialog.tsx",
+    "docsRel": "src/docs/pages/dialog.tsx",
+    "tags": [
+      "dialog",
+      "component"
+    ]
+  },
+  {
+    "kind": "component",
+    "name": "DropdownMenu",
+    "slug": "dropdown-menu",
+    "group": "Components",
+    "description": "",
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/DropdownMenu/DropdownMenu.tsx",
+    "tags": [
+      "component"
+    ]
+  },
+  {
+    "kind": "component",
+    "name": "HoverCard",
+    "slug": "hover-card",
+    "group": "Components",
+    "description": "",
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/HoverCard/HoverCard.tsx",
+    "tags": [
+      "component"
+    ]
+  },
+  {
+    "kind": "component",
+    "name": "Input",
+    "slug": "input",
+    "group": "Components",
+    "description": "Text input with prefix, suffix, validation, and three sizes.",
+    "isNew": false,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/Input/Input.tsx",
+    "docsRel": "src/docs/pages/input.tsx",
+    "tags": [
+      "input",
+      "component"
+    ]
+  },
+  {
+    "kind": "component",
+    "name": "Label",
+    "slug": "label",
+    "group": "Components",
+    "description": "Show a red asterisk for required fields.",
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/Label/Label.tsx",
+    "tags": [
+      "component"
+    ]
+  },
+  {
+    "kind": "component",
+    "name": "Popover",
+    "slug": "popover",
+    "group": "Components",
+    "description": "",
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/Popover/Popover.tsx",
+    "tags": [
+      "component"
+    ]
+  },
+  {
+    "kind": "component",
+    "name": "Progress",
+    "slug": "progress",
+    "group": "Components",
+    "description": "When undefined or `null`, renders an indeterminate animation.",
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/Progress/Progress.tsx",
+    "tags": [
+      "component"
+    ]
+  },
+  {
+    "kind": "component",
+    "name": "RadioGroup",
+    "slug": "radio-group",
+    "group": "Components",
+    "description": "",
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/RadioGroup/RadioGroup.tsx",
+    "tags": [
+      "component"
+    ]
+  },
+  {
+    "kind": "component",
+    "name": "SegmentedControl",
+    "slug": "segmented-control",
+    "group": "Components",
+    "description": "Pill-shaped segmented selector for view-mode / scope toggles.",
+    "isNew": true,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/SegmentedControl/SegmentedControl.tsx",
+    "docsRel": "src/docs/pages/segmented-control.tsx",
+    "tags": [
+      "segmented",
+      "control",
+      "component"
+    ]
+  },
+  {
+    "kind": "component",
+    "name": "Select",
+    "slug": "select",
+    "group": "Components",
+    "description": "Dropdown selector with keyboard nav, type-ahead, and groups.",
+    "isNew": false,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/Select/Select.tsx",
+    "docsRel": "src/docs/pages/select.tsx",
+    "tags": [
+      "select",
+      "component"
+    ]
+  },
+  {
+    "kind": "component",
+    "name": "Separator",
+    "slug": "separator",
+    "group": "Components",
+    "description": "",
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/Separator/Separator.tsx",
+    "tags": [
+      "component"
+    ]
+  },
+  {
+    "kind": "component",
+    "name": "Sheet",
+    "slug": "sheet",
+    "group": "Components",
+    "description": "",
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/Sheet/Sheet.tsx",
+    "tags": [
+      "component"
+    ]
+  },
+  {
+    "kind": "component",
+    "name": "Sidebar",
+    "slug": "sidebar",
+    "group": "Components",
+    "description": "Tooltip shown when the sidebar is collapsed to icons.",
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/Sidebar/Sidebar.tsx",
+    "tags": [
+      "component"
+    ]
+  },
+  {
+    "kind": "component",
+    "name": "Skeleton",
+    "slug": "skeleton",
+    "group": "Components",
+    "description": "",
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/Skeleton/Skeleton.tsx",
+    "tags": [
+      "component"
+    ]
+  },
+  {
+    "kind": "component",
+    "name": "Slider",
+    "slug": "slider",
+    "group": "Components",
+    "description": "",
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/Slider/Slider.tsx",
+    "tags": [
+      "component"
+    ]
+  },
+  {
+    "kind": "component",
+    "name": "Switch",
+    "slug": "switch",
+    "group": "Components",
+    "description": "Animated toggle with 3 sizes and 4 color tones.",
+    "isNew": false,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/Switch/Switch.tsx",
+    "docsRel": "src/docs/pages/switch.tsx",
+    "tags": [
+      "switch",
+      "component"
+    ]
+  },
+  {
+    "kind": "component",
+    "name": "Tabs",
+    "slug": "tabs",
+    "group": "Components",
+    "description": "Tabbed navigation with animated underline indicator.",
+    "isNew": false,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/Tabs/Tabs.tsx",
+    "docsRel": "src/docs/pages/tabs.tsx",
+    "tags": [
+      "tabs",
+      "component"
+    ]
+  },
+  {
+    "kind": "component",
+    "name": "Textarea",
+    "slug": "textarea",
+    "group": "Components",
+    "description": "",
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/Textarea/Textarea.tsx",
+    "tags": [
+      "component"
+    ]
+  },
+  {
+    "kind": "component",
+    "name": "Toast",
+    "slug": "toast",
+    "group": "Components",
+    "description": "Notifications with queue management, swipe-to-dismiss, and auto-dismiss.",
+    "isNew": false,
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/Toast/Toast.tsx",
+    "docsRel": "src/docs/pages/toast.tsx",
+    "tags": [
+      "toast",
+      "component"
+    ]
+  },
+  {
+    "kind": "component",
+    "name": "Tooltip",
+    "slug": "tooltip",
+    "group": "Components",
+    "description": "Wrap your app or section in `<Tooltip.Provider>` once. Sets a shared delay/skip behaviour for all tooltips inside.",
+    "importPath": "@zui.react/zui",
+    "sourceRel": "src/components/Tooltip/Tooltip.tsx",
+    "tags": [
+      "component"
+    ]
+  }
+]
