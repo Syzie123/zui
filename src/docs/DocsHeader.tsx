@@ -73,10 +73,10 @@ export function DocsHeader({
         {!showSidebarTrigger && (
           <Link
             href="/"
-            className="flex items-center gap-2 font-semibold tracking-[-0.02em]"
+            className="flex items-center gap-2.5 font-semibold tracking-[-0.02em]"
           >
-            <Logo forceTheme={landing ? 'dark' : undefined} />
-            <span className="font-display text-base">ZUI</span>
+            <Logo size={36} forceTheme={landing ? 'dark' : undefined} />
+            <span className="font-display text-xl">ZUI</span>
           </Link>
         )}
 

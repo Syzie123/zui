@@ -110,7 +110,11 @@ function Hero() {
         }}
       />
 
-      <div className="mx-auto max-w-5xl px-6 pt-20 pb-16 text-center sm:pt-28 sm:pb-24 lg:pt-36">
+      {/* Inner pad — kept noticeably tighter at the top so the headline
+          sits higher in the viewport. The Hero section already adds its
+          own pt-14 (header offset) above this; total top breathing room
+          on lg is now 14 + 16 = 7.5rem instead of 14 + 36 = 12.5rem. */}
+      <div className="mx-auto max-w-5xl px-6 pt-10 pb-16 text-center sm:pt-12 sm:pb-24 lg:pt-16">
         {/* Inline pill — "New" mini-badge + version line.
             Same shape as the reference glass-pill, but neutral / clean. */}
         <Link
@@ -469,13 +473,13 @@ function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-6 sm:flex-row sm:items-center">
         <Link
           href="/"
-          className="inline-flex items-center gap-2.5 transition-opacity hover:opacity-90"
+          className="inline-flex items-center gap-3 transition-opacity hover:opacity-90"
         >
           {/* Same dark-mode mark used in the header logo (forceTheme="dark"
               keeps the white logo regardless of the user's theme pref). */}
-          <Logo size={28} forceTheme="dark" />
+          <Logo size={40} forceTheme="dark" />
           <div>
-            <p className="font-display text-sm font-semibold tracking-[-0.01em] text-white">
+            <p className="font-display text-base font-semibold tracking-[-0.01em] text-white">
               ZUI
             </p>
             <p className="mt-0.5 text-xs text-white/55">
