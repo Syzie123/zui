@@ -47,7 +47,18 @@ export function Home() {
   return (
     // Force dark for the landing — scoped via `theme-dark` class so it
     // doesn't change the user's saved preference for the docs section.
-    <div className="theme-dark min-h-screen bg-[var(--color-bg-base)] text-[var(--color-fg-base)]">
+    // The brand purple-black gradient + glow radials are painted directly
+    // on the wrapper (rather than relying on body's gradient) so the page
+    // looks correct even when the user's global theme is set to "clean".
+    <div
+      className="theme-dark relative min-h-screen text-[var(--color-fg-base)]"
+      style={{
+        backgroundImage:
+          'var(--gradient-bg-glow), var(--gradient-bg-dark)',
+        backgroundAttachment: 'fixed',
+        backgroundSize: 'cover',
+      }}
+    >
       <DocsHeader onOpenSearch={() => setSearchOpen(true)} landing />
       <DocsSearch open={searchOpen} onOpenChange={setSearchOpen} />
 
@@ -140,7 +151,9 @@ function Hero() {
             New
           </span>
           <span className="text-[13px] font-medium text-white/95">
-            Say hello to <span className="font-semibold">@zui.react/zui v0.2</span>
+            Say hello to <span className="font-semibold">@zui.react/zui v0.8</span>
+            <span className="mx-1.5 text-white/40">·</span>
+            <span className="font-semibold">+ MCP server</span>
           </span>
           <ArrowRight className="size-3.5 text-white/70 transition-transform group-hover:translate-x-0.5" />
         </Link>
@@ -156,8 +169,17 @@ function Hero() {
         >
           Components for{' '}
           <span
-            style={{ fontFamily: "'Instrument Serif', serif" }}
-            className="font-normal italic tracking-[-0.02em] text-[oklch(80%_0.16_280)]"
+            style={{
+              fontFamily: "'Instrument Serif', serif",
+              // Soft bright purple from the new brand gradient — same hue
+              // as the primary button so the eye reads them as one system.
+              backgroundImage:
+                'linear-gradient(135deg, #b794f6 0%, #8b5cf6 50%, #a78bfa 100%)',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text',
+              color: 'transparent',
+            }}
+            className="font-normal italic tracking-[-0.02em]"
           >
             modern
           </span>
@@ -173,28 +195,27 @@ function Hero() {
             'drop-shadow-[0_1px_8px_rgb(0_0_0/0.30)]'
           )}
         >
-          22 components, 7 motion effects, 5 production patterns, 4 visual variants.
-          Sub-millisecond renders, accessible, theme-able by one class.
+          27 components, 6 motion effects, 26 production patterns,
+          26 inline brand & AI-IDE icons. Ships with{' '}
+          <span className="font-semibold text-white">
+            @zui.react/mcp
+          </span>{' '}
+          for Claude Code, Cursor, Windsurf, Copilot &amp; Antigravity.
         </p>
 
-        {/* CTAs — accent primary + glass white secondary */}
+        {/* CTAs — premium purple gradient (Button.primary picks up
+            .btn-primary-purple automatically) + glass white secondary.
+            Per spec: no hover glow on the primary; press feedback only. */}
         <div className="zui-hero-cta mt-10 flex flex-wrap items-center justify-center gap-3">
           <Link href="/components/introduction">
-            <button
-              className={cn(
-                'inline-flex h-12 items-center justify-center gap-2 px-7',
-                'rounded-[var(--radius-lg)] text-base font-semibold tracking-[-0.01em]',
-                'bg-[oklch(64%_0.22_285)] text-white',
-                'shadow-[inset_0_1px_0_rgb(255_255_255/0.14)]',
-                'transition-colors duration-[var(--duration-fast)] ease-[var(--ease-out)]',
-                'hover:bg-[oklch(60%_0.22_285)]',
-                'active:scale-[0.98]',
-                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60'
-              )}
+            <Button
+              variant="primary"
+              size="lg"
+              rightIcon={<ArrowRight className="size-4" />}
+              className="rounded-full px-7 text-base"
             >
               Browse components
-              <ArrowRight className="size-4" />
-            </button>
+            </Button>
           </Link>
           <a
             href="https://github.com/Syzie123/zui"
@@ -202,13 +223,13 @@ function Hero() {
             rel="noreferrer"
             className={cn(
               'inline-flex h-12 items-center justify-center gap-2 px-7',
-              'rounded-[var(--radius-lg)] text-base font-semibold tracking-[-0.01em]',
+              'rounded-full text-base font-semibold tracking-[-0.01em]',
               'backdrop-blur-xl',
-              'border border-white/20 bg-white/10 text-white',
-              'shadow-[inset_0_1px_0_rgb(255_255_255/0.20)]',
-              'transition-all duration-[var(--duration-fast)] ease-[var(--ease-out)]',
-              'hover:bg-white/15 hover:border-white/30',
-              'active:scale-[0.98]',
+              'border border-white/15 bg-white/[0.06] text-white',
+              'shadow-[inset_0_1px_0_rgb(255_255_255/0.14)]',
+              'transition-colors duration-[var(--duration-fast)] ease-[var(--ease-out)]',
+              'hover:bg-white/[0.10] hover:border-white/25',
+              'active:translate-y-[1px]',
               'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60'
             )}
           >
@@ -266,22 +287,24 @@ function GlassInstallSnippet() {
   );
 }
 
-/* Stats live below the hero now — kept clean / on the page bg */
+/* Stats live below the hero now. Numbers come straight from the catalog —
+   one source of truth in scripts/build-mcp-registry.ts. The bg stays
+   transparent so the page's purple-black gradient bleeds through. */
 function StatsBand() {
   return (
-    <section className="border-y border-[var(--color-border-subtle)] bg-[var(--color-bg-base)]">
+    <section className="border-y border-white/5 bg-transparent">
       <dl className="mx-auto grid max-w-3xl grid-cols-3 gap-3 px-6 py-10 sm:gap-8">
         {[
-          { v: 32, l: 'components', suffix: '+' },
-          { v: 7,  l: 'effects' },
-          { v: 17, l: 'kb gzipped CSS' },
+          { v: 27, l: 'components' },
+          { v: 26, l: 'patterns' },
+          { v: 26, l: 'brand icons' },
         ].map((s) => (
           <div key={s.l} className="text-center">
             <dt className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-fg-subtle)]">
               {s.l}
             </dt>
             <dd className="mt-1 font-display text-3xl font-semibold tracking-[-0.025em] sm:text-4xl">
-              <NumberTicker value={s.v} suffix={s.suffix} />
+              <NumberTicker value={s.v} />
             </dd>
           </div>
         ))}
@@ -297,7 +320,7 @@ function FeatureGrid() {
   return (
     <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
       <header className="mb-10 max-w-2xl">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-accent-base)]">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#a78bfa]">
           Featured
         </p>
         <h2 className="mt-2 font-display text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">
@@ -432,23 +455,25 @@ function FeatureCell({
       data-animate-up
       className={cn(
         'group relative flex flex-col overflow-hidden rounded-[var(--radius-2xl)]',
-        'border border-[var(--color-border-base)] bg-[var(--color-bg-elevated)]',
+        // Frosted-glass tile: faint white border + subtle dark wash so the
+        // page's purple bg gradient still tints through. No solid fill.
+        'border border-white/[0.08] bg-white/[0.025] backdrop-blur-md',
         'transition-colors duration-[var(--duration-base)]',
-        'hover:border-[var(--color-border-strong)]',
+        'hover:border-white/[0.18] hover:bg-white/[0.04]',
         className
       )}
     >
       <div className="flex-1 overflow-hidden p-3 sm:p-4">{children}</div>
-      <div className="flex items-center justify-between gap-2 border-t border-[var(--color-border-subtle)] px-4 py-2.5">
+      <div className="flex items-center justify-between gap-2 border-t border-white/[0.06] px-4 py-2.5">
         <div className="min-w-0">
           <p className="font-display text-[13px] font-semibold tracking-[-0.005em]">
             {title}
           </p>
-          <p className="truncate text-[11px] text-[var(--color-fg-muted)]">
+          <p className="truncate text-[11px] text-white/55">
             {blurb}
           </p>
         </div>
-        <ArrowRight className="size-3.5 shrink-0 text-[var(--color-fg-subtle)] transition-transform group-hover:translate-x-0.5" />
+        <ArrowRight className="size-3.5 shrink-0 text-white/45 transition-transform group-hover:translate-x-0.5" />
       </div>
     </Link>
   );
@@ -456,22 +481,22 @@ function FeatureCell({
 
 function Footer() {
   return (
-    <footer className="border-t border-[var(--color-border-subtle)] py-10">
+    <footer className="border-t border-white/[0.06] py-10">
       <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-6 sm:flex-row sm:items-center">
         <div>
-          <p className="font-display text-sm font-semibold tracking-[-0.01em]">
+          <p className="font-display text-sm font-semibold tracking-[-0.01em] text-white">
             ZUI
           </p>
-          <p className="mt-0.5 text-xs text-[var(--color-fg-muted)]">
+          <p className="mt-0.5 text-xs text-white/55">
             Modern React components. MIT.
           </p>
         </div>
-        <div className="flex items-center gap-5 text-xs text-[var(--color-fg-muted)]">
-          <Link href="/components/introduction" className="hover:text-[var(--color-fg-base)]">
+        <div className="flex items-center gap-5 text-xs text-white/55">
+          <Link href="/components/introduction" className="transition-colors hover:text-white">
             Docs
           </Link>
           <a
-            className="hover:text-[var(--color-fg-base)]"
+            className="transition-colors hover:text-white"
             href="https://github.com/Syzie123/zui"
             target="_blank"
             rel="noreferrer"
@@ -479,12 +504,20 @@ function Footer() {
             GitHub
           </a>
           <a
-            className="hover:text-[var(--color-fg-base)]"
+            className="transition-colors hover:text-white"
             href="https://www.npmjs.com/package/@zui.react/zui"
             target="_blank"
             rel="noreferrer"
           >
             npm
+          </a>
+          <a
+            className="transition-colors hover:text-white"
+            href="https://www.npmjs.com/package/@zui.react/mcp"
+            target="_blank"
+            rel="noreferrer"
+          >
+            MCP
           </a>
         </div>
       </div>
